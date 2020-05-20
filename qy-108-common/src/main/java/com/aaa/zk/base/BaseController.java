@@ -277,10 +277,10 @@ public class BaseController {
     /**
      *      删除成功，使用系统消息
      **/
-    protected ResultData delete() {
+    protected ResultData deleteSuccess() {
         ResultData resultData = new ResultData();
-        resultData.setCode(DELETE.getCode());
-        resultData.setMsg(DELETE.getMsg());
+        resultData.setCode(DELETE_SUCCESS.getCode());
+        resultData.setMsg(DELETE_SUCCESS.getMsg());
         return resultData;
     }
 
@@ -289,9 +289,9 @@ public class BaseController {
      * @param msg
      * @return
      */
-    protected ResultData delete(String msg){
+    protected ResultData deleteSuccess(String msg){
         ResultData resultData = new ResultData();
-        resultData.setCode(DELETE.getCode());
+        resultData.setCode(DELETE_SUCCESS.getCode());
         resultData.setMsg(msg);
         return resultData;
     }
@@ -299,10 +299,10 @@ public class BaseController {
     /**
      *      删除失败，使用系统消息
      **/
-    protected ResultData deleteNot() {
+    protected ResultData deleteFalied() {
         ResultData resultData = new ResultData();
-        resultData.setCode(DELETE_NOT.getCode());
-        resultData.setMsg(DELETE_NOT.getMsg());
+        resultData.setCode(DELETE_FAILED.getCode());
+        resultData.setMsg(DELETE_FAILED.getMsg());
         return resultData;
     }
 
@@ -311,9 +311,9 @@ public class BaseController {
      * @param msg
      * @return
      */
-    protected ResultData deleteNot(String msg){
+    protected ResultData deleteFalied(String msg){
         ResultData resultData = new ResultData();
-        resultData.setCode(DELETE_NOT.getCode());
+        resultData.setCode(DELETE_FAILED.getCode());
         resultData.setMsg(msg);
         return resultData;
     }
@@ -321,10 +321,10 @@ public class BaseController {
     /**
      *      修改成功，使用系统消息
      **/
-    protected ResultData updata() {
+    protected ResultData updataSuccess() {
         ResultData resultData = new ResultData();
-        resultData.setCode(UPDATE.getCode());
-        resultData.setMsg(UPDATE.getMsg());
+        resultData.setCode(UPDATE_SUCCESS.getCode());
+        resultData.setMsg(UPDATE_SUCCESS.getMsg());
         return resultData;
     }
 
@@ -333,9 +333,9 @@ public class BaseController {
      * @param msg
      * @return
      */
-    protected ResultData updata(String msg){
+    protected ResultData updataSuccess(String msg){
         ResultData resultData = new ResultData();
-        resultData.setCode(UPDATE.getCode());
+        resultData.setCode(UPDATE_SUCCESS.getCode());
         resultData.setMsg(msg);
         return resultData;
     }
@@ -343,10 +343,10 @@ public class BaseController {
     /**
      *    修改失败，使用系统消息
      **/
-    protected ResultData updateNot() {
+    protected ResultData updateFalied() {
         ResultData resultData = new ResultData();
-        resultData.setCode(UPDATE_NOT.getCode());
-        resultData.setMsg(UPDATE_NOT.getMsg());
+        resultData.setCode(UPDATE_FAILED.getCode());
+        resultData.setMsg(UPDATE_FAILED.getMsg());
         return resultData;
     }
 
@@ -355,9 +355,9 @@ public class BaseController {
      * @param msg
      * @return
      */
-    protected ResultData updateNot(String msg){
+    protected ResultData updateFalied(String msg){
         ResultData resultData = new ResultData();
-        resultData.setCode(UPDATE_NOT.getCode());
+        resultData.setCode(UPDATE_FAILED.getCode());
         resultData.setMsg(msg);
         return resultData;
     }
@@ -365,10 +365,10 @@ public class BaseController {
     /**
      *      查询成功，使用系统消息
      **/
-    protected ResultData selelct() {
+    protected ResultData selelctSuccess() {
         ResultData resultData = new ResultData();
-        resultData.setCode(SELECT.getCode());
-        resultData.setMsg(SELECT.getMsg());
+        resultData.setCode(SELECT_SUCCESS.getCode());
+        resultData.setMsg(SELECT_SUCCESS.getMsg());
         return resultData;
     }
 
@@ -377,9 +377,9 @@ public class BaseController {
      * @param msg
      * @return
      */
-    protected ResultData selelct(String msg){
+    protected ResultData selelctSuccess(String msg){
         ResultData resultData = new ResultData();
-        resultData.setCode(SELECT.getCode());
+        resultData.setCode(SELECT_SUCCESS.getCode());
         resultData.setMsg(msg);
         return resultData;
     }
@@ -387,10 +387,10 @@ public class BaseController {
     /**
      *      查询成功，使用系统消息，自定义返回值
      **/
-    protected ResultData selelct(Object data) {
+    protected ResultData selelctSuccess(Object data) {
         ResultData resultData = new ResultData();
-        resultData.setCode(SELECT.getCode());
-        resultData.setMsg(SELECT.getMsg());
+        resultData.setCode(SELECT_SUCCESS.getCode());
+        resultData.setMsg(SELECT_SUCCESS.getMsg());
         resultData.setData(data);
         return resultData;
     }
@@ -398,23 +398,21 @@ public class BaseController {
     /**
      *      查询成功，自定义消息，自定义返回值
      **/
-    protected ResultData selelct(String msg, Object data) {
+    protected ResultData selelctSuccess(String msg, Object data) {
         ResultData resultData = new ResultData();
-        resultData.setCode(SELECT.getCode());
+        resultData.setCode(SELECT_SUCCESS.getCode());
         resultData.setMsg(msg);
         resultData.setData(data);
         return resultData;
     }
 
-
-
     /**
      *   查询失败，使用系统消息
      **/
-    protected ResultData selelctNot() {
+    protected ResultData selelctFalied() {
         ResultData resultData = new ResultData();
-        resultData.setCode(SELECT.getCode());
-        resultData.setMsg(SELECT.getMsg());
+        resultData.setCode(SELECT_FAILED.getCode());
+        resultData.setMsg(SELECT_FAILED.getMsg());
         return resultData;
     }
 
@@ -423,20 +421,68 @@ public class BaseController {
      * @param msg
      * @return
      */
-    protected ResultData selelctNot(String msg){
+    protected ResultData selelctFalied(String msg){
         ResultData resultData = new ResultData();
-        resultData.setCode(SELECT.getCode());
+        resultData.setCode(SELECT_FAILED.getCode());
         resultData.setMsg(msg);
+        return resultData;
+    }
+    /**
+    * @Author: He create on 2020/5/20 18:40
+    * @param: []
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 添加成功 使用系统消息
+    */
+    protected ResultData insertSuccess(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_SUCCESS.getCode());
+        resultData.setMsg(INSERT_SUCCESS.getMsg());
+        return resultData;
+    }
+    /**
+    * @Author: He create on 2020/5/20 18:40
+    * @param: [msg]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 添加成功 使用自定义消息
+    */
+    protected ResultData insertSuccess(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_SUCCESS.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+    /**
+    * @Author: He create on 2020/5/20 18:42
+    * @param: [msg]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 添加失败 自定义消息
+    */
+    protected ResultData insertFalied(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_FAILED.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+    /**
+     * @Author: He create on 2020/5/20 18:42
+     * @param: [msg]
+     * @return: com.aaa.zk.base.ResultData
+     * @Description: 添加失败 使用系统消息
+     */
+    protected ResultData insertFalied(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_FAILED.getCode());
+        resultData.setMsg(INSERT_FAILED.getMsg());
         return resultData;
     }
 
     /**
      *      分页成功，使用系统消息
      **/
-    protected ResultData pageInfo() {
+    protected ResultData pageInfoSuccess() {
         ResultData resultData = new ResultData();
-        resultData.setCode(PAGEINFO.getCode());
-        resultData.setMsg(PAGEINFO.getMsg());
+        resultData.setCode(PAGEINFO_SUCCESS.getCode());
+        resultData.setMsg(PAGEINFO_SUCCESS.getMsg());
         return resultData;
     }
 
@@ -445,9 +491,9 @@ public class BaseController {
      * @param msg
      * @return
      */
-    protected ResultData pageInfo(String msg){
+    protected ResultData pageInfoSuccess(String msg){
         ResultData resultData = new ResultData();
-        resultData.setCode(PAGEINFO.getCode());
+        resultData.setCode(PAGEINFO_SUCCESS.getCode());
         resultData.setMsg(msg);
         return resultData;
     }
@@ -455,10 +501,10 @@ public class BaseController {
     /**
      *      查询成功，使用系统消息，自定义返回值
      **/
-    protected ResultData pageInfo(Object data) {
+    protected ResultData pageInfoSuccess(Object data) {
         ResultData resultData = new ResultData();
-        resultData.setCode(PAGEINFO.getCode());
-        resultData.setMsg(PAGEINFO.getMsg());
+        resultData.setCode(PAGEINFO_SUCCESS.getCode());
+        resultData.setMsg(PAGEINFO_SUCCESS.getMsg());
         resultData.setData(data);
         return resultData;
     }
@@ -466,9 +512,9 @@ public class BaseController {
     /**
      *      查询成功，自定义消息，自定义返回值
      **/
-    protected ResultData pageInfo(String msg, Object data) {
+    protected ResultData pageInfoSuccess(String msg, Object data) {
         ResultData resultData = new ResultData();
-        resultData.setCode(PAGEINFO.getCode());
+        resultData.setCode(PAGEINFO_SUCCESS.getCode());
         resultData.setMsg(msg);
         resultData.setData(data);
         return resultData;
@@ -477,10 +523,10 @@ public class BaseController {
     /**
      *   分页失败，使用系统消息
      **/
-    protected ResultData pageInfoNot() {
+    protected ResultData pageInfoFalied() {
         ResultData resultData = new ResultData();
-        resultData.setCode(PAGEINFO_NOT.getCode());
-        resultData.setMsg(PAGEINFO_NOT.getMsg());
+        resultData.setCode(PAGEINFO_FAILED.getCode());
+        resultData.setMsg(PAGEINFO_FAILED.getMsg());
         return resultData;
     }
 
@@ -489,9 +535,9 @@ public class BaseController {
      * @param msg
      * @return
      */
-    protected ResultData pageInfoNot(String msg){
+    protected ResultData pageInfoFalied(String msg){
         ResultData resultData = new ResultData();
-        resultData.setCode(PAGEINFO_NOT.getCode());
+        resultData.setCode(PAGEINFO_FAILED.getCode());
         resultData.setMsg(msg);
         return resultData;
     }

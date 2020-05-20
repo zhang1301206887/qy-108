@@ -13,14 +13,16 @@ public enum LoginStatus {
     PASSWORD_WRONG("10003", "密码错误"),
     USER_LOCKED("10004", "账号被锁定"),
     LOGOUT_WRONG("10005", "用户退出异常"),
-    DELETE("20003","删除成功"),
-    DELETE_NOT("10006","删除失败"),
-    UPDATE("20004","修改成功"),
-    UPDATE_NOT("10007","修改失败"),
-    SELECT("20005","查询成功"),
-    SELECT_NOT("10008","查询失败"),
-    PAGEINFO("20006","分页成功"),
-    PAGEINFO_NOT("10009","分页失败");
+    DELETE_SUCCESS("20003","删除成功"),
+    DELETE_FAILED("10006","对不起，删除失败"),
+    UPDATE_SUCCESS("20004","修改成功"),
+    UPDATE_FAILED("10007","对不起，修改失败"),
+    SELECT_SUCCESS("20005","查询成功"),
+    SELECT_FAILED("10008","对不起，查询失败"),
+    INSERT_SUCCESS("20006","添加成功"),
+    INSERT_FAILED("10009","对不起，添加失败"),
+    PAGEINFO_SUCCESS("20007","分页查询成功"),
+    PAGEINFO_FAILED("10010","对不起，分页查询失败");
 
     LoginStatus(String code,String msg){
         this.code = code;
