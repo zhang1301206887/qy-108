@@ -65,12 +65,12 @@ public abstract class CommonController<T> extends BaseController {
         try {
             Integer i = getBaseService().delete(instance);
             if (i>0){
-                return delete();
+                return deleteSuccess();
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-        return deleteNot();
+        return deleteFalied();
 
     }
     /**
@@ -86,12 +86,12 @@ public abstract class CommonController<T> extends BaseController {
         try {
             Integer i = getBaseService().delete(list);
             if (i>0){
-                return delete();
+                return deleteSuccess();
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-        return deleteNot();
+        return deleteFalied();
 
     }
 
@@ -106,12 +106,12 @@ public abstract class CommonController<T> extends BaseController {
         try {
             Integer i = getBaseService().update(instance);
             if (i>0){
-                return updata();
+                return updataSuccess();
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-        return updateNot();
+        return updateFalied();
 
     }
 
@@ -127,12 +127,12 @@ public abstract class CommonController<T> extends BaseController {
             Map map1 = (Map) getBaseService().queryOne(instance);
             if (map1 != null && !"".equals(map1)){
                 resultData.setData(map1);
-                return selelct(resultData);
+                return selelctSuccess(resultData);
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-        return selelctNot();
+        return selelctFalied();
 
     }
     /**
@@ -148,12 +148,12 @@ public abstract class CommonController<T> extends BaseController {
             List<T> tList = getBaseService().queryList(instance);
             if (tList.size()>0 && !"".equals(tList)){
                 resultData.setData(tList);
-                return selelct(resultData);
+                return selelctSuccess(resultData);
             }
         }catch(Exception e){
             e.printStackTrace();
         }
-        return selelctNot();
+        return selelctFalied();
 
     }
 
@@ -168,11 +168,11 @@ public abstract class CommonController<T> extends BaseController {
         try {
             PageInfo<T> tPageInfo = getBaseService().queryListByPage(instance, 5, 5);
             resultData.setData(tPageInfo);
-            return pageInfo(resultData);
+            return pageInfoSuccess(resultData);
         }catch(Exception e){
             e.printStackTrace();
         }
-        return pageInfoNot();
+        return pageInfoFalied();
 
     }
     // TODO delete, batchDelete, update, getOne, getList, getListByPage(不带条件的分页查询)

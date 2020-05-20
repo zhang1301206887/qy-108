@@ -1,4 +1,5 @@
-package com.aaa.zk.controller;/*
+package com.aaa.zk.controller;
+/*
  *@Company：
  *@Author：何康
  *@Date：2020/5/20 17:33
@@ -16,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-@RestController
+@RestController("dept")
 public class DeptController extends BaseController {
     @Autowired
     private DeptService deptService;
@@ -27,7 +28,7 @@ public class DeptController extends BaseController {
     * @return: java.util.List<com.aaa.zk.model.Dept>
     * @Description: 查询所有部门信息
     */
-    @GetMapping("/selectAll")
+    @GetMapping("/selectAllDept")
     public ResultData selectAll(){
         List<Dept> depts = deptService.selectAll();
         if (null != depts){
@@ -41,8 +42,8 @@ public class DeptController extends BaseController {
     * @return: com.aaa.zk.model.Dept
     * @Description: 根据部门名称 查询部门基本信息
     */
-    @GetMapping("/selectByFiled")
-    public ResultData selectByName(Dept dept){
+    @GetMapping("/selectDeptByField")
+    public ResultData selectByField(@RequestBody Dept dept){
         dept.setDeptName("开发部");
         Dept dept1 = deptService.selectByName(dept);
         if (null != dept1){
@@ -57,7 +58,7 @@ public class DeptController extends BaseController {
     * @Description: 新增部门
     */
     @GetMapping("/insertDept")
-    public ResultData insertDept(Dept dept){
+    public ResultData insertDept(@RequestBody Dept dept){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String nowtime = df.format(new Date());
         dept.setDeptName("测试");
@@ -76,8 +77,8 @@ public class DeptController extends BaseController {
     * @return: java.lang.Integer
     * @Description: 根据主键id 修改部门信息
     */
-    @GetMapping("updateByPrimaryKey")
-    public ResultData updateByPrimaryKey(Dept dept){
+    @GetMapping("updateDeptByPrimaryKey")
+    public ResultData updateByPrimaryKey(@RequestBody Dept dept){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String nowtime = df.format(new Date());
         dept.setDeptName("修改测试");
@@ -96,8 +97,8 @@ public class DeptController extends BaseController {
     * @return: java.lang.Integer
     * @Description: 根据主键id 删除部门
     */
-    @GetMapping("deleteByPrimaryKey")
-    public ResultData deleteByPrimaryKey(Dept dept){
+    @GetMapping("deleteDeptByPrimaryKey")
+    public ResultData deleteByPrimaryKey(@RequestBody Dept dept){
         dept.setId(10L);
         Integer deleteResult = deptService.deleteByPrimaryKey(dept);
         if (deleteResult > 0){
