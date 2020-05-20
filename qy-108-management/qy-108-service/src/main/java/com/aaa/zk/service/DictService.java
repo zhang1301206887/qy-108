@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class DictService extends BaseService<Dict> {
+
     @Autowired
     private DictMapper dictMapper;
 
@@ -25,7 +26,11 @@ public class DictService extends BaseService<Dict> {
     * @Description: 查询字典表所有信息
     */
     public List<Dict> selectAll(){
-        return dictMapper.selectAll();
+        List<Dict> dicts = dictMapper.selectAll();
+        if (null != dicts && dicts.size() > 0){
+            return dicts;
+        }
+        return null;
     }
     /**
     * @Author: He create on 2020/5/20 21:23
@@ -34,7 +39,11 @@ public class DictService extends BaseService<Dict> {
     * @Description: 查询字典表
     */
     public List<Dict> selectByFiled(Dict dict){
-        return dictMapper.select(dict);
+        List<Dict> select = dictMapper.select(dict);
+        if (null != select && select.size() > 0){
+            return select;
+        }
+        return null;
     }
 
     /**
@@ -44,7 +53,11 @@ public class DictService extends BaseService<Dict> {
     * @Description: 添加数据
     */
     public Integer insert(Dict dict){
-        return dictMapper.insert(dict);
+        int insertResult = dictMapper.insert(dict);
+        if (insertResult > 0 ){
+            return insertResult;
+        }
+        return 0;
     }
     /**
     * @Author: He create on 2020/5/20 21:26
@@ -53,7 +66,11 @@ public class DictService extends BaseService<Dict> {
     * @Description: 根据主键id  更新数据
     */
     public Integer updateByPrimaryKey(Dict dict){
-        return dictMapper.updateByPrimaryKey(dict);
+        int updateResult = dictMapper.updateByPrimaryKey(dict);
+        if (updateResult > 0 ){
+            return updateResult;
+        }
+        return 0;
     }
     /**
     * @Author: He create on 2020/5/20 21:27
@@ -62,6 +79,10 @@ public class DictService extends BaseService<Dict> {
     * @Description: 根据主键id删除 数据
     */
     public Integer delectByPrimaryKey(Dict dict){
-        return dictMapper.deleteByPrimaryKey(dict);
+        int deleteResult = dictMapper.deleteByPrimaryKey(dict);
+        if (deleteResult > 0 ){
+            return deleteResult;
+        }
+        return 0;
     }
 }
