@@ -31,7 +31,6 @@ public class LoginController extends BaseController {
         TokenVo tokenVo =qyservice.doLogin(user);
         if (tokenVo.getIfSuccess()){
             return super.loginSuccess(tokenVo.getToken());
-
         }
         return super.loginFailed();
     }
