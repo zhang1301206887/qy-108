@@ -23,38 +23,33 @@ public class LoginService extends BaseService<User> {
 
     @Autowired
     private UserMapper userMapper;
-
     /**
-     * @author Seven Lee
-     * @description
-     *      执行登录操作
-     * @param [user]
-     * @date 2020/5/15
-     * @return com.aaa.lee.base.ResultData
-     * @throws
-     **/
-    public TokenVo doLogin(User user, RedisService redisService) {
+     * @Author: He create on 2020/5/15 18:16
+     * @param: [user, redisService]
+     * @return: com.aaa.hk.vo.TokenVo
+     * @Description: 登录操作
+     */
+    public TokenVo doLogin(User user , RedisService redisService){
         TokenVo tokenVo = new TokenVo();
         tokenVo.setIfSuccess(false);
-        // 1.判断(目前实现的是登录功能，也就是说用户在执行登录操作--->肯定没有token)
-        if(null != user) {
-            // 可以继续往下去执行
-            // 2.验证用户名和密码是否正确
+        //首先判断传入的user不为空
+        if (null != user){
+            //验证用户传入的username和password是否正确
             User u = userMapper.selectOne(user);
-            // 3.判断如果从数据库中查询的user对象是否为null
-            if(null != u) {
-                // 说明用户登录成功
+            //如果为空 证明不存在
+            if (null != u){
+                //登陆成功
                 String token = IDUtils.getUUID();
                 u.setToken(token);
+                //进行无状态登录 再数据库中进行token的更新
                 int updateResult = userMapper.updateByPrimaryKey(u);
-                // 4.判断token是否更新成功
-                if(updateResult > 0) {
-                    // 说明token更新成功(需要返回token)
-                    // 需要给token设置一个失效时间(因为以后每一个方法都需要去查询token，也就是说必须要查询数据库)
-                    // 就会大量影响效率(所以说直接存缓存)
-                    //第一次操作时 设置为nx  第二次存入key设置为xx即可
+                //判断token是否更新成功
+                if (updateResult > 0){
+                    //证明token更新成功 需要返回token 并且给token设置失效时间
+                    //因为以后每一个方法都需要去查询token，也就是说必须要查询数据库
+                    //就会大量影响效率(所以说直接存缓存)
                     String setResult = redisService.set(String.valueOf(u.getId()), token, XX, EX, 1800);
-                    if("OK".equals(setResult.toUpperCase()) || "1".equals(setResult)) {
+                    if ("OK".equals(setResult.toUpperCase()) || "1".equals(setResult)){
                         return tokenVo.setIfSuccess(true).setToken(token).setRedisKey(String.valueOf(u.getId()));
                     }
                 }
