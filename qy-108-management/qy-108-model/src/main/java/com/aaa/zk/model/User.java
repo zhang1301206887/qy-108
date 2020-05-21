@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
@@ -21,6 +20,15 @@ import javax.persistence.Table;
 @Accessors(chain = true)
 public class User extends BaseModel {
 
+    /**
+     * id
+     */
+    /**
+     * 用户ID
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     /**
      * 用户名
      */
