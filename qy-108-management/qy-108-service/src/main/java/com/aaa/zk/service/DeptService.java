@@ -9,10 +9,14 @@ import com.aaa.zk.base.BaseService;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.mapper.DeptMapper;
 import com.aaa.zk.model.Dept;
+import com.aaa.zk.model.Menu;
+import com.aaa.zk.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DeptService extends BaseService<Dept> {
@@ -20,13 +24,16 @@ public class DeptService extends BaseService<Dept> {
     @Autowired
     private DeptMapper deptMapper;
 
+    //使用工具类 获取当前时间并转化格式
+    private String nowDate = new DateUtil().getNowDate();
+
     /**
     * @Author: He create on 2020/5/20 18:04
     * @param: []
     * @return: java.util.List<com.aaa.zk.model.Dept>
     * @Description: 查询所有部门信息
     */
-    public List<Dept> selectAll(){
+    public List<Dept> selectAllDept(){
         List<Dept> depts = deptMapper.selectAll();
         if (null != depts && depts.size()>0){
            return depts;
@@ -39,7 +46,7 @@ public class DeptService extends BaseService<Dept> {
     * @return: com.aaa.zk.model.Dept
     * @Description: 根据部门名称查询部门的基本信息
     */
-    public Dept selectByName(Dept dept){
+    public Dept selectDeptByName(Dept dept){
         Dept dept1 = deptMapper.selectOne(dept);
         if (null != dept1 && "".equals(dept1)){
             return dept1;
@@ -52,7 +59,8 @@ public class DeptService extends BaseService<Dept> {
     * @return: java.lang.Integer
     * @Description: 新增部门
     */
-    public Integer insert(Dept dept){
+    public Integer insertDept(Dept dept){
+        dept.setCreateTime(nowDate);
         int insertResult = deptMapper.insert(dept);
         if (insertResult > 0){
             return insertResult;
@@ -65,7 +73,9 @@ public class DeptService extends BaseService<Dept> {
     * @return: java.lang.Integer
     * @Description: 根据主键id 修改部门信息
     */
-    public Integer updateByPrimaryKey(Dept dept){
+    public Integer updateDeptByPrimaryKey(Dept dept){
+        dept.setCreateTime(nowDate);
+        dept.setModifyTime(nowDate);
         int updateResult = deptMapper.updateByPrimaryKey(dept);
         if (updateResult > 0){
             return updateResult;
@@ -78,11 +88,29 @@ public class DeptService extends BaseService<Dept> {
     * @return: java.lang.Integer
     * @Description: 根据主键id 删除部门
     */
-    public Integer deleteByPrimaryKey(Dept dept){
+    public Integer deleteDeptByPrimaryKey(Dept dept){
         int deleteResult = deptMapper.deleteByPrimaryKey(dept);
         if (deleteResult > 0){
             return deleteResult;
         }
         return 0;
+    }
+    /**
+    * @Author: He create on 2020/5/21 23:07
+    * @param: [map]
+    * @return: java.lang.Integer
+    * @Description: 通过主键id批量删除数据
+    */
+    public Integer deleteDeptByPrimaryKeyList(List<Map> list){
+       Integer deleteNum = 0;
+       //循环遍历list中的map 取出其中的id进行删除操作
+        for (Map map : list){
+            Object id = map.get("id");
+            int deleteResult = deptMapper.deleteByPrimaryKey(id);
+            if (deleteResult > 0){
+                deleteNum += 1;
+            }
+        }
+        return deleteNum;
     }
 }

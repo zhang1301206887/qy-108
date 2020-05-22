@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class DictService extends BaseService<Dict> {
 
@@ -25,7 +27,7 @@ public class DictService extends BaseService<Dict> {
     * @return: java.util.List<com.aaa.zk.model.Dict>
     * @Description: 查询字典表所有信息
     */
-    public List<Dict> selectAll(){
+    public List<Dict> selectAllDict(){
         List<Dict> dicts = dictMapper.selectAll();
         if (null != dicts && dicts.size() > 0){
             return dicts;
@@ -38,10 +40,12 @@ public class DictService extends BaseService<Dict> {
     * @return: java.util.List<com.aaa.zk.model.Dict>
     * @Description: 查询字典表
     */
-    public List<Dict> selectByFiled(Dict dict){
-        List<Dict> select = dictMapper.select(dict);
-        if (null != select && select.size() > 0){
-            return select;
+    public List<Dict> selectDictByFiled(Dict dict){
+        if (null != dict){
+            List<Dict> select = dictMapper.select(dict);
+            if (null != select && select.size() > 0){
+                return select;
+            }
         }
         return null;
     }
@@ -52,10 +56,12 @@ public class DictService extends BaseService<Dict> {
     * @return: java.lang.Integer
     * @Description: 添加数据
     */
-    public Integer insert(Dict dict){
-        int insertResult = dictMapper.insert(dict);
-        if (insertResult > 0 ){
-            return insertResult;
+    public Integer insertDict(Dict dict){
+        if (null != dict){
+            int insertResult = dictMapper.insert(dict);
+            if (insertResult > 0 ){
+                return insertResult;
+            }
         }
         return 0;
     }
@@ -65,10 +71,12 @@ public class DictService extends BaseService<Dict> {
     * @return: java.lang.Integer
     * @Description: 根据主键id  更新数据
     */
-    public Integer updateByPrimaryKey(Dict dict){
-        int updateResult = dictMapper.updateByPrimaryKey(dict);
-        if (updateResult > 0 ){
-            return updateResult;
+    public Integer updateDictByPrimaryKey(Dict dict){
+        if (null != dict){
+            int updateResult = dictMapper.updateByPrimaryKey(dict);
+            if (updateResult > 0 ){
+                return updateResult;
+            }
         }
         return 0;
     }
@@ -78,11 +86,31 @@ public class DictService extends BaseService<Dict> {
     * @return: java.lang.Integer
     * @Description: 根据主键id删除 数据
     */
-    public Integer delectByPrimaryKey(Dict dict){
-        int deleteResult = dictMapper.deleteByPrimaryKey(dict);
-        if (deleteResult > 0 ){
-            return deleteResult;
+    public Integer delectDictByPrimaryKey(Dict dict){
+        if (null != dict){
+            int deleteResult = dictMapper.deleteByPrimaryKey(dict);
+            if (deleteResult > 0 ){
+                return deleteResult;
+            }
         }
         return 0;
+    }
+    /**
+     * @Author: He create on 2020/5/21 23:07
+     * @param: [map]
+     * @return: java.lang.Integer
+     * @Description: 通过主键id批量删除数据
+     */
+    public Integer deleteDictByPrimaryKeyList(List<Map> list){
+        Integer deleteNum = 0;
+        //循环遍历list中的map 取出其中的id进行删除操作
+        for (Map map : list){
+            Object id = map.get("id");
+            int deleteResult = dictMapper.deleteByPrimaryKey(id);
+            if (deleteResult > 0){
+                deleteNum += 1;
+            }
+        }
+        return deleteNum;
     }
 }

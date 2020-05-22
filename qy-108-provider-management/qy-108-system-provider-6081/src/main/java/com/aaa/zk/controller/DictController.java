@@ -10,16 +10,19 @@ import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Dict;
 import com.aaa.zk.service.DictService;
+import com.aaa.zk.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-@RestController("dict")
+@RestController()
 public class DictController extends BaseController {
 
     @Autowired
     private DictService dictService;
+
 
     /**
     * @Author: He create on 2020/5/20 21:37
@@ -29,7 +32,7 @@ public class DictController extends BaseController {
     */
     @GetMapping("/selectAllDict")
     public ResultData selectAll(){
-        List<Dict> dicts = dictService.selectAll();
+        List<Dict> dicts = dictService.selectAllDict();
         if (null != dicts){
             return selelctSuccess(dicts);
         }
@@ -41,10 +44,9 @@ public class DictController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据条件查询数据
     */
-    @PostMapping("/selectDictByField")
-    public ResultData selectByField( Dict dict){
-        dict.setTableName("t_user");
-        List<Dict> dicts = dictService.selectByFiled(dict);
+    @GetMapping("/selectDictByField")
+    public ResultData selectByField(@RequestBody Dict dict){
+        List<Dict> dicts = dictService.selectDictByFiled(dict);
         if (null != dicts){
             return selelctSuccess(dicts);
         }
@@ -56,13 +58,9 @@ public class DictController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 添加数据
     */
-    @PostMapping("/insertDict")
-    public ResultData insertDict( Dict dict){
-        dict.setKeyy(0L);
-        dict.setValuee("测试");
-        dict.setTableName("t_test");
-        dict.setFieldName("test");
-        Integer insertResult = dictService.insert(dict);
+    @PutMapping("/insertDict")
+    public ResultData insertDict(@RequestBody Dict dict){
+        Integer insertResult = dictService.insertDict(dict);
         if (insertResult > 0){
             return insertSuccess();
         }
@@ -75,13 +73,8 @@ public class DictController extends BaseController {
     * @Description: 根据id 更新数据
     */
     @PostMapping("/updateDictByPrimaryKey")
-    public ResultData updateByPrimaryKey(Dict dict){
-        dict.setDictId(34L);
-        dict.setValuee("测试测试");
-        dict.setKeyy(0L);
-        dict.setTableName("t_test");
-        dict.setFieldName("test");
-        Integer updateResult = dictService.updateByPrimaryKey(dict);
+    public ResultData updateByPrimaryKey(@RequestBody Dict dict){
+        Integer updateResult = dictService.updateDictByPrimaryKey(dict);
         if (updateResult > 0){
             return updataSuccess();
         }
@@ -93,12 +86,25 @@ public class DictController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id删除 数据
     */
-    @PostMapping("/deleteDictByPrimaryKey")
-    public ResultData deleteByPrimaryKey(Dict dict){
-        dict.setDictId(34L);
-        Integer deleteResult = dictService.delectByPrimaryKey(dict);
+    @DeleteMapping("/deleteDictByPrimaryKey")
+    public ResultData deleteByPrimaryKey(@RequestBody Dict dict){
+        Integer deleteResult = dictService.delectDictByPrimaryKey(dict);
         if (deleteResult > 0){
             return deleteSuccess();
+        }
+        return deleteFalied();
+    }
+    /**
+     * @Author: He create on 2020/5/21 23:25
+     * @param: [list]
+     * @return: com.aaa.zk.base.ResultData
+     * @Description: 根据前台传入的list  遍历map id 进行删除操作
+     */
+    @DeleteMapping("deleteDictByPrimaryKeyList")
+    public ResultData deleteDeptByPrimaryKeyList(@RequestBody List<Map> list){
+        Integer integer = dictService.deleteDictByPrimaryKeyList(list);
+        if (integer > 0){
+            return deleteSuccess("删除成功，共"+integer+"数据！");
         }
         return deleteFalied();
     }

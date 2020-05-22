@@ -10,14 +10,14 @@ import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Dept;
 import com.aaa.zk.service.DeptService;
+import com.aaa.zk.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
-@RestController("dept")
+@RestController()
 public class DeptController extends BaseController {
     @Autowired
     private DeptService deptService;
@@ -30,7 +30,7 @@ public class DeptController extends BaseController {
     */
     @GetMapping("/selectAllDept")
     public ResultData selectAll(){
-        List<Dept> depts = deptService.selectAll();
+        List<Dept> depts = deptService.selectAllDept();
         if (null != depts){
             return selelctSuccess(depts);
         }
@@ -44,8 +44,7 @@ public class DeptController extends BaseController {
     */
     @GetMapping("/selectDeptByField")
     public ResultData selectByField(@RequestBody Dept dept){
-        dept.setDeptName("开发部");
-        Dept dept1 = deptService.selectByName(dept);
+        Dept dept1 = deptService.selectDeptByName(dept);
         if (null != dept1){
             return selelctSuccess(dept1);
         }
@@ -57,15 +56,9 @@ public class DeptController extends BaseController {
     * @return: java.lang.Integer
     * @Description: 新增部门
     */
-    @GetMapping("/insertDept")
+    @PutMapping("/insertDept")
     public ResultData insertDept(@RequestBody Dept dept){
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String nowtime = df.format(new Date());
-        dept.setDeptName("测试");
-        dept.setParentId(1L);
-        dept.setOrderNum(6.0);
-        dept.setCreateTime(nowtime);
-        Integer insertResult = deptService.insert(dept);
+        Integer insertResult = deptService.insertDept(dept);
         if (insertResult > 0){
             return insertSuccess();
         }
@@ -77,15 +70,9 @@ public class DeptController extends BaseController {
     * @return: java.lang.Integer
     * @Description: 根据主键id 修改部门信息
     */
-    @GetMapping("updateDeptByPrimaryKey")
+    @PostMapping("updateDeptByPrimaryKey")
     public ResultData updateByPrimaryKey(@RequestBody Dept dept){
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String nowtime = df.format(new Date());
-        dept.setDeptName("修改测试");
-        dept.setParentId(2L);
-        dept.setId(9L);
-        dept.setModifyTime(nowtime);
-        Integer updateResult = deptService.updateByPrimaryKey(dept);
+        Integer updateResult = deptService.updateDeptByPrimaryKey(dept);
         if (updateResult > 0 ){
             return updataSuccess();
         }
@@ -97,12 +84,25 @@ public class DeptController extends BaseController {
     * @return: java.lang.Integer
     * @Description: 根据主键id 删除部门
     */
-    @GetMapping("deleteDeptByPrimaryKey")
+    @DeleteMapping("deleteDeptByPrimaryKey")
     public ResultData deleteByPrimaryKey(@RequestBody Dept dept){
-        dept.setId(10L);
-        Integer deleteResult = deptService.deleteByPrimaryKey(dept);
+        Integer deleteResult = deptService.deleteDeptByPrimaryKey(dept);
         if (deleteResult > 0){
             return deleteSuccess();
+        }
+        return deleteFalied();
+    }
+    /**
+    * @Author: He create on 2020/5/21 23:25
+    * @param: [list]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据前台传入的list  遍历map id 进行删除操作
+    */
+    @DeleteMapping("deleteDeptByPrimaryKeyList")
+    public ResultData deleteDeptByPrimaryKeyList(@RequestBody List<Map> list){
+        Integer integer = deptService.deleteDeptByPrimaryKeyList(list);
+        if (integer > 0){
+            return deleteSuccess("删除成功，共"+integer+"数据！");
         }
         return deleteFalied();
     }
