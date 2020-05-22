@@ -7,7 +7,6 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Table(name = "t_login_log")
 @Data
@@ -25,7 +24,7 @@ public class LoginLog {
      * 登录时间
      */
     @Column(name = "LOGIN_TIME")
-    private Date loginTime;
+    private String loginTime;
 
     /**
      * 登录地点

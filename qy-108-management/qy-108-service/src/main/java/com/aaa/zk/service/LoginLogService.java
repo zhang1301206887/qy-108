@@ -9,6 +9,7 @@ package com.aaa.zk.service;/*
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.LoginLogMapper;
 import com.aaa.zk.model.LoginLog;
+import com.aaa.zk.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,10 @@ public class LoginLogService extends BaseService<LoginLog> {
     @Autowired
     LoginLogMapper loginLogMapper;
 
-    public Integer insert(LoginLog loginLog){
+    private String nowDate = new DateUtil().getNowDate();
+
+    public Integer insertLoginLog(LoginLog loginLog){
+        loginLog.setLoginTime(nowDate);
         return loginLogMapper.insert(loginLog);
     }
 }

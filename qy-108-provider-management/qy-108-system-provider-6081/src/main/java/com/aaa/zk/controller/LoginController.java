@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-
 /**
  * @Author zk
  * @Date 2020/5/17
@@ -32,20 +30,11 @@ public class LoginController {
      * @Description: 登录操作
      */
     @PostMapping("/doLogin")
-    public TokenVo doLogin(@RequestBody User user, LoginLog loginLog){
-//        Date date = new Date();
-//        User user1 = new User();
-//        user1.setUsername("admin");
-//        user1.setPassword("ac9484b23a43a694fa3f5a322be75722");
-//        LoginLog loginLog1 = new LoginLog();
-//        loginLog1.setIp("4144");
-//        loginLog1.setLocation("4444");
-//        loginLog1.setUsername("admin");
-//        loginLog1.setLoginTime(date);
-        //loginLog.setLoginTime(date);
+    public TokenVo doLogin(@RequestBody User user){
+        LoginLog loginLog = new LoginLog().setIp("测试").setLocation("测试").setUsername(user.getUsername());
         TokenVo tokenVo = loginService.doLogin(user, redisService);
         if (null != tokenVo || "".equals(tokenVo)){
-            Integer insert = loginLogService.insert(loginLog);
+            Integer insert = loginLogService.insertLoginLog(loginLog);
             if (insert > 0){
                 return tokenVo;
             }

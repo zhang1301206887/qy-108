@@ -1,4 +1,5 @@
-package com.aaa.zk.controller;/*
+package com.aaa.zk.controller;
+/*
  *@Company：
  *@Author：何康
  *@Date：2020/5/22 11:29
@@ -12,11 +13,10 @@ import com.aaa.zk.service.IQYDeptService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Api(value = "部门信息", tags = "部门信息管理")
@@ -32,15 +32,64 @@ public class DeptController extends BaseController {
     * @Description: 查询所有部门信息
     */
     @GetMapping("/selectAllDept")
-    @ApiOperation("查询所有部门信息")
+    @ApiOperation(value = "查询功能",notes = "查询所有的部门数据")
     public ResultData selectAll(){
         return deptService.selectAll();
     }
-
+    /**
+    * @Author: He create on 2020/5/22 11:45
+    * @param: [dept]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 条件查询
+    */
     @GetMapping("/selectDeptByField")
-    @ApiOperation("根据条件查询部门信息")
+    @ApiOperation(value = "查询功能",notes = "条件查询部门数据")
     public ResultData selectDeptByField(@RequestBody Dept dept){
         return deptService.selectByField(dept);
+    }
+    /**
+    * @Author: He create on 2020/5/22 11:48
+    * @param: [dept]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 添加新部门
+    */
+    @PutMapping("/insertDept")
+    @ApiOperation(value = "添加功能",notes = "添加新部门数据")
+    public ResultData insertDept(@RequestBody Dept dept){
+        return deptService.insertDept(dept);
+    }
+    /**
+    * @Author: He create on 2020/5/22 11:48
+    * @param: [dept]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据主键id修改部门信息
+    */
+    @PostMapping("updateDeptByPrimaryKey")
+    @ApiOperation(value = "更新功能",notes = "根据主键id更新部门数据")
+    public ResultData updateByPrimaryKey(@RequestBody Dept dept){
+        return deptService.updateByPrimaryKey(dept);
+    }
+    /**
+    * @Author: He create on 2020/5/22 11:48
+    * @param: [dept]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据主键id删除部门
+    */
+    @DeleteMapping("deleteDeptByPrimaryKey")
+    @ApiOperation(value = "删除功能",notes = "根据主键id删除部门数据")
+    public ResultData deleteByPrimaryKey(@RequestBody Dept dept){
+        return deptService.deleteByPrimaryKey(dept);
+    }
+    /**
+    * @Author: He create on 2020/5/22 11:48
+    * @param: [list]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据主键id批量删除
+    */
+    @DeleteMapping("deleteDeptByPrimaryKeyList")
+    @ApiOperation(value = "删除功能",notes = "根据主键id批量删除部门数据")
+    public ResultData deleteDeptByPrimaryKeyList(@RequestBody List<Map> list){
+        return deptService.deleteDeptByPrimaryKeyList(list);
     }
 
 }
