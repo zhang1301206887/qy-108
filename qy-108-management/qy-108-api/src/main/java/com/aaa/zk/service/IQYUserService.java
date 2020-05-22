@@ -2,17 +2,20 @@ package com.aaa.zk.service;
 
 import com.aaa.zk.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(value = "system-interface")
+@FeignClient(value = "user-interface")
 public interface IQYUserService {
 
     /**
      * 查询所有
      * @return
      */
+    @GetMapping("/selectAll")
      List<User> userSelectAll();
 
     /**
@@ -20,7 +23,8 @@ public interface IQYUserService {
      * @param user
      * @return
      */
-     User userSelectOne(User user);
+    @PostMapping("/selectOne")
+     User userSelectOne(@RequestBody User user);
 
 
     /**
@@ -28,37 +32,43 @@ public interface IQYUserService {
      * @param user
      * @return
      */
-     Integer userAdd(User user);
+    @PostMapping("/userAdd")
+     Integer userAdd(@RequestBody User user);
     /**
      * 修改用户
      * @param user
      * @return
      */
-     Integer userUpdate(User user);
+    @PostMapping("/userUpdate")
+     Integer userUpdate(@RequestBody User user);
     /**
      * 删除用户
      * @param user
      * @return
      */
-     Integer userDelete(User user);
+    @PostMapping("/userDelete")
+     Integer userDelete(@RequestBody User user);
 
     /**
      * 批量删除
      * @param id
      * @return
      */
-     Integer userDeleteAll(@RequestParam String id);
+    @PostMapping("/userDeleteAll")
+     Integer userDeleteAll(@RequestBody String id);
     /**
      * 密码重置
      * @param user
      * @return
      */
-     Integer userPassWord(User user);
+    @PostMapping("/userPassword")
+     Integer userPassWord(@RequestBody User user);
 
     /**
      * 用户重置
      * @param user
      * @return
      */
-     Integer resetUser(User user);
+    @PostMapping("/resetUser")
+     Integer resetUser(@RequestBody User user);
 }

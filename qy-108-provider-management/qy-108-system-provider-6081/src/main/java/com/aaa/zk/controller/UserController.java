@@ -3,10 +3,7 @@ package com.aaa.zk.controller;
 import com.aaa.zk.model.User;
 import com.aaa.zk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class UserController {
      * 查询所有
      * @return
      */
-    @GetMapping("selectAll")
+    @GetMapping("/selectAll")
     public List<User> userSelectAll(){
         return userService.userSlelectAll();
     }
@@ -30,8 +27,8 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("SelectOne")
-    public User userSelectOne(User user){
+    @PostMapping("/selectOne")
+    public User userSelectOne(@RequestBody User user){
         System.out.println("***"+user);
         return userService.userSelectOne(user);
     }
@@ -41,8 +38,8 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("userAdd")
-    public Integer userAdd(User user){
+    @PostMapping("/userAdd")
+    public Integer userAdd(@RequestBody User user){
         System.out.println("***"+user);
          return userService.userAdd(user);
     }
@@ -52,8 +49,8 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("userUpdate")
-    public Integer userUpdate(User user){
+    @PostMapping("/userUpdate")
+    public Integer userUpdate(@RequestBody User user){
         System.out.println("8888"+user);
          return userService.userUpdate(user);
     }
@@ -63,8 +60,8 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("userDelete")
-    public Integer userDelete(User user){
+    @PostMapping("/userDelete")
+    public Integer userDelete(@RequestBody User user){
         return userService.userDelete(user);
     }
 
@@ -73,8 +70,8 @@ public class UserController {
      * @param id
      * @return
      */
-    @PostMapping("userDeleteAll")
-    public Integer userDeleteAll(@RequestParam String id){
+    @PostMapping("/userDeleteAll")
+    public Integer userDeleteAll(@RequestBody String id){
         System.out.println("****"+id);
        return userService.userDeleteAll(id);
     }
@@ -84,8 +81,8 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("userPassword")
-    public Integer userPassWord(User user){
+    @PostMapping("/userPassword")
+    public Integer userPassWord(@RequestBody User user){
         return userService.UserPassword(user);
     }
 
@@ -94,8 +91,8 @@ public class UserController {
      * @param user
      * @return
      */
-    @PostMapping("resetUser")
-    public Integer resetUser(User user){
+    @PostMapping("/resetUser")
+    public Integer resetUser(@RequestBody User user){
         return userService.resetUser(user);
     }
 

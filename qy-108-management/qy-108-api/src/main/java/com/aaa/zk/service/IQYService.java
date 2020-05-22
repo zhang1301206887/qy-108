@@ -3,6 +3,7 @@ package com.aaa.zk.service;
 import com.aaa.zk.model.User;
 import com.aaa.zk.vo.TokenVo;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
@@ -27,5 +28,7 @@ public interface IQYService {
     /**
      * 执行登录操作
      * */
+    @PostMapping("/doLogin")
     TokenVo doLogin(@RequestBody User user);
+
 }

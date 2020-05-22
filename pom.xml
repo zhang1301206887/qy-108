@@ -14,7 +14,6 @@
         <module>qy-108-eureka-management</module>
         <module>qy-108-management</module>
         <module>qy-108-provider-management</module>
-        <module>qy-108-zuul-4081</module>
         <module>qy-108-zuul</module>
     </modules>
     <packaging>pom</packaging>
