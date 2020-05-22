@@ -9,6 +9,8 @@ package com.aaa.zk.controller;
 import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Role;
+import com.aaa.zk.model.RoleMenu;
+import com.aaa.zk.service.RoleMenuService;
 import com.aaa.zk.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,8 @@ import java.util.Map;
 public class RoleController extends BaseController {
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private RoleMenuService roleMenuService;
     /**
     * @Author: He create on 2020/5/21 23:01
     * @param: []
@@ -45,6 +49,20 @@ public class RoleController extends BaseController {
         List<Role> roles = roleService.selectOneRole(role);
         if (null != roles){
             return selelctSuccess(roles);
+        }
+        return selelctFalied();
+    }
+    /**
+    * @Author: He create on 2020/5/22 15:04
+    * @param: [id]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据角色的id查询角色的权限信息
+    */
+    @GetMapping("selectRoleMenuById")
+    public ResultData selectRoleMenuById(@RequestParam Object id){
+        List<RoleMenu> roleMenus = roleMenuService.selectRoleMenuById(id);
+        if (null != roleMenus){
+            return selelctSuccess(roleMenus);
         }
         return selelctFalied();
     }

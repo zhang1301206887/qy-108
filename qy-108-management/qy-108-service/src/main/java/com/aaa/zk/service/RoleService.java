@@ -66,6 +66,7 @@ public class RoleService extends BaseService<Role> {
         if (null != role){
             role.setCreateTime(nowDate);
             int insertResult = roleMapper.insert(role);
+
             if (insertResult > 0){
                 return insertResult;
             }
