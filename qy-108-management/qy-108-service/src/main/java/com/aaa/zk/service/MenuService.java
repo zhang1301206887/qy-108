@@ -6,21 +6,15 @@ package com.aaa.zk.service;/*
  */
 
 import com.aaa.zk.base.BaseService;
-import com.aaa.zk.base.ResultData;
 import com.aaa.zk.mapper.MenuMapper;
-import com.aaa.zk.model.Dept;
 import com.aaa.zk.model.Menu;
 import com.aaa.zk.utils.DateUtil;
 import com.aaa.zk.vo.MenuVo;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Map;
-
-import static java.awt.SystemColor.menu;
 
 @Service
 public class MenuService extends BaseService<Menu> {
@@ -93,9 +87,9 @@ public class MenuService extends BaseService<Menu> {
     * @return: java.lang.Integer
     * @Description: 根据主键删除菜单
     */
-    public Integer deleteMenuByPrimaryKey(Menu menu){
-        if (null != menu){
-            int deleteResult = menuMapper.deleteByPrimaryKey(menu);
+    public Integer deleteMenuByPrimaryKey(Object menuId){
+        if (null != menuId){
+            int deleteResult = menuMapper.deleteByPrimaryKey(menuId);
             if (deleteResult > 0){
                 return deleteResult;
             }

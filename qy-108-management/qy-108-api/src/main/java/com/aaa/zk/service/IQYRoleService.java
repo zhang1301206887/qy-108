@@ -8,24 +8,67 @@ package com.aaa.zk.service;/*
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Role;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
 @FeignClient(value = "role-interface")
 public interface IQYRoleService {
+    /**
+    * @Author: He create on 2020/5/23 10:45
+    * @param: []
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 查询所有角色信息
+    */
     @GetMapping("selectAllRole")
-    public ResultData selectAllRole();
+    ResultData selectAllRole();
+    /**
+    * @Author: He create on 2020/5/23 10:45
+    * @param: [role]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据条件查询角色信息
+    */
     @GetMapping("selectRoleByField")
-    public ResultData selectRoleByField(@RequestBody Role role);
+    ResultData selectRoleByField(@RequestBody Role role);
+    /**
+    * @Author: He create on 2020/5/23 10:45
+    * @param: [map]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 添加新角色
+    */
     @PutMapping("insertRole")
-    public ResultData insertRole(@RequestBody Role role);
+    ResultData insertRole(@RequestBody Map map);
+    /**
+    * @Author: He create on 2020/5/23 10:45
+    * @param: [map]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据主键id修改角色信息
+    */
+    @PostMapping("updateRoleByPrimaryKey")
+    ResultData updateRoleByPrimaryKey(@RequestBody Map map);
+    /**
+     * @Author: He create on 2020/5/22 12:07
+     * @param: [menu]
+     * @return: com.aaa.zk.base.ResultData
+     * @Description: 根据主键id删除一条数据
+     */
     @DeleteMapping("deleteRoleByPrimaryKey")
-    public ResultData deleteRoleByPrimaryKey(@RequestBody Role role);
+    ResultData deleteRoleByPrimaryKey(@RequestParam Object id);
+    /**
+     * @Author: He create on 2020/5/22 12:08
+     * @param: [list]
+     * @return: com.aaa.zk.base.ResultData
+     * @Description: 根据主键id批量删除角色信息
+     */
     @DeleteMapping("deleteRoleByPrimaryKeyList")
-    public ResultData deleteDeptByPrimaryKeyList(@RequestBody List<Map> list);
+    ResultData deleteRoleByPrimaryKeyList(@RequestBody List<Map> list);
+    /**
+    * @Author: He create on 2020/5/23 10:46
+    * @param: [id]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据角色id查询具体的角色权限信息
+    */
+    @GetMapping("selectRoleMenuById")
+    ResultData selectRoleMenuById(@RequestParam Object id);
 }

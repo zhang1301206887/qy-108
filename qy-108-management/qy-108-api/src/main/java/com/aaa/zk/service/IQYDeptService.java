@@ -22,16 +22,16 @@ public interface IQYDeptService {
      * @Description: 查询所有部门信息  和provider中的deptcontroller对应
      */
     @GetMapping("/selectAllDept")
-    ResultData selectAll();
+    ResultData selectAllDept();
 
     /**
      * @Author: He create on 2020/5/22 9:55
      * @param: [dept]
      * @return: com.aaa.zk.base.ResultData
-     * @Description: 根据条件查询信息
+     * @Description: 根据条件查询部门信息
      */
     @GetMapping("/selectDeptByField")
-    ResultData selectByField(@RequestBody Dept dept);
+    ResultData selectDeptByField(@RequestBody Dept dept);
 
     /**
      * @Author: He create on 2020/5/22 9:55
@@ -46,24 +46,24 @@ public interface IQYDeptService {
      * @Author: He create on 2020/5/22 9:56
      * @param: [dept]
      * @return: com.aaa.zk.base.ResultData
-     * @Description: 根据主键id更新数据
+     * @Description: 根据主键id更新部门数据
      */
     @PostMapping("updateDeptByPrimaryKey")
-    ResultData updateByPrimaryKey(@RequestBody Dept dept);
+    ResultData updateDeptByPrimaryKey(@RequestBody Dept dept);
 
     /**
      * @Author: He create on 2020/5/22 9:56
      * @param: [dept]
      * @return: com.aaa.zk.base.ResultData
-     * @Description: 根据主键id删除 一条数据
+     * @Description: 根据主键id删除一条数据
      */
     @DeleteMapping("deleteDeptByPrimaryKey")
-    ResultData deleteByPrimaryKey(@RequestBody Dept dept);
+    ResultData deleteDeptByPrimaryKey(@RequestParam Object id);
     /**
      * @Author: He create on 2020/5/22 9:57
      * @param: [list]
      * @return: com.aaa.zk.base.ResultData
-     * @Description: 批量删除
+     * @Description: 根据主键id批量删除
      */
     @DeleteMapping("deleteDeptByPrimaryKeyList")
     ResultData deleteDeptByPrimaryKeyList(@RequestBody List<Map> list);

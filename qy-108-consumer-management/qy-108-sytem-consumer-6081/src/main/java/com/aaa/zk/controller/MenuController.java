@@ -44,19 +44,19 @@ public class MenuController extends BaseController {
 
     @PostMapping("updateMenuByPrimaryKey")
     @ApiOperation(value = "修改功能",notes = "根据主键id更新菜单数据")
-    public ResultData updateByPrimaryKey(@RequestBody Menu menu){
-        return menuService.updateByPrimaryKey(menu);
+    public ResultData updateMenuByPrimaryKey(@RequestBody Menu menu){
+        return menuService.updateMenuByPrimaryKey(menu);
     }
 
     @DeleteMapping("deleteMenuByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除菜单数据")
-    ResultData deleteMenuByPrimaryKey(@RequestBody Menu menu){
-        return menuService.deleteMenuByPrimaryKey(menu);
+    ResultData deleteMenuByPrimaryKey(@RequestParam Object id){
+        return menuService.deleteMenuByPrimaryKey(id);
     }
 
     @DeleteMapping("deleteMenuByPrimaryKeyList")
     @ApiOperation(value = "删除功能",notes = "根据主键id批量删除菜单数据")
     ResultData deleteDeptByPrimaryKeyList(@RequestBody List<Map> list){
-        return menuService.deleteDeptByPrimaryKeyList(list);
+        return menuService.deleteMenuByPrimaryKeyList(list);
     }
 }

@@ -13,6 +13,7 @@ import com.aaa.zk.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Map;
 
@@ -62,13 +63,30 @@ public class RoleService extends BaseService<Role> {
     * @return: java.lang.Integer
     * @Description: 添加角色
     */
-    public Integer insertRole(Role role){
+    public Long insertRole(Role role){
         if (null != role){
             role.setCreateTime(nowDate);
-            int insertResult = roleMapper.insert(role);
-
-            if (insertResult > 0){
-                return insertResult;
+            Integer integer = roleMapper.insertRoleResultId(role);
+            @NotNull Long id = role.getId();
+            if (null != integer){
+                return id;
+            }
+        }
+        return 0L;
+    }
+    /**
+    * @Author: He create on 2020/5/23 10:26
+    * @param: [role]
+    * @return: java.lang.Integer
+    * @Description: 根据主键id修改角色信息
+    */
+    public Integer updateRoleByPrimaryKey(Role role){
+        if (null != role){
+            //模拟时间
+            role.setCreateTime(nowDate).setModifyTime(nowDate);
+            int update = roleMapper.updateByPrimaryKey(role);
+            if (update > 0){
+                return update;
             }
         }
         return 0;
@@ -79,9 +97,9 @@ public class RoleService extends BaseService<Role> {
     * @return: java.lang.Integer
     * @Description: 根据主键id删除数据
     */
-    public Integer deleteRoleByPrimaryKey(Role role){
-        if (null != role){
-            int deleteResult = roleMapper.deleteByPrimaryKey(role);
+    public Integer deleteRoleByPrimaryKey(Object roleId){
+        if (null != roleId){
+            int deleteResult = roleMapper.deleteByPrimaryKey(roleId);
             if (deleteResult > 0){
                 return deleteResult;
             }

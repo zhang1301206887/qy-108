@@ -10,7 +10,6 @@ import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Dept;
 import com.aaa.zk.service.DeptService;
-import com.aaa.zk.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -85,8 +84,8 @@ public class DeptController extends BaseController {
     * @Description: 根据主键id 删除部门
     */
     @DeleteMapping("deleteDeptByPrimaryKey")
-    public ResultData deleteByPrimaryKey(@RequestBody Dept dept){
-        Integer deleteResult = deptService.deleteDeptByPrimaryKey(dept);
+    public ResultData deleteByPrimaryKey(@RequestParam Object id){
+        Integer deleteResult = deptService.deleteDeptByPrimaryKey(id);
         if (deleteResult > 0){
             return deleteSuccess();
         }

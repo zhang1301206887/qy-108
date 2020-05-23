@@ -6,15 +6,12 @@ package com.aaa.zk.service;/*
  */
 
 import com.aaa.zk.base.BaseService;
-import com.aaa.zk.base.ResultData;
 import com.aaa.zk.mapper.DeptMapper;
 import com.aaa.zk.model.Dept;
-import com.aaa.zk.model.Menu;
 import com.aaa.zk.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,9 +44,11 @@ public class DeptService extends BaseService<Dept> {
     * @Description: 根据部门名称查询部门的基本信息
     */
     public Dept selectDeptByName(Dept dept){
-        Dept dept1 = deptMapper.selectOne(dept);
-        if (null != dept1 && "".equals(dept1)){
-            return dept1;
+        if (null != dept){
+            Dept dept1 = deptMapper.selectOne(dept);
+            if (null != dept1 && "".equals(dept1)){
+                return dept1;
+            }
         }
         return null;
     }
@@ -60,10 +59,12 @@ public class DeptService extends BaseService<Dept> {
     * @Description: 新增部门
     */
     public Integer insertDept(Dept dept){
-        dept.setCreateTime(nowDate);
-        int insertResult = deptMapper.insert(dept);
-        if (insertResult > 0){
-            return insertResult;
+        if (null != dept){
+            dept.setCreateTime(nowDate);
+            int insertResult = deptMapper.insert(dept);
+            if (insertResult > 0){
+                return insertResult;
+            }
         }
         return 0;
     }
@@ -74,11 +75,13 @@ public class DeptService extends BaseService<Dept> {
     * @Description: 根据主键id 修改部门信息
     */
     public Integer updateDeptByPrimaryKey(Dept dept){
-        dept.setCreateTime(nowDate);
-        dept.setModifyTime(nowDate);
-        int updateResult = deptMapper.updateByPrimaryKey(dept);
-        if (updateResult > 0){
-            return updateResult;
+        if (null != dept){
+            dept.setCreateTime(nowDate);
+            dept.setModifyTime(nowDate);
+            int updateResult = deptMapper.updateByPrimaryKey(dept);
+            if (updateResult > 0){
+                return updateResult;
+            }
         }
         return 0;
     }
@@ -88,10 +91,12 @@ public class DeptService extends BaseService<Dept> {
     * @return: java.lang.Integer
     * @Description: 根据主键id 删除部门
     */
-    public Integer deleteDeptByPrimaryKey(Dept dept){
-        int deleteResult = deptMapper.deleteByPrimaryKey(dept);
-        if (deleteResult > 0){
-            return deleteResult;
+    public Integer deleteDeptByPrimaryKey(Object deptId){
+        if (null != deptId){
+            int deleteResult = deptMapper.deleteByPrimaryKey(deptId);
+            if (deleteResult > 0){
+                return deleteResult;
+            }
         }
         return 0;
     }
@@ -102,15 +107,18 @@ public class DeptService extends BaseService<Dept> {
     * @Description: 通过主键id批量删除数据
     */
     public Integer deleteDeptByPrimaryKeyList(List<Map> list){
-       Integer deleteNum = 0;
-       //循环遍历list中的map 取出其中的id进行删除操作
-        for (Map map : list){
-            Object id = map.get("id");
-            int deleteResult = deptMapper.deleteByPrimaryKey(id);
-            if (deleteResult > 0){
-                deleteNum += 1;
+        if (null != list && list.size()>0){
+            Integer deleteNum = 0;
+            //循环遍历list中的map 取出其中的id进行删除操作
+            for (Map map : list){
+                Object id = map.get("id");
+                int deleteResult = deptMapper.deleteByPrimaryKey(id);
+                if (deleteResult > 0){
+                    deleteNum += 1;
+                }
             }
+            return deleteNum;
         }
-        return deleteNum;
+       return 0;
     }
 }

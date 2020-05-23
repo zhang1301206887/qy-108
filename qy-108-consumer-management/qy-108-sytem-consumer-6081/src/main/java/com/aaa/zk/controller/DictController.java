@@ -26,14 +26,14 @@ public class DictController extends BaseController {
 
     @GetMapping("/selectAllDict")
     @ApiOperation(value = "查询功能",notes = "查询所有的字典数据")
-    public ResultData selectAll(){
-        return dictService.selectAll();
+    public ResultData selectAllDict(){
+        return dictService.selectAllDict();
     }
 
     @GetMapping("/selectDictByField")
     @ApiOperation(value = "查询功能",notes = "条件查询字典数据")
-    public ResultData selectByField(@RequestBody Dict dict){
-        return dictService.selectByField(dict);
+    public ResultData selectDictByField(@RequestBody Dict dict){
+        return dictService.selectDictByField(dict);
     }
 
     @PutMapping("/insertDict")
@@ -44,19 +44,19 @@ public class DictController extends BaseController {
 
     @PostMapping("/updateDictByPrimaryKey")
     @ApiOperation(value = "更新功能",notes = "根据主键id更新字典数据")
-    public ResultData updateByPrimaryKey(@RequestBody Dict dict){
-        return dictService.updateByPrimaryKey(dict);
+    public ResultData updateDictByPrimaryKey(@RequestBody Dict dict){
+        return dictService.updateDictByPrimaryKey(dict);
     }
 
     @DeleteMapping("/deleteDictByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除字典数据")
-    public ResultData deleteByPrimaryKey(@RequestBody Dict dict){
-        return dictService.deleteByPrimaryKey(dict);
+    public ResultData deleteDictByPrimaryKey(@RequestParam Object id){
+        return dictService.deleteDictByPrimaryKey(id);
     }
 
     @DeleteMapping("deleteDictByPrimaryKeyList")
     @ApiOperation(value = "删除功能",notes = "根据主键id批量删除字典数据")
-    public ResultData deleteDeptByPrimaryKeyList(@RequestBody List<Map> list){
-        return dictService.deleteDeptByPrimaryKeyList(list);
+    public ResultData deleteDictByPrimaryKeyList(@RequestBody List<Map> list){
+        return dictService.deleteDictByPrimaryKeyList(list);
     }
 }

@@ -10,7 +10,6 @@ import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Dict;
 import com.aaa.zk.service.DictService;
-import com.aaa.zk.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -87,8 +86,8 @@ public class DictController extends BaseController {
     * @Description: 根据主键id删除 数据
     */
     @DeleteMapping("/deleteDictByPrimaryKey")
-    public ResultData deleteByPrimaryKey(@RequestBody Dict dict){
-        Integer deleteResult = dictService.delectDictByPrimaryKey(dict);
+    public ResultData deleteByPrimaryKey(@RequestParam Object id){
+        Integer deleteResult = dictService.delectDictByPrimaryKey(id);
         if (deleteResult > 0){
             return deleteSuccess();
         }

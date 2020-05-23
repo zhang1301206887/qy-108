@@ -36,21 +36,31 @@ public class RoleController extends BaseController {
         return roleService.selectRoleByField(role);
     }
 
+    @GetMapping("selectRoleMenuById")
+    @ApiOperation(value = "查询功能",notes = "根据角色id查询角色的具体权限")
+    public ResultData selectRoleMenuById(@RequestParam Object id){
+        return roleService.selectRoleMenuById(id);
+    }
+
     @PutMapping("insertRole")
     @ApiOperation(value = "添加功能",notes = "添加新数据")
-    public ResultData insertRole(@RequestBody Role role){
-        return roleService.insertRole(role);
+    public ResultData insertRole(@RequestBody Map map){
+        return roleService.insertRole(map);
     }
+
+    @PostMapping("updateRoleByPrimaryKey")
+    @ApiOperation(value = "修改功能",notes = "修改角色和对应的权限数据")
+    public ResultData updateRoleByPrimaryKey(@RequestBody Map map){return roleService.updateRoleByPrimaryKey(map);}
 
     @DeleteMapping("deleteRoleByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除角色数据")
-    public ResultData deleteRoleByPrimaryKey(@RequestBody Role role){
-        return roleService.deleteRoleByPrimaryKey(role);
+    public ResultData deleteRoleByPrimaryKey(@RequestParam Object id){
+        return roleService.deleteRoleByPrimaryKey(id);
     }
 
     @DeleteMapping("deleteRoleByPrimaryKeyList")
     @ApiOperation(value = "删除功能",notes = "根据主键id批量删除角色数据")
     public ResultData deleteDeptByPrimaryKeyList(@RequestBody List<Map> list){
-        return roleService.deleteDeptByPrimaryKeyList(list);
+        return roleService.deleteRoleByPrimaryKeyList(list);
     }
 }

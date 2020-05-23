@@ -8,7 +8,6 @@ package com.aaa.zk.controller;
 
 import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
-import com.aaa.zk.mapper.MenuMapper;
 import com.aaa.zk.model.Menu;
 import com.aaa.zk.service.MenuService;
 import com.aaa.zk.utils.DateUtil;
@@ -16,7 +15,6 @@ import com.aaa.zk.vo.MenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -92,8 +90,8 @@ public class MenuController extends BaseController {
     * @Description: 根据主键id删除菜单数据
     */
     @DeleteMapping("deleteMenuByPrimaryKey")
-    public ResultData deleteMenuByPrimaryKey(@RequestBody Menu menu){
-        Integer deleteResult = menuService.deleteMenuByPrimaryKey(menu);
+    public ResultData deleteMenuByPrimaryKey(@RequestParam Object id){
+        Integer deleteResult = menuService.deleteMenuByPrimaryKey(id);
         if (deleteResult > 0 ){
             return deleteSuccess();
         }

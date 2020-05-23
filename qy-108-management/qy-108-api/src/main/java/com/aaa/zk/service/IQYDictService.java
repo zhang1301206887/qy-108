@@ -22,20 +22,20 @@ public interface IQYDictService {
     * @Description: 查询所有字典表信息
     */
     @GetMapping("/selectAllDict")
-    ResultData selectAll();
+    ResultData selectAllDict();
     /**
     * @Author: He create on 2020/5/22 11:51
     * @param: [dict]
     * @return: com.aaa.zk.base.ResultData
-    * @Description: 条件查询
+    * @Description: 条件查询字典信息
     */
     @GetMapping("/selectDictByField")
-    ResultData selectByField(@RequestBody Dict dict);
+    ResultData selectDictByField(@RequestBody Dict dict);
     /**
     * @Author: He create on 2020/5/22 11:51
     * @param: [dict]
     * @return: com.aaa.zk.base.ResultData
-    * @Description: 添加数据
+    * @Description: 添加字典新数据
     */
     @PutMapping("/insertDict")
     ResultData insertDict(@RequestBody Dict dict);
@@ -46,21 +46,21 @@ public interface IQYDictService {
     * @Description: 根据主键id进行数据的修改
     */
     @PostMapping("/updateDictByPrimaryKey")
-    ResultData updateByPrimaryKey(@RequestBody Dict dict);
+    ResultData updateDictByPrimaryKey(@RequestBody Dict dict);
     /**
     * @Author: He create on 2020/5/22 11:52
     * @param: [dict]
     * @return: com.aaa.zk.base.ResultData
-    * @Description: 删除数据
+    * @Description: 根据主键id删除字典信息
     */
     @DeleteMapping("/deleteDictByPrimaryKey")
-    ResultData deleteByPrimaryKey(@RequestBody Dict dict);
+    ResultData deleteDictByPrimaryKey(@RequestParam Object id);
     /**
     * @Author: He create on 2020/5/22 11:52
     * @param: [list]
     * @return: com.aaa.zk.base.ResultData
-    * @Description: 批量删除
+    * @Description: 根据主键id批量删除字典信息
     */
     @DeleteMapping("deleteDictByPrimaryKeyList")
-    ResultData deleteDeptByPrimaryKeyList(@RequestBody List<Map> list);
+    ResultData deleteDictByPrimaryKeyList(@RequestBody List<Map> list);
 }

@@ -34,7 +34,7 @@ public class DeptController extends BaseController {
     @GetMapping("/selectAllDept")
     @ApiOperation(value = "查询功能",notes = "查询所有的部门数据")
     public ResultData selectAll(){
-        return deptService.selectAll();
+        return deptService.selectAllDept();
     }
     /**
     * @Author: He create on 2020/5/22 11:45
@@ -45,7 +45,7 @@ public class DeptController extends BaseController {
     @GetMapping("/selectDeptByField")
     @ApiOperation(value = "查询功能",notes = "条件查询部门数据")
     public ResultData selectDeptByField(@RequestBody Dept dept){
-        return deptService.selectByField(dept);
+        return deptService.selectDeptByField(dept);
     }
     /**
     * @Author: He create on 2020/5/22 11:48
@@ -67,7 +67,7 @@ public class DeptController extends BaseController {
     @PostMapping("updateDeptByPrimaryKey")
     @ApiOperation(value = "更新功能",notes = "根据主键id更新部门数据")
     public ResultData updateByPrimaryKey(@RequestBody Dept dept){
-        return deptService.updateByPrimaryKey(dept);
+        return deptService.updateDeptByPrimaryKey(dept);
     }
     /**
     * @Author: He create on 2020/5/22 11:48
@@ -77,8 +77,8 @@ public class DeptController extends BaseController {
     */
     @DeleteMapping("deleteDeptByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除部门数据")
-    public ResultData deleteByPrimaryKey(@RequestBody Dept dept){
-        return deptService.deleteByPrimaryKey(dept);
+    public ResultData deleteByPrimaryKey(@RequestParam Object id){
+        return deptService.deleteDeptByPrimaryKey(id);
     }
     /**
     * @Author: He create on 2020/5/22 11:48

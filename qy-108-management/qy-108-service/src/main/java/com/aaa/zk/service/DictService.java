@@ -86,9 +86,9 @@ public class DictService extends BaseService<Dict> {
     * @return: java.lang.Integer
     * @Description: 根据主键id删除 数据
     */
-    public Integer delectDictByPrimaryKey(Dict dict){
-        if (null != dict){
-            int deleteResult = dictMapper.deleteByPrimaryKey(dict);
+    public Integer delectDictByPrimaryKey(Object dictId){
+        if (null != dictId){
+            int deleteResult = dictMapper.deleteByPrimaryKey(dictId);
             if (deleteResult > 0 ){
                 return deleteResult;
             }

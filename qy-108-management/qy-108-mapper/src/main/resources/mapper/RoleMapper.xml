@@ -11,4 +11,9 @@
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <insert id="insertRoleResultId"  useGeneratedKeys="true" keyProperty="id" parameterType="com.aaa.zk.model.Role" >
+    INSERT INTO t_role
+    (ROLE_NAME,REMARK,CREATE_TIME) VALUES
+    (#{roleName},#{remark},#{createTime})
+  </insert>
 </mapper>

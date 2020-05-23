@@ -47,26 +47,26 @@ public interface IQYMenuService {
     * @Author: He create on 2020/5/22 12:07
     * @param: [menu]
     * @return: com.aaa.zk.base.ResultData
-    * @Description: 更新数据
+    * @Description: 根据主键id修改菜单信息
     */
     @PostMapping("updateMenuByPrimaryKey")
-    ResultData updateByPrimaryKey(@RequestBody Menu menu);
+    ResultData updateMenuByPrimaryKey(@RequestBody Menu menu);
 
     /**
     * @Author: He create on 2020/5/22 12:07
     * @param: [menu]
     * @return: com.aaa.zk.base.ResultData
-    * @Description: 删除一条数据
+    * @Description: 根据主键id删除一条数据
     */
     @DeleteMapping("deleteMenuByPrimaryKey")
-    ResultData deleteMenuByPrimaryKey(@RequestBody Menu menu);
+    ResultData deleteMenuByPrimaryKey(@RequestParam Object id);
 
     /**
     * @Author: He create on 2020/5/22 12:08
     * @param: [list]
     * @return: com.aaa.zk.base.ResultData
-    * @Description: 批量删除
+    * @Description: 根据主键id批量删除
     */
     @DeleteMapping("deleteMenuByPrimaryKeyList")
-    ResultData deleteDeptByPrimaryKeyList(@RequestBody List<Map> list);
+    ResultData deleteMenuByPrimaryKeyList(@RequestBody List<Map> list);
 }
