@@ -21,7 +21,6 @@ public class UserService extends BaseService<User> {
      * 查询所有用户
      * @return
      */
-
     public List<User> userSlelectAll(){
 
         List<User> list = userMapper.selectAll();
@@ -59,7 +58,7 @@ public class UserService extends BaseService<User> {
     /**
      * 添加用户
      */
-
+    
     public Integer userAdd(User user){
         // 当前时间
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -109,7 +108,7 @@ public class UserService extends BaseService<User> {
 
     public Integer userDelete(User user) {
         // 调用delete删除方法
-        Integer i = userMapper.delete(user);
+        Integer i = userMapper.deleteByPrimaryKey(user);
         // 判断i是否大于0 如果大于则添加成功
         if (i>0){
             // 添加成功
@@ -172,7 +171,7 @@ public class UserService extends BaseService<User> {
         user.setPassword(RESET_PASSWORD).setAvatar(null).setDeptId(null).setDescription(null).setEmail(null).setUsername(null).setSsex(null).setType(null).setAvatar(null).setToken(null).setStatus(null).setMobile(null).setModifyTime(format);
         System.out.println(user);
         // 调用updateByPrimaryKeySelective 方法 选择性的把数据给清空掉
-        int i = userMapper.updateByPrimaryKeySelective(user);
+        int i = userMapper.updateByPrimaryKey(user);
         // 判断i是否大于0 如果大于则添加成功
         if (i>0){
             // 添加成功
