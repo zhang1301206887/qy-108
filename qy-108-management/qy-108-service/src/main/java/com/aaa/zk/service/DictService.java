@@ -38,7 +38,7 @@ public class DictService extends BaseService<Dict> {
     * @Author: He create on 2020/5/20 21:23
     * @param: [dict]
     * @return: java.util.List<com.aaa.zk.model.Dict>
-    * @Description: 查询字典表
+    * @Description: 条件查询字典表
     */
     public List<Dict> selectDictByFiled(Dict dict){
         if (null != dict){
@@ -86,9 +86,9 @@ public class DictService extends BaseService<Dict> {
     * @return: java.lang.Integer
     * @Description: 根据主键id删除 数据
     */
-    public Integer delectDictByPrimaryKey(Object dictId){
-        if (null != dictId){
-            int deleteResult = dictMapper.deleteByPrimaryKey(dictId);
+    public Integer delectDictByPrimaryKey(Object id){
+        if (null != id){
+            int deleteResult = dictMapper.deleteByPrimaryKey(id);
             if (deleteResult > 0 ){
                 return deleteResult;
             }

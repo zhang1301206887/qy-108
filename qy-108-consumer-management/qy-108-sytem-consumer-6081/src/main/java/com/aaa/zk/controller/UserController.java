@@ -104,7 +104,7 @@ public class UserController extends BaseController {
      */
     @PostMapping("/userDeleteAll")
     @ApiOperation(value = "用户功能",notes = "批量删除用户")
-    public ResultData userDelete( String id){
+    public ResultData userDelete(String id){
         Integer integer = iqyUserService.userDeleteAll(id);
         if (integer>0){
             return super.deleteSuccess();

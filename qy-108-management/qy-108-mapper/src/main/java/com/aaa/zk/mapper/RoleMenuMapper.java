@@ -13,6 +13,6 @@ public interface RoleMenuMapper extends Mapper<RoleMenu> {
     List<RoleMenu> selectRoleMenuById(Object id);
 
     @Delete("delete from t_role_menu where role_id = #{roleId}")
-    Integer deleteByRoleId(Object id);
+    Integer deleteByRoleId(Object roleId);
 
 }

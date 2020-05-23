@@ -31,7 +31,7 @@ public class MenuController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 查询一个菜单的具体信息
     */
-    @GetMapping("selectMenuByField")
+    @PostMapping("selectMenuByField")
     public ResultData selectMenuByField(@RequestBody Menu menu){
         List<Menu> menus = menuService.selectMenuByField(menu);
         if (null != menus){
@@ -46,9 +46,9 @@ public class MenuController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 遍历查询所有的权限菜单
     */
-    @GetMapping("selectMenuByParentId")
-    public ResultData selectMenuByParentId(@RequestParam Object id){
-        List<MenuVo> menuVos = menuService.selectMenuByParentId(id);
+    @PostMapping("selectMenuByParentId")
+    public ResultData selectMenuByParentId(@RequestBody Map map){
+        List<MenuVo> menuVos = menuService.selectMenuByParentId(map.get("id"));
         if (null != menuVos){
             return selelctSuccess(menuVos);
         }
@@ -90,7 +90,7 @@ public class MenuController extends BaseController {
     * @Description: 根据主键id删除菜单数据
     */
     @DeleteMapping("deleteMenuByPrimaryKey")
-    public ResultData deleteMenuByPrimaryKey(@RequestParam Object id){
+    public ResultData deleteMenuByPrimaryKey(@RequestBody Object id){
         Integer deleteResult = menuService.deleteMenuByPrimaryKey(id);
         if (deleteResult > 0 ){
             return deleteSuccess();

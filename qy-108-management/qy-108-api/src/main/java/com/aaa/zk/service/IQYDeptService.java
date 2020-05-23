@@ -30,7 +30,7 @@ public interface IQYDeptService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据条件查询部门信息
      */
-    @GetMapping("/selectDeptByField")
+    @PostMapping("/selectDeptByField")
     ResultData selectDeptByField(@RequestBody Dept dept);
 
     /**
@@ -58,7 +58,7 @@ public interface IQYDeptService {
      * @Description: 根据主键id删除一条数据
      */
     @DeleteMapping("deleteDeptByPrimaryKey")
-    ResultData deleteDeptByPrimaryKey(@RequestParam Object id);
+    ResultData deleteDeptByPrimaryKey(@RequestBody Object id);
     /**
      * @Author: He create on 2020/5/22 9:57
      * @param: [list]

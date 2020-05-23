@@ -118,6 +118,7 @@ public class RoleService extends BaseService<Role> {
             //循环遍历list中的map 取出其中的id进行删除操作
             for (Map map : list){
                 Object id = map.get("id");
+                //传入id  删除操作
                 int deleteResult = roleMapper.deleteByPrimaryKey(id);
                 if (deleteResult > 0){
                     deleteNum += 1;

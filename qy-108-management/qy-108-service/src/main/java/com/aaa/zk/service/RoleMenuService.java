@@ -27,6 +27,8 @@ public class RoleMenuService {
     public List<RoleMenu> selectRoleMenuById(Object id){
         if (null != id){
             List<RoleMenu> select = roleMenuMapper.selectRoleMenuById(id);
+            List<RoleMenu> roleMenus = roleMenuMapper.selectRoleMenuById(1);
+            System.out.println(roleMenus);
             if (null != select && select.size() > 0){
                 return select;
             }
@@ -54,7 +56,7 @@ public class RoleMenuService {
             //循环遍历list中的map 取出其中的id进行删除操作
             for (Map map : list){
                 Object id = map.get("id");
-                int deleteResult = roleMenuMapper.deleteByPrimaryKey(id);
+                int deleteResult = roleMenuMapper.deleteByRoleId(id);
                 if (deleteResult > 0){
                     deleteNum += 1;
                 }

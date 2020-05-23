@@ -41,11 +41,11 @@ public class DeptController extends BaseController {
     * @return: com.aaa.zk.model.Dept
     * @Description: 根据部门名称 查询部门基本信息
     */
-    @GetMapping("/selectDeptByField")
+    @PostMapping("/selectDeptByField")
     public ResultData selectByField(@RequestBody Dept dept){
-        Dept dept1 = deptService.selectDeptByName(dept);
-        if (null != dept1){
-            return selelctSuccess(dept1);
+        List<Dept> depts = deptService.selectDeptByName(dept);
+        if (null != dept && depts.size() > 0){
+            return selelctSuccess(depts);
         }
        return selelctFalied();
     }
@@ -84,7 +84,7 @@ public class DeptController extends BaseController {
     * @Description: 根据主键id 删除部门
     */
     @DeleteMapping("deleteDeptByPrimaryKey")
-    public ResultData deleteByPrimaryKey(@RequestParam Object id){
+    public ResultData deleteByPrimaryKey(@RequestBody Object id){
         Integer deleteResult = deptService.deleteDeptByPrimaryKey(id);
         if (deleteResult > 0){
             return deleteSuccess();

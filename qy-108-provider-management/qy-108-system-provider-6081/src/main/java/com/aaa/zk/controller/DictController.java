@@ -43,7 +43,7 @@ public class DictController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据条件查询数据
     */
-    @GetMapping("/selectDictByField")
+    @PostMapping("/selectDictByField")
     public ResultData selectByField(@RequestBody Dict dict){
         List<Dict> dicts = dictService.selectDictByFiled(dict);
         if (null != dicts){
@@ -86,7 +86,7 @@ public class DictController extends BaseController {
     * @Description: 根据主键id删除 数据
     */
     @DeleteMapping("/deleteDictByPrimaryKey")
-    public ResultData deleteByPrimaryKey(@RequestParam Object id){
+    public ResultData deleteByPrimaryKey(@RequestBody Object id){
         Integer deleteResult = dictService.delectDictByPrimaryKey(id);
         if (deleteResult > 0){
             return deleteSuccess();

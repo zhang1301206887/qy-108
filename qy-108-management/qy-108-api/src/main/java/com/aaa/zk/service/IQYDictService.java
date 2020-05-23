@@ -29,7 +29,7 @@ public interface IQYDictService {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 条件查询字典信息
     */
-    @GetMapping("/selectDictByField")
+    @PostMapping("/selectDictByField")
     ResultData selectDictByField(@RequestBody Dict dict);
     /**
     * @Author: He create on 2020/5/22 11:51
@@ -54,7 +54,7 @@ public interface IQYDictService {
     * @Description: 根据主键id删除字典信息
     */
     @DeleteMapping("/deleteDictByPrimaryKey")
-    ResultData deleteDictByPrimaryKey(@RequestParam Object id);
+    ResultData deleteDictByPrimaryKey(@RequestBody Object id);
     /**
     * @Author: He create on 2020/5/22 11:52
     * @param: [list]

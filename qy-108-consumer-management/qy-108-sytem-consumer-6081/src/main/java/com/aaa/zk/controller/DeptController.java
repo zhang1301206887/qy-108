@@ -42,7 +42,7 @@ public class DeptController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 条件查询
     */
-    @GetMapping("/selectDeptByField")
+    @PostMapping("/selectDeptByField")
     @ApiOperation(value = "查询功能",notes = "条件查询部门数据")
     public ResultData selectDeptByField(@RequestBody Dept dept){
         return deptService.selectDeptByField(dept);
@@ -77,7 +77,7 @@ public class DeptController extends BaseController {
     */
     @DeleteMapping("deleteDeptByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除部门数据")
-    public ResultData deleteByPrimaryKey(@RequestParam Object id){
+    public ResultData deleteByPrimaryKey(@RequestBody Object id){
         return deptService.deleteDeptByPrimaryKey(id);
     }
     /**

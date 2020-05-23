@@ -24,16 +24,16 @@ public class MenuController extends BaseController {
     @Autowired
     private IQYMenuService menuService;
 
-    @GetMapping("selectMenuByField")
+    @PostMapping("selectMenuByField")
     @ApiOperation(value = "查询功能",notes = "条件查询菜单数据")
     public ResultData selectMenuByField(@RequestBody Menu menu){
         return menuService.selectMenuByField(menu);
     }
 
-    @GetMapping("selectMenuByParentId")
+    @PostMapping("selectMenuByParentId")
     @ApiOperation(value = "查询功能",notes = "查询所有菜单数据")
-    public ResultData selectMenuByParentId(@RequestParam Object id){
-        return menuService.selectMenuByParentId(id);
+    public ResultData selectMenuByParentId(@RequestBody Map map){
+        return menuService.selectMenuByParentId(map);
     }
 
     @PutMapping("insertMenu")
@@ -50,7 +50,7 @@ public class MenuController extends BaseController {
 
     @DeleteMapping("deleteMenuByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除菜单数据")
-    ResultData deleteMenuByPrimaryKey(@RequestParam Object id){
+    ResultData deleteMenuByPrimaryKey(@RequestBody Object id){
         return menuService.deleteMenuByPrimaryKey(id);
     }
 

@@ -30,7 +30,7 @@ public class DictController extends BaseController {
         return dictService.selectAllDict();
     }
 
-    @GetMapping("/selectDictByField")
+    @PostMapping("/selectDictByField")
     @ApiOperation(value = "查询功能",notes = "条件查询字典数据")
     public ResultData selectDictByField(@RequestBody Dict dict){
         return dictService.selectDictByField(dict);
@@ -50,7 +50,7 @@ public class DictController extends BaseController {
 
     @DeleteMapping("/deleteDictByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除字典数据")
-    public ResultData deleteDictByPrimaryKey(@RequestParam Object id){
+    public ResultData deleteDictByPrimaryKey(@RequestBody Object id){
         return dictService.deleteDictByPrimaryKey(id);
     }
 
