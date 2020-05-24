@@ -49,7 +49,7 @@ public class RoleController extends BaseController {
     }
 
     @PostMapping("updateRoleByPrimaryKey")
-    @ApiOperation(value = "修改功能",notes = "修改角色和对应的权限数据")
+    @ApiOperation(value = "修改功能",notes = "根据角色主键修改角色和对应的权限数据")
     public ResultData updateRoleByPrimaryKey(@RequestBody Map map){return roleService.updateRoleByPrimaryKey(map);}
 
     @DeleteMapping("deleteRoleByPrimaryKey")
