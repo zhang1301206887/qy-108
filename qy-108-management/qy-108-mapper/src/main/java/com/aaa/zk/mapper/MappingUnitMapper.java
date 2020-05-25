@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface MappingUnitMapper extends Mapper<MappingUnit> {
+
+    //查询单位资质等级及数量
     List<Map> selectCountLevel();
 
 }

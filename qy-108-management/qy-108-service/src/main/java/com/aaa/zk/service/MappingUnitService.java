@@ -27,6 +27,7 @@ public class MappingUnitService extends BaseService<MappingUnit> {
         List<Map> mapList = mappingUnitMapper.selectCountLevel();
         //判断查到的数据是否为空
         if (mapList!=null && !mapList.isEmpty()){
+
             //不为空
             return mapList;
         }else{

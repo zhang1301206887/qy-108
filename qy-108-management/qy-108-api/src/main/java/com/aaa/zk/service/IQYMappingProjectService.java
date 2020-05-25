@@ -11,6 +11,15 @@ import java.util.Map;
 
 @FeignClient(value = "mappingProject-interface")
 public interface IQYMappingProjectService {
+
+    /**
+    * @author zk
+    * @Date
+    *  这个方法是根据userId、查询单位项目数量
+    */
+    @PostMapping("/selectProjectCountByUserId")
+    Integer selectProjectCountByUserId(@RequestBody Object userId);
+
     /**
      * 这个方法是查询项目完成情况，用于统计图
      **/

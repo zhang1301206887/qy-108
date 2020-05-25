@@ -15,6 +15,18 @@ public class MappingProjectController extends BaseController {
 
     @Autowired
     private MappingProjectService mappingProjectService;
+
+    /**
+    * @author zk
+    * @Date
+    *   这个方法 是根据userId查询单位的项目数量
+    */
+    @PostMapping("/selectProjectCountByUserId")
+    public Integer selectProjectCountByUserId(@RequestBody Object userId){
+        return mappingProjectService.selectProjectCountByUserId(userId);
+    }
+
+
     /**
     * @author zk
     * @Date

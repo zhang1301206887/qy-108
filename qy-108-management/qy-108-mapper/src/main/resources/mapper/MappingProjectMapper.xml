@@ -53,5 +53,8 @@
   <select id="selectProjectType" resultType="HashMap" >
    select project_type,status,count(project_type) from t_mapping_project group by project_type,status;
   </select>
+  <select id="selectProjectCountByUserId" resultType="Integer">
+    select count(*) from t_mapping_project where user_id = #{userId};
+  </select>
 
 </mapper>

@@ -19,6 +19,24 @@ public class MappingProjectController extends BaseController {
     private IQYMappingProjectService iqyMappingProjectService;
 
     /**
+    * @author zk
+    * @Date
+    *   这个方法是根据userId查询单位的项目数量
+    */
+    @PostMapping("/selectProjectCountByUserId")
+    @ApiOperation(value = "查询功能",notes = "根据userId查询单位项目数量" )
+    public ResultData selectProjectCountByUserId(@RequestBody Object userId){
+        Integer i = iqyMappingProjectService.selectProjectCountByUserId(userId);
+
+        if (i > 0){
+            return super.selelctSuccess(i);
+        }else{
+            return super.selelctFalied();
+        }
+    }
+
+
+    /**
      * @author: gfq
      *  查询所有项目
      * @date: 20-05-25 13:59
