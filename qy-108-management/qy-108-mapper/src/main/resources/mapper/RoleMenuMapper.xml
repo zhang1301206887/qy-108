@@ -8,4 +8,10 @@
     <result column="ROLE_ID" property="roleId" jdbcType="BIGINT" />
     <result column="MENU_ID" property="menuId" jdbcType="BIGINT" />
   </resultMap>
+  <select id="selectRoleMenuById" resultMap="BaseResultMap" parameterType="java.lang.Object">
+        select * from t_role_menu where role_id = #{roleId}
+  </select>
+  <delete id="deleteByRoleId" parameterType="java.lang.Object">
+        delete from t_role_menu where role_id = #{roleId}
+  </delete>
 </mapper>

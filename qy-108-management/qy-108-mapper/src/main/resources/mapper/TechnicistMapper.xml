@@ -33,4 +33,7 @@
     <result column="create_time" property="createTime" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectTechByUserId" resultMap="BaseResultMap" parameterType="java.lang.Object">
+        select * from t_technicist where user_id = #{userid}
+  </select>
 </mapper>
