@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MappingProjectService extends BaseService<MappingProject> {
@@ -17,6 +18,26 @@ public class MappingProjectService extends BaseService<MappingProject> {
 
     //使用工具类 获取当前时间并转化格式
     private String nowDate = new DateUtil().getNowDate();
+
+
+    /**
+    * @author zk
+    * @Date
+    *查询测绘不同类别及是否完成的数量，用于统计图
+    */
+    public List<Map> selectProjectType(){
+        List<Map> mapList = mappingProjectMapper.selectProjectType();
+        //判断结果是否为空
+        if (mapList!=null && !mapList.isEmpty()){
+            //不为空 返回数据
+            return mapList;
+        }else{
+            //查询失败 返回null
+            return null;
+        }
+    }
+
+
 
     /**
      * @author: gfq

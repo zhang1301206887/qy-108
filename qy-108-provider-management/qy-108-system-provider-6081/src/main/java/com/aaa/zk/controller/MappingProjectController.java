@@ -8,12 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class MappingProjectController extends BaseController {
 
     @Autowired
     private MappingProjectService mappingProjectService;
+    /**
+    * @author zk
+    * @Date
+    *这个方法是查询项目完成情况
+    */
+    @GetMapping("/selectProjectType")
+    public List<Map> selectProjectType(){
+
+        return mappingProjectService.selectProjectType();
+
+    }
+
 
     /**
      * @author: gfq

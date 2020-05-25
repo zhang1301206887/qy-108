@@ -5,9 +5,19 @@ import com.aaa.zk.model.MappingProject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 
 @FeignClient(value = "mappingProject-interface")
 public interface IQYMappingProjectService {
+    /**
+     * 这个方法是查询项目完成情况，用于统计图
+     **/
+    @GetMapping("/selectProjectType")
+    List<Map> selectProjectType();
+
+
     /**
      * @author: gfq
      *  查询所有项目

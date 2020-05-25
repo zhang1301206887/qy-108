@@ -9,6 +9,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @Api(value = "项目管理", tags = "项目信息管理")
 public class MappingProjectController extends BaseController {
@@ -69,4 +72,22 @@ public class MappingProjectController extends BaseController {
     ResultData MappingProjectDelete(@RequestBody Object id){
         return iqyMappingProjectService.MappingProjectDelete(id);
     }
+
+    /**
+     * 这个方法是查询项目完成情况
+     * */
+    @GetMapping("/selectProjectType")
+    @ApiOperation(value = "统计功能",notes= "统计项目完成信息")
+    public ResultData selectProjectType(){
+
+        List<Map> mapList = iqyMappingProjectService.selectProjectType();
+        System.out.println(mapList);
+        if (mapList != null && !"".equals(mapList)){
+            return super.selelctSuccess(mapList);
+        }else{
+            return super.selelctFalied();
+        }
+    }
+
+
 }
