@@ -6,6 +6,7 @@ import com.aaa.zk.model.MappingProject;
 import com.aaa.zk.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,26 @@ public class MappingProjectService extends BaseService<MappingProject> {
 
     //使用工具类 获取当前时间并转化格式
     private String nowDate = new DateUtil().getNowDate();
+
+    /**
+     * @author zk
+     * @Date
+     *   根据user_id查询公司项目数量
+     */
+    public Integer selectProjectCountByUserId(@RequestBody Object userId){
+
+        if (null !=userId){
+            Integer i = mappingProjectMapper.selectProjectCountByUserId(userId);
+            if (i > 0){
+                return i;
+            }else{
+                return 0;
+            }
+        }else{
+            return 0;
+        }
+    }
+
 
 
     /**
