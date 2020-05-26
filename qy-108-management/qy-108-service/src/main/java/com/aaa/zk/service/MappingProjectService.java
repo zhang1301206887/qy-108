@@ -11,31 +11,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 import java.util.Map;
 
+import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
+
 @Service
 public class MappingProjectService extends BaseService<MappingProject> {
 
     @Autowired
     private MappingProjectMapper mappingProjectMapper;
 
-    //使用工具类 获取当前时间并转化格式
-    private String nowDate = new DateUtil().getNowDate();
-
     /**
      * @author zk
      * @Date
      *   根据user_id查询公司项目数量
      */
-    public Integer selectProjectCountByUserId(@RequestBody Object userId){
+    public Integer selectProjectCountByUserId(Object userId){
 
         if (null !=userId){
             Integer i = mappingProjectMapper.selectProjectCountByUserId(userId);
             if (i > 0){
                 return i;
             }else{
-                return 0;
+                return CRUD_FALIED;
             }
         }else{
-            return 0;
+            return CRUD_FALIED;
         }
     }
 
@@ -82,18 +81,18 @@ public class MappingProjectService extends BaseService<MappingProject> {
     public Integer MappingProjectAdd(MappingProject mappingProject){
         // 先判断传过来的MappingProject实体是否为空
         if (mappingProject != null){
-            mappingProject.setStartDate(nowDate);
+            mappingProject.setStartDate(new DateUtil().getNowDate());
             // 不为空则 去添加到数据库
             int i = mappingProjectMapper.insert(mappingProject);
             // 判断 i返回受影响的行数是否大于0
             if (i>0){
                 return i;
             }else {
-                return null;
+                return CRUD_FALIED;
             }
         }else {
             // 为空则 直接返回null
-            return null;
+            return CRUD_FALIED;
         }
     }
 
@@ -133,11 +132,11 @@ public class MappingProjectService extends BaseService<MappingProject> {
             if (i>0){
                 return i;
             }else {
-                return null;
+                return CRUD_FALIED;
             }
         }else {
             // 为空则 直接返回null
-            return null;
+            return CRUD_FALIED;
         }
     }
 
@@ -152,7 +151,7 @@ public class MappingProjectService extends BaseService<MappingProject> {
         if (i>0){
             return i;
         }else {
-            return null;
+            return CRUD_FALIED;
         }
     }
 

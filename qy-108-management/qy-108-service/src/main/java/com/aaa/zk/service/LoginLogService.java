@@ -13,15 +13,23 @@ import com.aaa.zk.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
+
 @Service
 public class LoginLogService extends BaseService<LoginLog> {
     @Autowired
     LoginLogMapper loginLogMapper;
 
-    private String nowDate = new DateUtil().getNowDate();
 
     public Integer insertLoginLog(LoginLog loginLog){
-        loginLog.setLoginTime(nowDate);
-        return loginLogMapper.insert(loginLog);
+        if (null != loginLog){
+            loginLog.setLoginTime(new DateUtil().getNowDate());
+            int insert = loginLogMapper.insert(loginLog);
+            if (insert > 0 ){
+                return insert;
+            }
+            return CRUD_FALIED;
+        }
+        return CRUD_FALIED;
     }
 }

@@ -91,8 +91,8 @@ public class RoleController extends BaseController {
         //前台传入map 数据 需要取出后放入实体类中进行添加
         Role role = new Role().setRoleName(map.get("roleName").toString()).setRemark(map.get("remark").toString());
         //此时返回的时 添加生成的主键id
-        Long insertRole = roleService.insertRole(role);
-        if (null != insertRole && insertRole > 0){
+        Long roleId = roleService.insertRole(role);
+        if (null != roleId ){
             Integer insert = 0;
             //获取前台传入的数据 因为map中获取的时object类型 转化为string并且去除空格
             String xx = map.get("xx").toString().replaceAll(" ","");
@@ -104,7 +104,7 @@ public class RoleController extends BaseController {
                 //将数组遍历 取出的权限id转化为Long类型
                 Long menuId = Long.valueOf(arr[i]);
                 //添加到角色权限中间表中
-                RoleMenu roleMenu = new RoleMenu().setRoleId(insertRole).setMenuId(menuId);
+                RoleMenu roleMenu = new RoleMenu().setRoleId(roleId).setMenuId(menuId);
                 Integer integer = roleMenuService.insertRoleMenu(roleMenu);
                 insert += integer;
             }

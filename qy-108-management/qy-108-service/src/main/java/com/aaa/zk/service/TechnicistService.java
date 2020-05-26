@@ -15,13 +15,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
+
 @Service
 public class TechnicistService extends BaseService<Technicist> {
 
     @Autowired
     private TechnicistMapper technicistMapper;
-    //获取当前时间
-    private String nowDate = new DateUtil().getNowDate();
 
     /**
     * @Author: He create on 2020/5/24 23:12
@@ -73,12 +73,13 @@ public class TechnicistService extends BaseService<Technicist> {
     public Integer insertTech(Technicist technicist){
         if (null != technicist){
             technicist.setId(IDUtils.getID());
+            technicist.setCreateTime(new DateUtil().getNowDate());
             int insert = technicistMapper.insert(technicist);
             if (insert > 0){
                 return insert;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/24 23:13
@@ -88,14 +89,13 @@ public class TechnicistService extends BaseService<Technicist> {
     */
     public Integer updateTechByPrimaryKey(Technicist technicist){
         if (null != technicist){
-            technicist.setCreateTime(nowDate);
-            technicist.setModifyTime(nowDate);
+            technicist.setModifyTime(new DateUtil().getNowDate());
             int update = technicistMapper.updateByPrimaryKey(technicist);
             if (update > 0){
                 return update;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/24 23:14
@@ -110,6 +110,6 @@ public class TechnicistService extends BaseService<Technicist> {
                 return delete;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
 }

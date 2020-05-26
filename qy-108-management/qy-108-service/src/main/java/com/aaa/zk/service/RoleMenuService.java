@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
+
 @Service
 public class RoleMenuService {
     @Autowired
@@ -48,7 +50,7 @@ public class RoleMenuService {
                 return delete;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/26 14:33
@@ -69,7 +71,7 @@ public class RoleMenuService {
             }
             return deleteNum;
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/22 21:31
@@ -84,6 +86,6 @@ public class RoleMenuService {
                 return insert;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
 }

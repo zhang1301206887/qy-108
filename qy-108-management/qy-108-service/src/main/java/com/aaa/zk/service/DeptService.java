@@ -15,14 +15,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
+
 @Service
 public class DeptService extends BaseService<Dept> {
 
     @Autowired
     private DeptMapper deptMapper;
-
-    //使用工具类 获取当前时间并转化格式
-    private String nowDate = new DateUtil().getNowDate();
 
     /**
     * @Author: He create on 2020/5/20 18:04
@@ -76,13 +75,14 @@ public class DeptService extends BaseService<Dept> {
     */
     public Integer insertDept(Dept dept){
         if (null != dept){
-            dept.setCreateTime(nowDate);
+            //使用工具类获取当前时间转化为string类型
+            dept.setCreateTime(new DateUtil().getNowDate());
             int insertResult = deptMapper.insert(dept);
             if (insertResult > 0){
                 return insertResult;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/20 18:00
@@ -92,14 +92,13 @@ public class DeptService extends BaseService<Dept> {
     */
     public Integer updateDeptByPrimaryKey(Dept dept){
         if (null != dept){
-            dept.setCreateTime(nowDate);
-            dept.setModifyTime(nowDate);
+            dept.setModifyTime(new DateUtil().getNowDate());
             int updateResult = deptMapper.updateByPrimaryKey(dept);
             if (updateResult > 0){
                 return updateResult;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/20 18:00
@@ -114,7 +113,7 @@ public class DeptService extends BaseService<Dept> {
                 return deleteResult;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/21 23:07
@@ -135,6 +134,6 @@ public class DeptService extends BaseService<Dept> {
             }
             return deleteNum;
         }
-       return 0;
+       return CRUD_FALIED;
     }
 }

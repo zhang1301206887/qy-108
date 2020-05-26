@@ -20,7 +20,6 @@ public class PrincipaService extends BaseService<Principal> {
     @Autowired
     private PrincipalMapper principalMapper;
 
-    private String nowDate = new DateUtil().getNowDate();
     /**
     * @Author: He create on 2020/5/26 11:37
     * @param: [userId]
@@ -62,7 +61,7 @@ public class PrincipaService extends BaseService<Principal> {
     */
     public Integer updatePrinByPrimaryKey(Principal principal){
         if (null != principal){
-            principal.setModifyTime(nowDate);
+            principal.setModifyTime(new DateUtil().getNowDate());
             int update = principalMapper.updateByPrimaryKey(principal);
             if (update > 0){
                 return update;
@@ -80,7 +79,7 @@ public class PrincipaService extends BaseService<Principal> {
     public Integer insertPrin(Principal principal){
         if (null != principal){
             principal.setId(IDUtils.getID());
-            principal.setCreateTime(nowDate);
+            principal.setCreateTime(new DateUtil().getNowDate());
             int insert = principalMapper.insert(principal);
             if (insert > 0){
                 return insert;

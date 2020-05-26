@@ -3,8 +3,11 @@ package com.aaa.zk.mapper;
 import com.aaa.zk.model.SpecialPost;
 import tk.mybatis.mapper.common.Mapper;
 
+import java.util.List;
+
 public interface SpecialPostMapper extends Mapper<SpecialPost> {
 
-    //根据user_id查询单位特岗人员数量
     Integer selectSpecialPostCount(Object userId);
+
+    List<SpecialPost> selectSpecialPostByUserId(Object userId);
 }

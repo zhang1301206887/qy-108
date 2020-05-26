@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
+
 @Service
 public class MenuService extends BaseService<Menu> {
 
     @Autowired
     private MenuMapper menuMapper;
-    //使用工具类 获取当前时间并转化格式
-    private String nowDate = new DateUtil().getNowDate();
 
     /**
     * @Author: He create on 2020/5/21 16:27
@@ -89,13 +89,13 @@ public class MenuService extends BaseService<Menu> {
     public Integer insertMenu(Menu menu){
         if ( null != menu){
             //获取当前时间 添加到数据库
-            menu.setCreateTime(nowDate);
+            menu.setCreateTime(new DateUtil().getNowDate());
             int insertResult = menuMapper.insert(menu);
             if (insertResult > 0){
                 return insertResult;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/21 17:58
@@ -110,7 +110,7 @@ public class MenuService extends BaseService<Menu> {
                 return deleteResult;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
      * @Author: He create on 2020/5/21 23:07
@@ -131,7 +131,7 @@ public class MenuService extends BaseService<Menu> {
             }
             return deleteNum;
         }
-       return 0;
+       return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/21 17:59
@@ -142,12 +142,12 @@ public class MenuService extends BaseService<Menu> {
     public Integer updateMenuByPrimaryKey(Menu menu){
         if (null != menu){
             //更新时传入当前时间 更新数据
-            menu.setModifyTime(nowDate);
+            menu.setModifyTime(new DateUtil().getNowDate());
             int updateResult = menuMapper.updateByPrimaryKey(menu);
             if (updateResult  > 0){
                 return updateResult;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
 }

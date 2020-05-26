@@ -22,7 +22,6 @@ public class EquipmentService extends BaseService<Equipment> {
     @Autowired
     private EquipmentMapper equipmentMapper;
 
-    String nowDate = new DateUtil().getNowDate();
     /**
      * @Author: He create on 2020/5/26 16:56
      * @param: [userId]
@@ -64,7 +63,7 @@ public class EquipmentService extends BaseService<Equipment> {
     public Integer insertEqui(Equipment equipment){
         if (null != equipment){
             equipment.setId(IDUtils.getID());
-            equipment.setCreateTime(nowDate);
+            equipment.setCreateTime(new DateUtil().getNowDate());
             int insert = equipmentMapper.insert(equipment);
             if (insert > 0){
                 return insert;
@@ -81,7 +80,7 @@ public class EquipmentService extends BaseService<Equipment> {
      */
     public Integer updateEquiByPrimaryKey(Equipment equipment){
         if (null != equipment){
-            equipment.setModifyTime(nowDate);
+            equipment.setModifyTime(new DateUtil().getNowDate());
             int update = equipmentMapper.updateByPrimaryKey(equipment);
             if (update > 0){
                 return update;

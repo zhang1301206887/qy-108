@@ -1,25 +1,20 @@
 package com.aaa.zk.model;
 
+import com.aaa.zk.base.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Table;
 
 @Table(name = "t_special_post")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class SpecialPost {
-    /**
-     * 编号
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class SpecialPost extends BaseModel {
 
     /**
      * 姓名
@@ -81,15 +76,4 @@ public class SpecialPost {
     @Column(name = "user_id")
     private Long userId;
 
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_time")
-    private Date createTime;
-
-    /**
-     * 修改时间
-     */
-    @Column(name = "modify_time")
-    private Date modifyTime;
 }

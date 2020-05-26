@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Map;
 
+import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
+
 @Service
 public class RoleService extends BaseService<Role> {
 
@@ -26,7 +28,6 @@ public class RoleService extends BaseService<Role> {
     @Autowired
     private RoleMenuMapper roleMenuMapper;
 
-    private String nowDate = new DateUtil().getNowDate();
     /**
     * @Author: He create on 2020/5/21 22:16
     * @param: [role]
@@ -80,14 +81,14 @@ public class RoleService extends BaseService<Role> {
     */
     public Long insertRole(Role role){
         if (null != role){
-            role.setCreateTime(nowDate);
+            role.setCreateTime(new DateUtil().getNowDate());
             Integer integer = roleMapper.insertRoleResultId(role);
             @NotNull Long id = role.getId();
             if (null != integer){
                 return id;
             }
         }
-        return 0L;
+        return null;
     }
     /**
     * @Author: He create on 2020/5/23 10:26
@@ -98,13 +99,13 @@ public class RoleService extends BaseService<Role> {
     public Integer updateRoleByPrimaryKey(Role role){
         if (null != role){
             //模拟时间
-            role.setCreateTime(nowDate).setModifyTime(nowDate);
+            role.setModifyTime(new DateUtil().getNowDate());
             int update = roleMapper.updateByPrimaryKey(role);
             if (update > 0){
                 return update;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/21 22:17
@@ -119,7 +120,7 @@ public class RoleService extends BaseService<Role> {
                 return deleteResult;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
      * @Author: He create on 2020/5/21 23:07
@@ -141,6 +142,6 @@ public class RoleService extends BaseService<Role> {
             }
             return deleteNum;
         }
-        return 0;
+        return CRUD_FALIED;
     }
 }
