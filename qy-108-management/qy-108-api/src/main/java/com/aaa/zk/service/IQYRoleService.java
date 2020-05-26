@@ -23,6 +23,15 @@ public interface IQYRoleService {
     */
     @GetMapping("selectAllRole")
     ResultData selectAllRole();
+
+    /**
+    * @Author: He create on 2020/5/26 15:00
+    * @param: [id]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据主键id查询角色数据
+    */
+    @GetMapping("selectRoleByPrimaryKey/{id}")
+    public ResultData selectRoleByPrimaryKey(@PathVariable("id") Object id);
     /**
     * @Author: He create on 2020/5/23 10:45
     * @param: [role]
@@ -53,8 +62,8 @@ public interface IQYRoleService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据主键id删除一条数据
      */
-    @DeleteMapping("deleteRoleByPrimaryKey")
-    public ResultData deleteRoleByPrimaryKey(@RequestBody Map map);
+    @DeleteMapping("deleteRoleByPrimaryKey/{id}")
+    public ResultData deleteRoleByPrimaryKey(@PathVariable("id") Object id);
     /**
      * @Author: He create on 2020/5/22 12:08
      * @param: [list]
@@ -69,6 +78,6 @@ public interface IQYRoleService {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据角色id查询具体的角色权限信息
     */
-    @PostMapping("selectRoleMenuById")
-    public ResultData selectRoleMenuById(@RequestBody Map map);
+    @GetMapping("selectRoleMenuById/{id}")
+    public ResultData selectRoleMenuById(@PathVariable("id") Object id);
 }

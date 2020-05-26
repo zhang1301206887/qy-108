@@ -38,6 +38,20 @@ public class DictController extends BaseController {
         return selelctFalied();
     }
     /**
+    * @Author: He create on 2020/5/26 14:42
+    * @param: [id]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据id查询字典表信息
+    */
+    @GetMapping("selectDictByPrimaryKey/{id}")
+    public ResultData selectDictByPaimaryKey(@PathVariable("id") Object id){
+        Dict dict = dictService.selectDictByPrimaryKey(id);
+        if (null != dict){
+            return selelctSuccess(dict);
+        }
+        return selelctFalied();
+    }
+    /**
     * @Author: He create on 2020/5/20 21:37
     * @param: [dict]
     * @return: com.aaa.zk.base.ResultData

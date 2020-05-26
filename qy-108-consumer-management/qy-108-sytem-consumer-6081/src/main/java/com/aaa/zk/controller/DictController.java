@@ -30,6 +30,12 @@ public class DictController extends BaseController {
         return dictService.selectAllDict();
     }
 
+    @GetMapping("selectDictByPrimaryKey/{id}")
+    @ApiOperation(value = "查询功能",notes = "根据主键id查询字典数据")
+    public ResultData selectDictByPrimaryKey(@PathVariable("id") Object id){
+        return dictService.selectDictByPrimaryKey(id);
+    }
+
     @PostMapping("/selectDictByField")
     @ApiOperation(value = "查询功能",notes = "条件查询字典数据")
     public ResultData selectDictByField(@RequestBody Dict dict){

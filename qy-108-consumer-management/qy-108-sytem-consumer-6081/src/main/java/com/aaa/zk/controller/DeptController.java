@@ -36,6 +36,18 @@ public class DeptController extends BaseController {
     public ResultData selectAll(){
         return deptService.selectAllDept();
     }
+
+    /**
+    * @Author: He create on 2020/5/26 14:52
+    * @param: [id]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据主键id查询部门数据
+    */
+    @GetMapping("selectDeptByPrimaryKey/{id}")
+    @ApiOperation(value = "查询功能",notes = "根据主键id查询部门数据")
+    public ResultData selectDeptByPrimaryKey(@PathVariable("id") Object id){
+        return deptService.selectDeptByPrimaryKey(id);
+    }
     /**
     * @Author: He create on 2020/5/22 11:45
     * @param: [dept]

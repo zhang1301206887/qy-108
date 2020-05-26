@@ -29,16 +29,16 @@ public class TechController extends BaseController {
         return techService.selectAllTech();
     }
 
-    @PostMapping("selectTechByUserId")
+    @GetMapping("selectTechByUserId/{userId}")
     @ApiOperation(value = "查询功能",notes = "根据公司id查询技术人员数据")
-    public ResultData selectTechByUserId(@RequestBody HashMap map){
-        return techService.selectTechByUserId(map);
+    public ResultData selectTechByUserId(@PathVariable("userId") Object userId){
+        return techService.selectTechByUserId(userId);
     }
 
-    @PostMapping("selectTechByPaimaryKey")
+    @GetMapping("selectTechByPrimaryKey/{id}")
     @ApiOperation(value = "查询功能",notes = "根据id查询技术人员的数据")
-    public ResultData selectTechByPrimaryKey(@RequestBody Technicist technicist){
-        return techService.selectTechByPrimaryKey(technicist);
+    public ResultData selectTechByPrimaryKey(@PathVariable("id") Object id){
+        return techService.selectTechByPrimaryKey(id);
     }
 
     @PutMapping("insertTech")
@@ -53,9 +53,9 @@ public class TechController extends BaseController {
         return techService.updateTechByPrimaryKey(technicist);
     }
 
-    @DeleteMapping("deleteTechByPaimaryKey")
+    @DeleteMapping("deleteTechByPrimaryKey/{id}")
     @ApiOperation(value = "删除功能",notes = "根据主键删除技术人员数据")
-    public ResultData deleteTechByPaimaryKey(@RequestBody Technicist technicist){
-        return techService.deleteTechByPaimaryKey(technicist);
+    public ResultData deleteTechByPrimaryKey(@PathVariable("id") Object id){
+        return techService.deleteTechByPrimaryKey(id);
     }
 }

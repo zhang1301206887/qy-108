@@ -42,6 +42,22 @@ public class MenuService extends BaseService<Menu> {
     }
 
     /**
+    * @Author: He create on 2020/5/26 14:33
+    * @param: [id]
+    * @return: com.aaa.zk.model.Menu
+    * @Description: 根据主键id查询菜单表数据
+    */
+    public Menu selectMenuByPrimaryKey(Object id){
+        if (null != id){
+            Menu menu = menuMapper.selectByPrimaryKey(id);
+            if (null != menu){
+                return menu;
+            }
+            return null;
+        }
+        return null;
+    }
+    /**
     * @Author: He create on 2020/5/21 17:53
     * @param: [id]
     * @return: java.util.List<com.aaa.zk.vo.MenuVo>

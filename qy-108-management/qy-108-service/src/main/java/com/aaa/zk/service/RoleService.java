@@ -33,7 +33,7 @@ public class RoleService extends BaseService<Role> {
     * @return: java.util.List<com.aaa.zk.model.Role>
     * @Description: 根据字段 查询角色信息
     */
-    public List<Role> selectOneRole(Role role){
+    public List<Role> selectRoleByFeild(Role role){
         if (null != role){
             List<Role> select = roleMapper.select(role);
             if (null != select && select.size() > 0){
@@ -42,7 +42,22 @@ public class RoleService extends BaseService<Role> {
         }
         return null;
     }
-
+   /**
+   * @Author: He create on 2020/5/26 14:36
+   * @param: [id]
+   * @return: com.aaa.zk.model.Role
+   * @Description: 根据主键id查询角色数据
+   */
+    public Role selectRoleByPrimaryKey(Object id){
+        if (null != id){
+            Role role = roleMapper.selectByPrimaryKey(id);
+            if (null != role){
+                return role;
+            }
+            return null;
+        }
+        return null;
+    }
     /**
     * @Author: He create on 2020/5/21 22:16
     * @param: []

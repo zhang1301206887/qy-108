@@ -42,9 +42,9 @@ public class TechnicistController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据公司id查询技术人员信息
     */
-    @PostMapping("selectTechByUserId")
-    public ResultData selectTechByUserId(@RequestBody HashMap map){
-        List<Technicist> selectTechByUserId = technicistService.selectTechByUserId(map.get("userid"));
+    @GetMapping("selectTechByUserId/{userId}")
+    public ResultData selectTechByUserId(@PathVariable("userId") Object userId){
+        List<Technicist> selectTechByUserId = technicistService.selectTechByUserId(userId);
         if (null != selectTechByUserId){
             return selelctSuccess(selectTechByUserId);
         }
@@ -56,11 +56,11 @@ public class TechnicistController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id查询技术人员信息
     */
-    @PostMapping("selectTechByPaimaryKey")
-    public ResultData selectTechByPrimaryKey(@RequestBody Technicist technicist){
-        Technicist technicist1 = technicistService.selectTechByPrimaryKey(technicist);
-        if (null != technicist1){
-            return selelctSuccess(technicist1);
+    @GetMapping("selectTechByPrimaryKey/{id}")
+    public ResultData selectTechByPrimaryKey(@PathVariable("id") Object id){
+        Technicist technicist = technicistService.selectTechByPrimaryKey(id);
+        if (null != technicist){
+            return selelctSuccess(technicist);
         }
         return selelctFalied();
     }
@@ -98,9 +98,9 @@ public class TechnicistController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键删除技术人员信息
     */
-    @DeleteMapping("deleteTechByPaimaryKey")
-    public ResultData deleteTechByPaimaryKey(@RequestBody Technicist technicist){
-        Integer integer = technicistService.deleteTechByPrimaryKey(technicist);
+    @DeleteMapping("deleteTechByPrimaryKey/{id}")
+    public ResultData deleteTechByPaimaryKey(@PathVariable("id") Object id){
+        Integer integer = technicistService.deleteTechByPrimaryKey(id);
         if (integer > 0){
             return deleteSuccess();
         }

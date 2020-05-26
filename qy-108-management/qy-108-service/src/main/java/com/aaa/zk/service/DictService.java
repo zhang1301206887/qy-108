@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
+
 @Service
 public class DictService extends BaseService<Dict> {
 
@@ -31,6 +33,22 @@ public class DictService extends BaseService<Dict> {
         List<Dict> dicts = dictMapper.selectAll();
         if (null != dicts && dicts.size() > 0){
             return dicts;
+        }
+        return null;
+    }
+    /**
+    * @Author: He create on 2020/5/26 14:31
+    * @param: [id]
+    * @return: com.aaa.zk.model.Dict
+    * @Description: 根据主键id查询字典表数据
+    */
+    public Dict selectDictByPrimaryKey(Object id){
+        if (null != id){
+            Dict dict = dictMapper.selectByPrimaryKey(id);
+            if (null != dict){
+                return dict;
+            }
+            return null;
         }
         return null;
     }
@@ -63,7 +81,7 @@ public class DictService extends BaseService<Dict> {
                 return insertResult;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/20 21:26
@@ -78,7 +96,7 @@ public class DictService extends BaseService<Dict> {
                 return updateResult;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
     * @Author: He create on 2020/5/20 21:27
@@ -93,7 +111,7 @@ public class DictService extends BaseService<Dict> {
                 return deleteResult;
             }
         }
-        return 0;
+        return CRUD_FALIED;
     }
     /**
      * @Author: He create on 2020/5/21 23:07

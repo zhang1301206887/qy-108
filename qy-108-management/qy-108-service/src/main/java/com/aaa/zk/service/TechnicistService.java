@@ -55,9 +55,9 @@ public class TechnicistService extends BaseService<Technicist> {
     * @return: com.aaa.zk.model.Technicist
     * @Description: 根据主键id查询技术人员信息
     */
-    public Technicist selectTechByPrimaryKey (Technicist technicist){
-        if (null != technicist){
-            Technicist selectByPrimaryKey = technicistMapper.selectByPrimaryKey(technicist);
+    public Technicist selectTechByPrimaryKey (Object id){
+        if (null != id){
+            Technicist selectByPrimaryKey = technicistMapper.selectByPrimaryKey(id);
             if (null != selectByPrimaryKey && "".equals(selectByPrimaryKey)){
                 return selectByPrimaryKey;
             }
@@ -103,9 +103,9 @@ public class TechnicistService extends BaseService<Technicist> {
     * @return: java.lang.Integer
     * @Description: 根据主键删除技术人员信息
     */
-    public Integer deleteTechByPrimaryKey(Technicist technicist){
-        if (null != technicist){
-            int delete = technicistMapper.deleteByPrimaryKey(technicist);
+    public Integer deleteTechByPrimaryKey(Object id){
+        if (null != id){
+            int delete = technicistMapper.deleteByPrimaryKey(id);
             if (delete > 0){
                 return delete;
             }

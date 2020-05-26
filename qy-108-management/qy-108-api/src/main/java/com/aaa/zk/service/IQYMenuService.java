@@ -26,13 +26,22 @@ public interface IQYMenuService {
     ResultData selectMenuByField(@RequestBody Menu menu);
 
     /**
+    * @Author: He create on 2020/5/26 14:55
+    * @param: [id]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据主键id查询菜单表数据
+    */
+    @GetMapping("selectMenuByPrimaryKey/{id}")
+    public ResultData selectMenuByPrimaryKey(@PathVariable("id") Object id);
+
+    /**
     * @Author: He create on 2020/5/22 12:06
     * @param: [id]
     * @return: com.aaa.zk.base.ResultData
     * @Description: 查询菜单表所有信息 并且把子菜单放在父级菜单下（传入的id应为最大父级id 0）
     */
-    @PostMapping("selectMenuByParentId")
-    public ResultData selectMenuByParentId(@RequestBody Map map);
+    @GetMapping("selectMenuByParentId/{id}")
+    public ResultData selectMenuByParentId(@PathVariable("id") Object id);
 
     /**
     * @Author: He create on 2020/5/22 12:07

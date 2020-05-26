@@ -23,6 +23,15 @@ public interface IQYDictService {
     */
     @GetMapping("/selectAllDict")
     ResultData selectAllDict();
+
+    /**
+    * @Author: He create on 2020/5/26 14:53
+    * @param: [id]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据主键id查询字典表信息
+    */
+    @GetMapping("selectDictByPrimaryKey/{id}")
+    public ResultData selectDictByPrimaryKey(@PathVariable("id") Object id);
     /**
     * @Author: He create on 2020/5/22 11:51
     * @param: [dict]

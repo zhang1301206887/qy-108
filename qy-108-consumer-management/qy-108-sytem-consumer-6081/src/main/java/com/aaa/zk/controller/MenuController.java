@@ -30,10 +30,16 @@ public class MenuController extends BaseController {
         return menuService.selectMenuByField(menu);
     }
 
-    @PostMapping("selectMenuByParentId")
+    @GetMapping("selectMenuByPrimaryKey/{id}")
+    @ApiOperation(value = "查询功能",notes = "根据主键id查询菜单表数据")
+    public ResultData selectMenuByPrimaryKey(@PathVariable("id") Object id){
+        return menuService.selectMenuByPrimaryKey(id);
+    }
+
+    @GetMapping("selectMenuByParentId/{id}")
     @ApiOperation(value = "查询功能",notes = "查询所有菜单数据")
-    public ResultData selectMenuByParentId(@RequestBody Map map){
-        return menuService.selectMenuByParentId(map);
+    public ResultData selectMenuByParentId(@PathVariable("id") Object id){
+        return menuService.selectMenuByParentId(id);
     }
 
     @PutMapping("insertMenu")

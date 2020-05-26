@@ -41,14 +41,28 @@ public class MenuController extends BaseController {
     }
 
     /**
+    * @Author: He create on 2020/5/26 14:45
+    * @param: [id]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据主键id查询菜单信息
+    */
+    @GetMapping("selectMenuByPrimaryKey/{id}")
+    public ResultData selectMenuByPrimaryKey(@PathVariable("id") Object id){
+        Menu menu = menuService.selectMenuByPrimaryKey(id);
+        if (null != menu){
+            return selelctSuccess(menu);
+        }
+        return selelctFalied();
+    }
+    /**
     * @Author: He create on 2020/5/21 17:01
     * @param: [id]
     * @return: com.aaa.zk.base.ResultData
     * @Description: 遍历查询所有的权限菜单
     */
-    @PostMapping("selectMenuByParentId")
-    public ResultData selectMenuByParentId(@RequestBody Map map){
-        List<MenuVo> menuVos = menuService.selectMenuByParentId(map.get("id"));
+    @GetMapping("selectMenuByParentId/{id}")
+    public ResultData selectMenuByParentId(@PathVariable("id") Object id){
+        List<MenuVo> menuVos = menuService.selectMenuByParentId(id);
         if (null != menuVos){
             return selelctSuccess(menuVos);
         }

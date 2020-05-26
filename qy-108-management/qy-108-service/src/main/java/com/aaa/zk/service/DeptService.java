@@ -38,6 +38,22 @@ public class DeptService extends BaseService<Dept> {
         return null;
     }
     /**
+    * @Author: He create on 2020/5/26 14:23
+    * @param: [id]
+    * @return: com.aaa.zk.model.Dept
+    * @Description: 根据主键查询信息
+    */
+    public Dept selectDeptByPrimaryKey(Object id){
+        if (null != id){
+            Dept dept = deptMapper.selectByPrimaryKey(id);
+            if (null != dept){
+                return dept;
+            }
+            return null;
+        }
+        return null;
+    }
+    /**
     * @Author: He create on 2020/5/20 17:49
     * @param: [dept]
     * @return: com.aaa.zk.model.Dept

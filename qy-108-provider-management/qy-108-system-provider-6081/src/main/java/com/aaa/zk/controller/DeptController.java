@@ -36,10 +36,24 @@ public class DeptController extends BaseController {
         return selelctFalied();
     }
     /**
+    * @Author: He create on 2020/5/26 14:39
+    * @param: [id]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据id查询部门信息
+    */
+    @GetMapping("selectDeptByPrimaryKey/{id}")
+    public ResultData selectDeptByPrimaryKey(@PathVariable("id") Object id){
+        Dept dept = deptService.selectDeptByPrimaryKey(id);
+        if (null != dept){
+            return selelctSuccess(dept);
+        }
+        return selelctFalied();
+    }
+    /**
     * @Author: He create on 2020/5/20 17:50
     * @param: [dept]
     * @return: com.aaa.zk.model.Dept
-    * @Description: 根据部门名称 查询部门基本信息
+    * @Description: 根据条件 查询部门基本信息
     */
     @PostMapping("/selectDeptByField")
     public ResultData selectByField(@RequestBody Dept dept){

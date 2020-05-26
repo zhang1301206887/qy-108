@@ -50,6 +50,12 @@ public class RoleMenuService {
         }
         return 0;
     }
+    /**
+    * @Author: He create on 2020/5/26 14:33
+    * @param: [list]
+    * @return: java.lang.Integer
+    * @Description: 批量删除角色和对应的权限表
+    */
     public Integer deleteMenuByRoleIdList(List<Map> list){
         if (null != list && list.size() > 0){
             Integer deleteNum = 0;
