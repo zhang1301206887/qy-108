@@ -6,6 +6,7 @@ import com.aaa.zk.mapper.MappingProjectMapper;
 import com.aaa.zk.model.Audit;
 import com.aaa.zk.model.MappingProject;
 import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.aaa.zk.staticstatus.AuditStatus.*;
+import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
 
 @Service
 public class MappingProjectService extends BaseService<MappingProject> {
@@ -24,13 +26,6 @@ public class MappingProjectService extends BaseService<MappingProject> {
     @Autowired
     private AuditMapper auditMapper;
 
-    //使用工具类 获取当前时间并转化格式
-    private String nowDate = new DateUtil().getNowDate();
-
-    /**
-     * 生成随机数
-     */
-    private Long number = Math.round(1000000*Math.random());
     /**
      * @author zk
      * @Date
@@ -43,10 +38,10 @@ public class MappingProjectService extends BaseService<MappingProject> {
             if (i > 0){
                 return i;
             }else{
-                return 0;
+                return CRUD_FALIED;
             }
         }else{
-            return 0;
+            return CRUD_FALIED;
         }
     }
 
@@ -94,20 +89,20 @@ public class MappingProjectService extends BaseService<MappingProject> {
         Audit audit = new Audit();
         // 先判断传过来的MappingProject实体是否为空
         if (mappingProject != null){
-            mappingProject.setStartDate(nowDate);
+            mappingProject.setStartDate(new DateUtil().getNowDate());
             // 不为空则 去添加到数据库
             int i = mappingProjectMapper.insert(mappingProject);
-            audit.setId(number).setType(TYPE).setName(NAME).setStatus(STATUS).setUserId(mappingProject.getUserId()).setCreateTime(nowDate).setRefId(mappingProject.getId()).setSubmitTime(nowDate);
+            audit.setId(IDUtils.getID()).setType(TYPE).setName(NAME).setStatus(STATUS).setUserId(mappingProject.getUserId()).setCreateTime(new DateUtil().getNowDate()).setRefId(mappingProject.getId()).setSubmitTime(new DateUtil().getNowDate());
             int i1 = auditMapper.insert(audit);
             // 判断 i返回受影响的行数是否大于0
             if (i>0 && i1>0){
                 return i;
             }else {
-                return null;
+                return CRUD_FALIED;
             }
         }else {
             // 为空则 直接返回null
-            return null;
+            return CRUD_FALIED;
         }
     }
 
@@ -147,11 +142,11 @@ public class MappingProjectService extends BaseService<MappingProject> {
             if (i>0){
                 return i;
             }else {
-                return null;
+                return CRUD_FALIED;
             }
         }else {
             // 为空则 直接返回null
-            return null;
+            return CRUD_FALIED;
         }
     }
 
@@ -166,7 +161,7 @@ public class MappingProjectService extends BaseService<MappingProject> {
         if (i>0){
             return i;
         }else {
-            return null;
+            return CRUD_FALIED;
         }
     }
 
