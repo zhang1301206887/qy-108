@@ -17,19 +17,4 @@ import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
 
 @Service
 public class LoginLogService extends BaseService<LoginLog> {
-    @Autowired
-    LoginLogMapper loginLogMapper;
-
-
-    public Integer insertLoginLog(LoginLog loginLog){
-        if (null != loginLog){
-            loginLog.setLoginTime(DateUtils.getCurrentDate());
-            int insert = loginLogMapper.insert(loginLog);
-            if (insert > 0 ){
-                return insert;
-            }
-            return CRUD_FALIED;
-        }
-        return CRUD_FALIED;
-    }
 }

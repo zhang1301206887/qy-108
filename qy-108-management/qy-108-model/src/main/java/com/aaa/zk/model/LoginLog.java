@@ -3,17 +3,16 @@ package com.aaa.zk.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Table(name = "t_login_log")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Accessors(chain = true)
-public class LoginLog {
+public class LoginLog implements Serializable {
     /**
      * 用户名
      */
@@ -37,5 +36,11 @@ public class LoginLog {
      */
     @Column(name = "IP")
     private String ip;
+
+    @Column(name = "OPERATION_TYPE")
+    private String operationType;
+
+    @Column(name = "OPERATION_NAME")
+    private String operationName;
 
 }

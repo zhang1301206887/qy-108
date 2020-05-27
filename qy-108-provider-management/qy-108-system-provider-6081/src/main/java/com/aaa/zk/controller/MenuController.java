@@ -24,7 +24,6 @@ public class MenuController extends BaseController {
     @Autowired
     private MenuService menuService;
 
-    private String nowDate = new DateUtils().getNowDate();
     /**
     * @Author: He create on 2020/5/21 17:02
     * @param: [menu]
@@ -90,7 +89,6 @@ public class MenuController extends BaseController {
     */
     @PostMapping("updateMenuByPrimaryKey")
     public ResultData updateByPrimaryKey(@RequestBody Menu menu){
-        menu.setCreateTime(nowDate);
         Integer updateResult = menuService.updateMenuByPrimaryKey(menu);
         if (updateResult > 0 ){
             return updataSuccess();

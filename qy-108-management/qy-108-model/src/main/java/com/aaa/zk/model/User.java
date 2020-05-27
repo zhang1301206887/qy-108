@@ -21,15 +21,6 @@ import javax.persistence.*;
 public class User extends BaseModel {
 
     /**
-     * id
-     */
-    /**
-     * 用户ID
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    /**
      * 用户名
      */
     private String username;

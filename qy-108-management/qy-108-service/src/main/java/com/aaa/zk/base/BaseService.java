@@ -49,7 +49,7 @@ public abstract class BaseService<T> {
      * @throws
      **/
     public Integer add(T t) throws Exception {
-        return mapper.insertSelective(t);
+        return mapper.insert(t);
     }
 
     /**
@@ -92,7 +92,7 @@ public abstract class BaseService<T> {
      * @throws
      **/
     public Integer update(T t) throws Exception {
-        return mapper.updateByPrimaryKeySelective(t);
+        return mapper.updateByPrimaryKey(t);
     }
 
     /**

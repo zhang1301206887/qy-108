@@ -7,6 +7,8 @@ package com.aaa.zk.controller;
  */
 
 import com.aaa.zk.base.BaseController;
+import com.aaa.zk.base.BaseService;
+import com.aaa.zk.base.CommonController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Dept;
 import com.aaa.zk.service.DeptService;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@RestController()
+@RestController
 public class DeptController extends BaseController {
     @Autowired
     private DeptService deptService;
@@ -119,4 +121,5 @@ public class DeptController extends BaseController {
         }
         return deleteFalied();
     }
+
 }

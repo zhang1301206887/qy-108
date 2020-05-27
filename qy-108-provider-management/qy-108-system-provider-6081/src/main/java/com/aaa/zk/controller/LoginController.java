@@ -31,14 +31,6 @@ public class LoginController {
      */
     @PostMapping("/doLogin")
     public TokenVo doLogin(@RequestBody User user){
-        LoginLog loginLog = new LoginLog().setIp("测试").setLocation("测试").setUsername(user.getUsername());
-        TokenVo tokenVo = loginService.doLogin(user, redisService);
-        if (null != tokenVo || "".equals(tokenVo)){
-            Integer insert = loginLogService.insertLoginLog(loginLog);
-            if (insert > 0){
-                return tokenVo;
-            }
-        }
-        return tokenVo;
+        return loginService.doLogin(user, redisService);
     }
 }
