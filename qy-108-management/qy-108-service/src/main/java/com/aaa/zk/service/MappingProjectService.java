@@ -92,6 +92,7 @@ public class MappingProjectService extends BaseService<MappingProject> {
             mappingProject.setStartDate(new DateUtil().getNowDate());
             // 不为空则 去添加到数据库
             int i = mappingProjectMapper.insert(mappingProject);
+            // 同时添加都审核表中 status为2 待审核
             audit.setId(IDUtils.getID()).setType(TYPE).setName(NAME).setStatus(STATUS).setUserId(mappingProject.getUserId()).setCreateTime(new DateUtil().getNowDate()).setRefId(mappingProject.getId()).setSubmitTime(new DateUtil().getNowDate());
             int i1 = auditMapper.insert(audit);
             // 判断 i返回受影响的行数是否大于0

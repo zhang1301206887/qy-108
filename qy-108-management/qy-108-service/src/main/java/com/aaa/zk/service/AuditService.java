@@ -3,6 +3,7 @@ package com.aaa.zk.service;
 import com.aaa.zk.mapper.AuditMapper;
 import com.aaa.zk.model.Audit;
 import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.aaa.zk.staticstatus.AuditStatus.*;
@@ -24,12 +25,7 @@ public class AuditService {
     @Autowired
     private AuditMapper auditMapper;
 
-    //使用工具类 获取当前时间并转化格式
-    private String nowDate = new DateUtil().getNowDate();
-    /**
-     * 生成随机数
-     */
-    private Long number = Math.round(1000000*Math.random());
+
 
     /**
      * @Author gfq 
@@ -98,7 +94,7 @@ public class AuditService {
        **/
        public Integer MPAuditAdd(Audit audit){
            if (audit != null){
-               audit.setAuditTime(nowDate).setName(NAME).setType(TYPE).setId(number);
+               audit.setAuditTime(new DateUtil().getNowDate()).setName(NAME).setType(TYPE).setId(IDUtils.getID());
                int i = auditMapper.insert(audit);
                if (i>0){
                    return i;
