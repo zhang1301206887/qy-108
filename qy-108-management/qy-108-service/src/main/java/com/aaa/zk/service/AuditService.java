@@ -10,6 +10,7 @@ import com.aaa.zk.staticstatus.AuditStatus.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.aaa.zk.staticstatus.AuditStatus.*;
 
@@ -80,6 +81,7 @@ public class AuditService {
       **/
       public List<HashMap> MPAuditSelect2(){
           List<HashMap> hashMaps = MPAuditSelect();
+          System.out.println(hashMaps);
           if (null != hashMaps && !"".equals(hashMaps)){
               return hashMaps;
           }else {
@@ -93,10 +95,13 @@ public class AuditService {
        * @Date 18:53 2020/5/26
        **/
        public Integer MPAuditAdd(Audit audit){
+           Audit audit2 = new Audit();
            if (audit != null){
+               audit2.setId(audit.getId()).setStatus(null);
+               int i = auditMapper.updateByPrimaryKey(audit2);
                audit.setAuditTime(new DateUtil().getNowDate()).setName(NAME).setType(TYPE).setId(IDUtils.getID());
-               int i = auditMapper.insert(audit);
-               if (i>0){
+               int i2 = auditMapper.insert(audit);
+               if (i>0 && i2>0){
                    return i;
                }else {
                    return null;
