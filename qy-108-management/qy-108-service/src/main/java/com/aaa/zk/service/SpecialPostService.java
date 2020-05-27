@@ -3,7 +3,7 @@ package com.aaa.zk.service;
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.SpecialPostMapper;
 import com.aaa.zk.model.SpecialPost;
-import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,7 +79,7 @@ public class SpecialPostService extends BaseService<SpecialPost> {
     */
     public Integer insertSpecial(SpecialPost specialPost){
         if (null != specialPost){
-            specialPost.setCreateTime(new DateUtil().getNowDate());
+            specialPost.setCreateTime(DateUtils.getCurrentDate());
             specialPost.setId(IDUtils.getID());
             int insert = specialPostMapper.insert(specialPost);
             if (insert > 0){
@@ -97,7 +97,7 @@ public class SpecialPostService extends BaseService<SpecialPost> {
     */
     public Integer updateSpecialByPrimaryKey(SpecialPost specialPost){
         if (null != specialPost){
-            specialPost.setModifyTime(new DateUtil().getNowDate());
+            specialPost.setModifyTime(DateUtils.getCurrentDate());
             int update = specialPostMapper.updateByPrimaryKey(specialPost);
             if (update > 0){
                 return update;

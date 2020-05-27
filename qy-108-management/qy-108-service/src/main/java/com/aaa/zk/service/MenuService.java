@@ -8,7 +8,7 @@ package com.aaa.zk.service;/*
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.MenuMapper;
 import com.aaa.zk.model.Menu;
-import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.vo.MenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,7 +89,7 @@ public class MenuService extends BaseService<Menu> {
     public Integer insertMenu(Menu menu){
         if ( null != menu){
             //获取当前时间 添加到数据库
-            menu.setCreateTime(new DateUtil().getNowDate());
+            menu.setCreateTime(DateUtils.getCurrentDate());
             int insertResult = menuMapper.insert(menu);
             if (insertResult > 0){
                 return insertResult;
@@ -142,7 +142,7 @@ public class MenuService extends BaseService<Menu> {
     public Integer updateMenuByPrimaryKey(Menu menu){
         if (null != menu){
             //更新时传入当前时间 更新数据
-            menu.setModifyTime(new DateUtil().getNowDate());
+            menu.setModifyTime(DateUtils.getCurrentDate());
             int updateResult = menuMapper.updateByPrimaryKey(menu);
             if (updateResult  > 0){
                 return updateResult;

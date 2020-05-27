@@ -8,7 +8,7 @@ package com.aaa.zk.service;/*
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.DeptMapper;
 import com.aaa.zk.model.Dept;
-import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +76,7 @@ public class DeptService extends BaseService<Dept> {
     public Integer insertDept(Dept dept){
         if (null != dept){
             //使用工具类获取当前时间转化为string类型
-            dept.setCreateTime(new DateUtil().getNowDate());
+            dept.setCreateTime(DateUtils.getCurrentDate());
             int insertResult = deptMapper.insert(dept);
             if (insertResult > 0){
                 return insertResult;
@@ -92,7 +92,7 @@ public class DeptService extends BaseService<Dept> {
     */
     public Integer updateDeptByPrimaryKey(Dept dept){
         if (null != dept){
-            dept.setModifyTime(new DateUtil().getNowDate());
+            dept.setModifyTime(DateUtils.getCurrentDate());
             int updateResult = deptMapper.updateByPrimaryKey(dept);
             if (updateResult > 0){
                 return updateResult;

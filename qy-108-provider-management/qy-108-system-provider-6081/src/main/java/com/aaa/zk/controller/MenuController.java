@@ -10,7 +10,7 @@ import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Menu;
 import com.aaa.zk.service.MenuService;
-import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.vo.MenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class MenuController extends BaseController {
     @Autowired
     private MenuService menuService;
 
-    private String nowDate = new DateUtil().getNowDate();
+    private String nowDate = new DateUtils().getNowDate();
     /**
     * @Author: He create on 2020/5/21 17:02
     * @param: [menu]

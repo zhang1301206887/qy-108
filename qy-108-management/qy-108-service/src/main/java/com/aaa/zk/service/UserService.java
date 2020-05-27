@@ -3,12 +3,10 @@ package com.aaa.zk.service;
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.UserMapper;
 import com.aaa.zk.model.User;
-import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import static com.aaa.zk.staticstatus.UserStatus.*;
@@ -63,7 +61,7 @@ public class UserService extends BaseService<User> {
     
     public Integer userAdd(User user){
         // 把时间存到 user实体类中
-        user.setCreateTime(new DateUtil().getNowDate());
+        user.setCreateTime(DateUtils.getCurrentDate());
         Integer i = null;
         try {
             i = super.add(user);
@@ -86,7 +84,7 @@ public class UserService extends BaseService<User> {
 
     public Integer userUpdate(User user){
         // 把时间存到 user实体类中
-        user.setModifyTime(new DateUtil().getNowDate());
+        user.setModifyTime(DateUtils.getCurrentDate());
         int i = userMapper.updateByPrimaryKeySelective(user);
         // 判断i是否大于0 如果大于则添加成功
         if (i>0){
@@ -161,7 +159,7 @@ public class UserService extends BaseService<User> {
      */
     public Integer resetUser(User user){
         // 把user实体类中的都清空
-        user.setPassword(RESET_PASSWORD).setAvatar(null).setDeptId(null).setDescription(null).setEmail(null).setUsername(null).setSsex(null).setType(null).setAvatar(null).setToken(null).setStatus(null).setMobile(null).setModifyTime(new DateUtil().getNowDate());
+        user.setPassword(RESET_PASSWORD).setAvatar(null).setDeptId(null).setDescription(null).setEmail(null).setUsername(null).setSsex(null).setType(null).setAvatar(null).setToken(null).setStatus(null).setMobile(null).setModifyTime(DateUtils.getCurrentDate());
         System.out.println(user);
         // 调用updateByPrimaryKeySelective 方法 选择性的把数据给清空掉
         int i = userMapper.updateByPrimaryKey(user);

@@ -8,7 +8,7 @@ package com.aaa.zk.service;/*
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.PrincipalMapper;
 import com.aaa.zk.model.Principal;
-import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,7 +61,7 @@ public class PrincipaService extends BaseService<Principal> {
     */
     public Integer updatePrinByPrimaryKey(Principal principal){
         if (null != principal){
-            principal.setModifyTime(new DateUtil().getNowDate());
+            principal.setModifyTime(DateUtils.getCurrentDate());
             int update = principalMapper.updateByPrimaryKey(principal);
             if (update > 0){
                 return update;
@@ -79,7 +79,7 @@ public class PrincipaService extends BaseService<Principal> {
     public Integer insertPrin(Principal principal){
         if (null != principal){
             principal.setId(IDUtils.getID());
-            principal.setCreateTime(new DateUtil().getNowDate());
+            principal.setCreateTime(DateUtils.getCurrentDate());
             int insert = principalMapper.insert(principal);
             if (insert > 0){
                 return insert;

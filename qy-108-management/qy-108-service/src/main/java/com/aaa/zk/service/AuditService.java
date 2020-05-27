@@ -2,15 +2,12 @@ package com.aaa.zk.service;
 
 import com.aaa.zk.mapper.AuditMapper;
 import com.aaa.zk.model.Audit;
-import com.aaa.zk.utils.DateUtil;
-import com.aaa.zk.utils.IDUtils;
+import com.aaa.zk.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.aaa.zk.staticstatus.AuditStatus.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static com.aaa.zk.staticstatus.AuditStatus.*;
 
@@ -26,7 +23,12 @@ public class AuditService {
     @Autowired
     private AuditMapper auditMapper;
 
-
+    //使用工具类 获取当前时间并转化格式
+    private String nowDate = DateUtils.getCurrentDate();
+    /**
+     * 生成随机数
+     */
+    private Long number = Math.round(1000000*Math.random());
 
     /**
      * @Author gfq 
@@ -81,7 +83,6 @@ public class AuditService {
       **/
       public List<HashMap> MPAuditSelect2(){
           List<HashMap> hashMaps = MPAuditSelect();
-          System.out.println(hashMaps);
           if (null != hashMaps && !"".equals(hashMaps)){
               return hashMaps;
           }else {
@@ -95,13 +96,10 @@ public class AuditService {
        * @Date 18:53 2020/5/26
        **/
        public Integer MPAuditAdd(Audit audit){
-           Audit audit2 = new Audit();
            if (audit != null){
-               audit2.setId(audit.getId()).setStatus(null);
-               int i = auditMapper.updateByPrimaryKey(audit2);
-               audit.setAuditTime(new DateUtil().getNowDate()).setName(NAME).setType(TYPE).setId(IDUtils.getID());
-               int i2 = auditMapper.insert(audit);
-               if (i>0 && i2>0){
+               audit.setAuditTime(nowDate).setName(NAME).setType(TYPE).setId(number);
+               int i = auditMapper.insert(audit);
+               if (i>0){
                    return i;
                }else {
                    return null;

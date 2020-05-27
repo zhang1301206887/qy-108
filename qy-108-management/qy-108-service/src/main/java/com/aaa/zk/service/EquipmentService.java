@@ -8,7 +8,7 @@ package com.aaa.zk.service;/*
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.EquipmentMapper;
 import com.aaa.zk.model.Equipment;
-import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,7 +63,7 @@ public class EquipmentService extends BaseService<Equipment> {
     public Integer insertEqui(Equipment equipment){
         if (null != equipment){
             equipment.setId(IDUtils.getID());
-            equipment.setCreateTime(new DateUtil().getNowDate());
+            equipment.setCreateTime(DateUtils.getCurrentDate());
             int insert = equipmentMapper.insert(equipment);
             if (insert > 0){
                 return insert;
@@ -80,7 +80,7 @@ public class EquipmentService extends BaseService<Equipment> {
      */
     public Integer updateEquiByPrimaryKey(Equipment equipment){
         if (null != equipment){
-            equipment.setModifyTime(new DateUtil().getNowDate());
+            equipment.setModifyTime(DateUtils.getCurrentDate());
             int update = equipmentMapper.updateByPrimaryKey(equipment);
             if (update > 0){
                 return update;

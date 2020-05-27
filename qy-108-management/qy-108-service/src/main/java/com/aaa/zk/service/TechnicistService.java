@@ -8,7 +8,7 @@ package com.aaa.zk.service;/*
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.TechnicistMapper;
 import com.aaa.zk.model.Technicist;
-import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,7 +73,7 @@ public class TechnicistService extends BaseService<Technicist> {
     public Integer insertTech(Technicist technicist){
         if (null != technicist){
             technicist.setId(IDUtils.getID());
-            technicist.setCreateTime(new DateUtil().getNowDate());
+            technicist.setCreateTime(DateUtils.getCurrentDate());
             int insert = technicistMapper.insert(technicist);
             if (insert > 0){
                 return insert;
@@ -89,7 +89,7 @@ public class TechnicistService extends BaseService<Technicist> {
     */
     public Integer updateTechByPrimaryKey(Technicist technicist){
         if (null != technicist){
-            technicist.setModifyTime(new DateUtil().getNowDate());
+            technicist.setModifyTime(DateUtils.getCurrentDate());
             int update = technicistMapper.updateByPrimaryKey(technicist);
             if (update > 0){
                 return update;

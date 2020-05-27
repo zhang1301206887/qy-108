@@ -9,7 +9,7 @@ import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.RoleMapper;
 import com.aaa.zk.mapper.RoleMenuMapper;
 import com.aaa.zk.model.Role;
-import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -81,7 +81,7 @@ public class RoleService extends BaseService<Role> {
     */
     public Long insertRole(Role role){
         if (null != role){
-            role.setCreateTime(new DateUtil().getNowDate());
+            role.setCreateTime(DateUtils.getCurrentDate());
             Integer integer = roleMapper.insertRoleResultId(role);
             @NotNull Long id = role.getId();
             if (null != integer){
@@ -99,7 +99,7 @@ public class RoleService extends BaseService<Role> {
     public Integer updateRoleByPrimaryKey(Role role){
         if (null != role){
             //模拟时间
-            role.setModifyTime(new DateUtil().getNowDate());
+            role.setModifyTime(DateUtils.getCurrentDate());
             int update = roleMapper.updateByPrimaryKey(role);
             if (update > 0){
                 return update;

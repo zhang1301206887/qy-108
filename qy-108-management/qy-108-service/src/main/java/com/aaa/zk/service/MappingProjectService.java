@@ -5,7 +5,7 @@ import com.aaa.zk.mapper.AuditMapper;
 import com.aaa.zk.mapper.MappingProjectMapper;
 import com.aaa.zk.model.Audit;
 import com.aaa.zk.model.MappingProject;
-import com.aaa.zk.utils.DateUtil;
+import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,11 +89,10 @@ public class MappingProjectService extends BaseService<MappingProject> {
         Audit audit = new Audit();
         // 先判断传过来的MappingProject实体是否为空
         if (mappingProject != null){
-            mappingProject.setStartDate(new DateUtil().getNowDate());
+            mappingProject.setStartDate(DateUtils.getCurrentDate());
             // 不为空则 去添加到数据库
             int i = mappingProjectMapper.insert(mappingProject);
-            // 同时添加都审核表中 status为2 待审核
-            audit.setId(IDUtils.getID()).setType(TYPE).setName(NAME).setStatus(STATUS).setUserId(mappingProject.getUserId()).setCreateTime(new DateUtil().getNowDate()).setRefId(mappingProject.getId()).setSubmitTime(new DateUtil().getNowDate());
+            audit.setId(IDUtils.getID()).setType(TYPE).setName(NAME).setStatus(STATUS).setUserId(mappingProject.getUserId()).setCreateTime(DateUtils.getCurrentDate()).setRefId(mappingProject.getId()).setSubmitTime(DateUtils.getCurrentDate());
             int i1 = auditMapper.insert(audit);
             // 判断 i返回受影响的行数是否大于0
             if (i>0 && i1>0){

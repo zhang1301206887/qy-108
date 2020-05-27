@@ -1,10 +1,13 @@
 package com.aaa.zk.service;
 
+import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.User;
 import com.aaa.zk.vo.TokenVo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.Map;
 
 /**
  * @Author zk
@@ -30,5 +33,13 @@ public interface IQYService {
      * */
     @PostMapping("/doLogin")
     TokenVo doLogin(@RequestBody User user);
+
+    /**
+    * @author zk
+    * @Date
+    *   添加登录日志
+    */
+    @PostMapping("/addLoginLog")
+    ResultData addLoginLog(@RequestBody Map map);
 
 }

@@ -2,7 +2,6 @@ package com.aaa.zk.controller;
 
 import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
-import com.aaa.zk.mapper.SpecialPostMapper;
 import com.aaa.zk.model.SpecialPost;
 import com.aaa.zk.service.SpecialPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,11 @@ public class SpecialPostController extends BaseController{
 
     @Autowired
     private SpecialPostService specialPostService;
-
+    /**
+    * @author zk
+    * @Date
+    * 根据userId查询公司特岗人员数量
+    */
     @GetMapping("selectSpecialPostCount/{userId}")
     public ResultData selectSpecialPostCount(@PathVariable("userId") Object userId){
         System.out.println(userId);
