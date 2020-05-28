@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
+
 /**
  * @Author zk
  * @Date 2020/5/22
@@ -48,5 +50,27 @@ public class MappingUnitService extends BaseService<MappingUnit> {
          }else{
              return null;
          }
+    }
+
+    public Integer updateInsertScoreById(MappingUnit mappingUnit){
+        if (null != mappingUnit){
+            Integer integer = mappingUnitMapper.updateInsertScoreById(mappingUnit);
+            if (integer > 0){
+                return integer;
+            }
+            return CRUD_FALIED;
+        }
+        return CRUD_FALIED;
+    }
+
+    public Integer updateDeleteScoreById(MappingUnit mappingUnit){
+        if (null != mappingUnit){
+            Integer integer = mappingUnitMapper.updateDeleteScoreById(mappingUnit);
+            if (integer > 0){
+                return integer;
+            }
+            return CRUD_FALIED;
+        }
+        return CRUD_FALIED;
     }
 }
