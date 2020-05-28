@@ -60,6 +60,9 @@
     <result column="coordinate" property="coordinate" jdbcType="LONGVARCHAR" />
   </resultMap>
 
+
+
+
   <select id="selectCountLevel" resultType="HashMap" >
     select qualification_level,count(qualification_level) from t_mapping_unit group by qualification_level;
   </select>
@@ -69,7 +72,21 @@
   <update id="updateDeleteScoreById" >
         UPDATE t_mapping_unit SET score = score - #{score} WHERE id = #{id}
   </update>
-
+  <sql id="Base_List">
+        unit_name,owned_district,qualification_level
+  </sql>
+  <select id="selectUnitByField" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select * from t_mapping_unit where 1=1
+        <if test="unitName != null and unitName != ''">
+            and unit_name like concat('%',#{unitName},'%')
+        </if>
+        <if test="ownedDistrict != null and ownedDistrict != ''">
+        and owned_district = #{ownedDistrict}
+         </if>
+         <if test="qualificationLevel != null and qualificationLevel != ''">
+        and qualification_level = #{qualificationLevel}
+         </if>
+  </select>
 
 
 </mapper>

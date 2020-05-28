@@ -1,35 +1,20 @@
 package com.aaa.zk.model;
 
+import com.aaa.zk.base.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Table(name = "t_mapping_unit")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class MappingUnit {
-    @Id
-    private Long id;
-
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_time")
-    private Date createTime;
-
-    /**
-     * 修改时间
-     */
-    @Column(name = "modify_time")
-    private Date modifyTime;
+public class MappingUnit extends BaseModel {
 
     /**
      * 备注
@@ -52,7 +37,7 @@ public class MappingUnit {
      * 注册时间
      */
     @Column(name = "register_time")
-    private Date registerTime;
+    private String registerTime;
 
     /**
      * 办公地址
@@ -144,7 +129,7 @@ public class MappingUnit {
      * 单位成立时间
      */
     @Column(name = "establish_time")
-    private Date establishTime;
+    private String establishTime;
 
     /**
      * 手机号码
@@ -197,7 +182,7 @@ public class MappingUnit {
      * 发证日期
      */
     @Column(name = "certificate_send_date")
-    private Date certificateSendDate;
+    private String certificateSendDate;
 
     /**
      * 公司类型
@@ -245,7 +230,7 @@ public class MappingUnit {
      * 首次取得资质发证日期
      */
     @Column(name = "first_qualification_date")
-    private Date firstQualificationDate;
+    private String firstQualificationDate;
 
     /**
      * 申请资质前单位进行过程
@@ -326,4 +311,4 @@ public class MappingUnit {
      */
     private String coordinate;
 
-   }
+}

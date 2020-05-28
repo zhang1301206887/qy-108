@@ -7,8 +7,7 @@ import com.aaa.zk.service.IQYMappingUnitService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -30,12 +29,7 @@ public class MappingUnitController extends BaseController {
     @GetMapping("/selectCountLevel")
     @ApiOperation(value = "统计功能",notes= "统计单位资质信息" )
     public ResultData selectCountLevel(){
-        List<Map> mapList = iqyMappingUnitService.selectCountLevel();
-        if (mapList!=null && !mapList.isEmpty()){
-            return super.selelctSuccess(mapList);
-        }else{
-            return super.selelctFalied();
-        }
+       return iqyMappingUnitService.selectCountLevel();
     }
     /**
     * @author zk
@@ -45,11 +39,21 @@ public class MappingUnitController extends BaseController {
     @GetMapping("/selectAllUnit")
     @ApiOperation(value = "查询功能",notes = "查询所有单位信息")
     public ResultData selectAllUnit(){
-        List<MappingUnit> mappingUnitList = iqyMappingUnitService.selectAllUnit();
-        if (mappingUnitList!=null && !mappingUnitList.isEmpty()){
-            return super.selelctSuccess(mappingUnitList);
-        }else{
-            return super.selelctFalied();
-        }
+        return iqyMappingUnitService.selectAllUnit();
+    }
+    @PostMapping("selectUnitByField")
+    @ApiOperation(value = "查询功能",notes = "多条件查询单位信息")
+    public ResultData selectUnitByField(@RequestBody Map map){
+        return iqyMappingUnitService.selectUnitByField(map);
+    }
+    @GetMapping("selectOneUnit/{id}")
+    @ApiOperation(value = "查询功能",notes = "根据主键id查询单位信息")
+    public ResultData selectOneUnit(@PathVariable("id") Object id){
+        return iqyMappingUnitService.selectOneUnit(id);
+    }
+    @PostMapping("updateUnit")
+    @ApiOperation(value = "更新功能",notes = "根据主键id修改单位信息")
+    public ResultData updateUnit(@RequestBody MappingUnit mappingUnit){
+        return iqyMappingUnitService.updateUnit(mappingUnit);
     }
 }

@@ -50,6 +50,22 @@ public class MappingUnitService extends BaseService<MappingUnit> {
          }
     }
     /**
+    * @Author: He create on 2020/5/28 21:22
+    * @param: [map]
+    * @return: java.util.List<com.aaa.zk.model.MappingUnit>
+    * @Description: 条件查询sql拼接
+    */
+    public List<MappingUnit> selectUnitByField(Map map){
+        if (null != map){
+            List<MappingUnit> mappingUnits = mappingUnitMapper.selectUnitByField(map);
+            if (null != mappingUnits && mappingUnits.size() > 0){
+                return mappingUnits;
+            }
+            return null;
+        }
+        return null;
+    }
+    /**
     * @Author: He create on 2020/5/28 19:32
     * @param: [mappingUnit]
     * @return: java.lang.Integer

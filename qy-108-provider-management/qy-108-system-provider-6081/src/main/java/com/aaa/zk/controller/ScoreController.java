@@ -8,6 +8,7 @@ package com.aaa.zk.controller;/*
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.base.CommonController;
 import com.aaa.zk.base.ResultData;
+
 import com.aaa.zk.model.MappingUnit;
 import com.aaa.zk.model.Score;
 import com.aaa.zk.service.MappingUnitService;
@@ -64,7 +65,7 @@ public class ScoreController extends CommonController<Score> {
             Integer scorePlus = score.getScorePlus();
             Integer scoreSubtract = score.getScoreSubtract();
             //将前台传入的关联id绑定到实体类中进行下一步对单位分值的操作
-            MappingUnit mappingUnit = new MappingUnit().setId(score.getUnitId());
+            MappingUnit mappingUnit = (MappingUnit) new MappingUnit().setId(score.getUnitId());
             //定义一个对表score操作的返回值
             Integer insertResult = 0;
             if (scorePlus != null){
