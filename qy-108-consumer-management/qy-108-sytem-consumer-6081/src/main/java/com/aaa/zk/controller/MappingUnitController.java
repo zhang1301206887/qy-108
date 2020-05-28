@@ -18,7 +18,7 @@ import java.util.Map;
  * @Date 2020/5/22
  */
 @RestController
-@Api(value = "统计信息",tags = "信息管理")
+@Api(value = "单位信息",tags = "单位信息管理")
 public class MappingUnitController extends BaseController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class MappingUnitController extends BaseController {
     *   查询单位基本 信息
     */
     @GetMapping("/selectAllUnit")
-    @ApiOperation(value = "查询功能",notes = "统计单位资质信息")
+    @ApiOperation(value = "查询功能",notes = "查询所有单位信息")
     public ResultData selectAllUnit(){
         List<MappingUnit> mappingUnitList = iqyMappingUnitService.selectAllUnit();
         if (mappingUnitList!=null && !mappingUnitList.isEmpty()){

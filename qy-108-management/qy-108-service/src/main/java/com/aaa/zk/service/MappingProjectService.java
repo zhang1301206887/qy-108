@@ -45,8 +45,6 @@ public class MappingProjectService extends BaseService<MappingProject> {
         }
     }
 
-
-
     /**
     * @author zk
     * @Date
@@ -63,8 +61,6 @@ public class MappingProjectService extends BaseService<MappingProject> {
             return null;
         }
     }
-
-
 
     /**
      * @author: gfq

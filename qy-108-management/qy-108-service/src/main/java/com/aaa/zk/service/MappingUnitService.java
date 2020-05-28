@@ -29,14 +29,12 @@ public class MappingUnitService extends BaseService<MappingUnit> {
         List<Map> mapList = mappingUnitMapper.selectCountLevel();
         //判断查到的数据是否为空
         if (mapList!=null && !mapList.isEmpty()){
-
             //不为空
             return mapList;
         }else{
             //查询失败
             return null;
         }
-
     }
     /**
     * @author zk
@@ -51,7 +49,12 @@ public class MappingUnitService extends BaseService<MappingUnit> {
              return null;
          }
     }
-
+    /**
+    * @Author: He create on 2020/5/28 19:32
+    * @param: [mappingUnit]
+    * @return: java.lang.Integer
+    * @Description: 根据主键id进行加分操作
+    */
     public Integer updateInsertScoreById(MappingUnit mappingUnit){
         if (null != mappingUnit){
             Integer integer = mappingUnitMapper.updateInsertScoreById(mappingUnit);
@@ -62,7 +65,12 @@ public class MappingUnitService extends BaseService<MappingUnit> {
         }
         return CRUD_FALIED;
     }
-
+    /**
+    * @Author: He create on 2020/5/28 19:34
+    * @param: [mappingUnit]
+    * @return: java.lang.Integer
+    * @Description: 根据主键id进行减分操作
+    */
     public Integer updateDeleteScoreById(MappingUnit mappingUnit){
         if (null != mappingUnit){
             Integer integer = mappingUnitMapper.updateDeleteScoreById(mappingUnit);
@@ -73,4 +81,5 @@ public class MappingUnitService extends BaseService<MappingUnit> {
         }
         return CRUD_FALIED;
     }
+
 }

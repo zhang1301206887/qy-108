@@ -29,8 +29,14 @@ public class ScoreController extends CommonController<Score> {
     public BaseService<Score> getBaseService() {
         return scoreService;
     }
+    /**
+    * @Author: He create on 2020/5/28 19:52
+    * @param: [userId]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据单位id查询所有的分值记录
+    */
     @GetMapping("selectScoreByUserId/{userId}")
-    public ResultData selectScoreByUserId(@PathVariable("userId") Object userId)  {
+    public ResultData selectScoreByUserId(@PathVariable("userId") Object userId){
         Score score = new Score().setUnitId(Long.valueOf(userId.toString()));
         List<Score> scores = null;
         try {
@@ -43,6 +49,12 @@ public class ScoreController extends CommonController<Score> {
         }
         return selelctFalied();
     }
+    /**
+    * @Author: He create on 2020/5/28 19:53
+    * @param: [score]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 添加新的分值记录
+    */
     @PutMapping("insertScore")
     public ResultData insertScore(@RequestBody Score score){
         try {
