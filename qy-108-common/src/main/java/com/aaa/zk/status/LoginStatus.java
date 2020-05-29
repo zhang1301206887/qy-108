@@ -22,7 +22,9 @@ public enum LoginStatus {
     INSERT_SUCCESS("20006","添加成功"),
     INSERT_FAILED("10009","对不起，添加失败"),
     PAGEINFO_SUCCESS("20007","分页查询成功"),
-    PAGEINFO_FAILED("10010","对不起，分页查询失败");
+    PAGEINFO_FAILED("10010","对不起，分页查询失败"),
+    UPLOAD_SUCCESS("20008","上传成功"),
+    UPLOAD_FAILED("10011","上传失败");
 
     LoginStatus(String code,String msg){
         this.code = code;

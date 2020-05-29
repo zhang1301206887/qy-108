@@ -541,5 +541,52 @@ public class BaseController {
         resultData.setMsg(msg);
         return resultData;
     }
-
+    /**
+    * @Author: He create on 2020/5/29 20:11
+    * @param: []
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 文件上传成功 返回系统消息
+    */
+    protected ResultData uploadSuccess(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(UPDATE_SUCCESS.getCode());
+        resultData.setMsg(UPDATE_SUCCESS.getMsg());
+        return resultData;
+    }
+    /**
+    * @Author: He create on 2020/5/29 20:12
+    * @param: [msg]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 文件上传成功 返回自定义消息
+    */
+    protected ResultData uploadSuccess(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(UPDATE_SUCCESS.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+    /**
+    * @Author: He create on 2020/5/29 20:13
+    * @param: []
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 文件上传失败 返回系统消息
+    */
+    protected ResultData uploadFailed(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(UPDATE_FAILED.getCode());
+        resultData.setMsg(UPDATE_FAILED.getMsg());
+        return resultData;
+    }
+    /**
+    * @Author: He create on 2020/5/29 20:13
+    * @param: [msg]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 文件上传失败 返回自定义消息
+    */
+    protected ResultData uploadFailed(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(UPDATE_FAILED.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
 }
