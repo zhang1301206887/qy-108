@@ -58,9 +58,9 @@ public class DeptService extends BaseService<Dept> {
     * @return: com.aaa.zk.model.Dept
     * @Description: 根据部门名称查询部门的基本信息
     */
-    public List<Dept> selectDeptByName(Dept dept){
-        if (null != dept){
-            List<Dept> select = deptMapper.select(dept);
+    public List<Dept> selectDeptByField(Map map){
+        if (null != map){
+            List<Dept> select = deptMapper.selectDeptByField(map);
             if (null != select && select.size()>0){
                 return select;
             }

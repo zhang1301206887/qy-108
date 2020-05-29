@@ -30,9 +30,9 @@ public class MenuService extends BaseService<Menu> {
     * @return: com.aaa.zk.model.Menu
     * @Description: 查询一个具体的菜单或者按钮 进行操作
     */
-    public List<Menu> selectMenuByField(Menu menu){
-        if (null != menu){
-            List<Menu> select = menuMapper.select(menu);
+    public List<Menu> selectMenuByField(Map map){
+        if (null != map){
+            List<Menu> select = menuMapper.selectMenuByField(map);
             if (null != select && select.size() > 0){
                 return select;
             }

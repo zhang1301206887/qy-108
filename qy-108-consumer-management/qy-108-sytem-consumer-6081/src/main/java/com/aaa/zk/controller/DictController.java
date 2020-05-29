@@ -37,9 +37,9 @@ public class DictController extends BaseController {
     }
 
     @PostMapping("/selectDictByField")
-    @ApiOperation(value = "查询功能",notes = "条件查询字典数据")
-    public ResultData selectDictByField(@RequestBody Dict dict){
-        return dictService.selectDictByField(dict);
+    @ApiOperation(value = "查询功能",notes = "多条件查询字典数据")
+    public ResultData selectDictByField(@RequestBody Map map){
+        return dictService.selectDictByField(map);
     }
 
     @PutMapping("/insertDict")

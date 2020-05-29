@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Api(value = "用户信息", tags = "用户信息管理")
@@ -49,6 +50,17 @@ public class UserController extends BaseController {
         }
     }
 
+    /**
+     * @Author: He create on 2020/5/29 22:34
+     * @param: [map]
+     * @return: com.aaa.zk.base.ResultData
+     * @Description: 多条件查询用户信息
+     */
+    @PostMapping("selectUserByField")
+    @ApiOperation(value = "查询功能",notes = "多条件查询用户信息")
+    public ResultData selectUserByField(@RequestBody Map map){
+        return iqyUserService.selectUserByField(map);
+    }
     /**
      * 添加用户
      * @param user

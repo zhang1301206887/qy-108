@@ -59,8 +59,8 @@ public class RoleController extends BaseController {
     * @Description: 根据条件 查询角色信息
     */
     @PostMapping("selectRoleByField")
-    public ResultData selectRoleByField(@RequestBody Role role){
-        List<Role> roles = roleService.selectRoleByFeild(role);
+    public ResultData selectRoleByField(@RequestBody Map map){
+        List<Role> roles = roleService.selectRoleByFeild(map);
         if (null != roles){
             return selelctSuccess(roles);
         }

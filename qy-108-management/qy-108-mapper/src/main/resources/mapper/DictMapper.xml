@@ -11,4 +11,19 @@
     <result column="FIELD_NAME" property="fieldName" jdbcType="VARCHAR" />
     <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_List">
+        valuee,keyy,tableName
+  </sql>
+  <select id="selectDictByField" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select * from t_dict where 1 = 1
+    <if test="keyy != null and keyy != ''">
+      and keyy = #{keyy}
+    </if>
+    <if test="valuee != null and valuee != ''">
+      and keyy = #{keyy}
+    </if>
+    <if test="tableName != null and tableName != ''">
+      and table_name = #{tableName}
+    </if>
+  </select>
 </mapper>

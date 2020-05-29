@@ -39,7 +39,7 @@ public interface IQYDictService {
     * @Description: 条件查询字典信息
     */
     @PostMapping("/selectDictByField")
-    ResultData selectDictByField(@RequestBody Dict dict);
+    ResultData selectDictByField(@RequestBody Map map);
     /**
     * @Author: He create on 2020/5/22 11:51
     * @param: [dict]

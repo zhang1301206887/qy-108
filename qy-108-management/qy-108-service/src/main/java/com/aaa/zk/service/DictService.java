@@ -58,9 +58,9 @@ public class DictService extends BaseService<Dict> {
     * @return: java.util.List<com.aaa.zk.model.Dict>
     * @Description: 条件查询字典表
     */
-    public List<Dict> selectDictByFiled(Dict dict){
-        if (null != dict){
-            List<Dict> select = dictMapper.select(dict);
+    public List<Dict> selectDictByFiled(Map map){
+        if (null != map){
+            List<Dict> select = dictMapper.selectDictByField(map);
             if (null != select && select.size() > 0){
                 return select;
             }

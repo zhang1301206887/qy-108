@@ -34,9 +34,9 @@ public class RoleService extends BaseService<Role> {
     * @return: java.util.List<com.aaa.zk.model.Role>
     * @Description: 根据字段 查询角色信息
     */
-    public List<Role> selectRoleByFeild(Role role){
-        if (null != role){
-            List<Role> select = roleMapper.select(role);
+    public List<Role> selectRoleByFeild(Map map){
+        if (null != map){
+            List<Role> select = roleMapper.selectRoleByField(map);
             if (null != select && select.size() > 0){
                 return select;
             }

@@ -21,4 +21,19 @@
     <result column="type" property="type" jdbcType="CHAR" />
     <result column="token" property="token" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Base_List">
+        userName,deptId,beginDate,endDate
+  </sql>
+  <select id="selectUserByField" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select * from t_menu where 1 = 1
+    <if test="userName != null and userName != ''">
+      and menu_name = #{userName}
+    </if>
+    <if test="deptId != null and deptId != ''">
+      and menu_name = #{deptId}
+    </if>
+    <if test="beginDate != null and beginDate != ''">
+      and CREATE_TIME >= #{beginDate} and #{endDate} >= CREATE_TIME
+    </if>
+  </select>
 </mapper>

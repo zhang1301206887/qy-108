@@ -58,9 +58,9 @@ public class DeptController extends BaseController {
     * @Description: 根据条件 查询部门基本信息
     */
     @PostMapping("/selectDeptByField")
-    public ResultData selectByField(@RequestBody Dept dept){
-        List<Dept> depts = deptService.selectDeptByName(dept);
-        if (null != dept && depts.size() > 0){
+    public ResultData selectByField(@RequestBody Map map){
+        List<Dept> depts = deptService.selectDeptByField(map);
+        if (null != depts && depts.size() > 0){
             return selelctSuccess(depts);
         }
        return selelctFalied();

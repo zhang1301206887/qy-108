@@ -23,4 +23,16 @@
   <select id="selectMenuByParentId" resultMap="MenuVo" parameterType="java.lang.Object">
         select * from t_menu where parent_id = #{parent_id}
   </select>
+  <sql id="Base_List">
+        menuName,beginDate,endDate
+  </sql>
+  <select id="selectMenuByField" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select * from t_menu where 1 = 1
+    <if test="menuName != null and menuName != ''">
+      and menu_name = #{roleName}
+    </if>
+    <if test="beginDate != null and beginDate != ''">
+      and CREATE_TIME >= #{beginDate} and #{endDate} >= CREATE_TIME
+    </if>
+  </select>
 </mapper>

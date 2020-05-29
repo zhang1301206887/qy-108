@@ -31,8 +31,8 @@ public class MenuController extends BaseController {
     * @Description: 查询一个菜单的具体信息
     */
     @PostMapping("selectMenuByField")
-    public ResultData selectMenuByField(@RequestBody Menu menu){
-        List<Menu> menus = menuService.selectMenuByField(menu);
+    public ResultData selectMenuByField(@RequestBody Map map){
+        List<Menu> menus = menuService.selectMenuByField(map);
         if (null != menus){
             return selelctSuccess(menus);
         }

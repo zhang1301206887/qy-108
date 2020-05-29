@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@RestController()
+@RestController
 public class DictController extends BaseController {
 
     @Autowired
@@ -58,8 +58,8 @@ public class DictController extends BaseController {
     * @Description: 根据条件查询数据
     */
     @PostMapping("/selectDictByField")
-    public ResultData selectByField(@RequestBody Dict dict){
-        List<Dict> dicts = dictService.selectDictByFiled(dict);
+    public ResultData selectByField(@RequestBody Map map){
+        List<Dict> dicts = dictService.selectDictByFiled(map);
         if (null != dicts){
             return selelctSuccess(dicts);
         }

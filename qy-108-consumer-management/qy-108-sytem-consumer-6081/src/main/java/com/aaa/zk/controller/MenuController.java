@@ -25,9 +25,9 @@ public class MenuController extends BaseController {
     private IQYMenuService menuService;
 
     @PostMapping("selectMenuByField")
-    @ApiOperation(value = "查询功能",notes = "条件查询菜单数据")
-    public ResultData selectMenuByField(@RequestBody Menu menu){
-        return menuService.selectMenuByField(menu);
+    @ApiOperation(value = "查询功能",notes = "多条件查询菜单数据")
+    public ResultData selectMenuByField(@RequestBody Map map){
+        return menuService.selectMenuByField(map);
     }
 
     @GetMapping("selectMenuByPrimaryKey/{id}")

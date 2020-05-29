@@ -36,9 +36,9 @@ public class RoleController extends BaseController {
         return roleService.selectRoleByPrimaryKey(id);
     }
     @PostMapping("selectRoleByField")
-    @ApiOperation(value = "查询功能",notes = "条件查询角色数据")
-    public ResultData selectRoleByField(@RequestBody Role role){
-        return roleService.selectRoleByField(role);
+    @ApiOperation(value = "查询功能",notes = "多条件查询角色数据")
+    public ResultData selectRoleByField(@RequestBody Map map){
+        return roleService.selectRoleByField(map);
     }
 
     @GetMapping("selectRoleMenuById/{id}")

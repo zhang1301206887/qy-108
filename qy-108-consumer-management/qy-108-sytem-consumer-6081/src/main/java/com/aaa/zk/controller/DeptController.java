@@ -55,9 +55,11 @@ public class DeptController extends BaseController {
     * @Description: 条件查询
     */
     @PostMapping("/selectDeptByField")
-    @ApiOperation(value = "查询功能",notes = "条件查询部门数据")
-    public ResultData selectDeptByField(@RequestBody Dept dept){
-        return deptService.selectDeptByField(dept);
+    @ApiOperation(value = "查询功能",notes = "多条件查询部门数据")
+    public ResultData selectDeptByField(@RequestBody Map map){
+
+        System.out.println(map);
+        return deptService.selectDeptByField(map);
     }
     /**
     * @Author: He create on 2020/5/22 11:48

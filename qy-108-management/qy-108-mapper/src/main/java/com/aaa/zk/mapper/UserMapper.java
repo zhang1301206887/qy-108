@@ -3,6 +3,9 @@ package com.aaa.zk.mapper;
 import com.aaa.zk.model.User;
 import tk.mybatis.mapper.common.Mapper;
 
+import java.util.List;
+import java.util.Map;
+
 
 /**
  * @Author zk
@@ -10,5 +13,5 @@ import tk.mybatis.mapper.common.Mapper;
  */
 
 public interface UserMapper extends Mapper<User>{
-
+    List<User> selectUserByField(Map map);
 }

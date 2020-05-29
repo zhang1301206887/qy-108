@@ -39,7 +39,7 @@ public interface IQYRoleService {
     * @Description: 根据条件查询角色信息
     */
     @PostMapping("selectRoleByField")
-    ResultData selectRoleByField(@RequestBody Role role);
+    ResultData selectRoleByField(@RequestBody Map map);
     /**
     * @Author: He create on 2020/5/23 10:45
     * @param: [map]

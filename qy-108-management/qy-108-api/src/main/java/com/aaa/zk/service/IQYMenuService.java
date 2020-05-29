@@ -23,7 +23,7 @@ public interface IQYMenuService {
     * @Description: 条件查询菜单
     */
     @PostMapping("selectMenuByField")
-    ResultData selectMenuByField(@RequestBody Menu menu);
+    ResultData selectMenuByField(@RequestBody Map map);
 
     /**
     * @Author: He create on 2020/5/26 14:55

@@ -39,7 +39,7 @@ public interface IQYDeptService {
      * @Description: 根据条件查询部门信息
      */
     @PostMapping("/selectDeptByField")
-    ResultData selectDeptByField(@RequestBody Dept dept);
+    ResultData selectDeptByField(@RequestBody Map map);
 
     /**
      * @Author: He create on 2020/5/22 9:55

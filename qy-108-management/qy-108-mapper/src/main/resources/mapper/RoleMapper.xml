@@ -16,4 +16,16 @@
     (ROLE_NAME,REMARK,CREATE_TIME) VALUES
     (#{roleName},#{remark},#{createTime})
   </insert>
+  <sql id="Base_List">
+        roleName,beginDate,endDate
+  </sql>
+  <select id="selectRoleByField" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select * from t_role where 1 = 1
+        <if test="roleName != null and roleName != ''">
+            and role_name = #{roleName}
+        </if>
+        <if test="beginDate != null and beginDate != ''">
+            and CREATE_TIME >= #{beginDate} and #{endDate} >= CREATE_TIME
+        </if>
+  </select>
 </mapper>

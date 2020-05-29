@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.aaa.zk.staticstatus.UserStatus.*;
 import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
@@ -33,7 +34,22 @@ public class UserService extends BaseService<User> {
             return null;
         }
     }
-
+    /**
+    * @Author: He create on 2020/5/29 22:33
+    * @param: [map]
+    * @return: java.util.List<com.aaa.zk.model.User>
+    * @Description: 多条件查询角色信息
+    */
+    public List<User> selectUserByField(Map map){
+        if (null != map){
+            List<User> users = userMapper.selectUserByField(map);
+            if (null != users && users.size() > 0){
+                return users;
+            }
+            return null;
+        }
+        return null;
+    }
     /**
      * 查询一条数据
      */

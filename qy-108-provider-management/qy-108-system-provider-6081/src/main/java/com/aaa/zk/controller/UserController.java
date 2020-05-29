@@ -1,15 +1,18 @@
 package com.aaa.zk.controller;
 
+import com.aaa.zk.base.BaseController;
+import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.User;
 import com.aaa.zk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
-public class UserController {
+public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
@@ -21,7 +24,20 @@ public class UserController {
     public List<User> userSelectAll(){
         return userService.userSlelectAll();
     }
-
+    /**
+    * @Author: He create on 2020/5/29 22:34
+    * @param: [map]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 多条件查询用户信息
+    */
+    @PostMapping("selectUserByField")
+    public ResultData selectUserByField(@RequestBody Map map){
+        List<User> users = userService.selectUserByField(map);
+        if (null != users){
+            return selelctSuccess(users);
+        }
+        return selelctFalied();
+    }
     /**
      * 查询一条
      * @param user
