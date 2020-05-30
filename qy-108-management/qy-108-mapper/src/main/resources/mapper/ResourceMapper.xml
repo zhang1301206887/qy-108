@@ -20,4 +20,7 @@
   <select id="selectResourceByRefBizId" resultType="com.aaa.zk.model.Resource" parameterType="java.lang.Object">
     select * from t_resource where ref_biz_id = #{id}
   </select>
+  <select id="selectResourceByIdAndType" resultMap="BaseResultMap" parameterType="java.util.Map">
+        select * from t_resource where ref_biz_id = #{id} and ref_biz_type = #{refBizType}
+  </select>
 </mapper>

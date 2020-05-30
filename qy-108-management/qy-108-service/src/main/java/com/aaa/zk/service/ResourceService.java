@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author zk
@@ -33,5 +34,15 @@ public class ResourceService extends BaseService<Resource> {
         }else{
             return null;
         }
+    }
+    public Resource selectResourceByIdAndType(Map map){
+        if (null != map){
+            Resource resource = resourceMapper.selectResourceByIdAndType(map);
+            if (null != resource){
+                return resource;
+            }
+            return null;
+        }
+        return null;
     }
 }
