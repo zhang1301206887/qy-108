@@ -27,7 +27,7 @@ public class DateUtils {
     * @return: java.lang.String
     * @Description: 获取当时时间并转化为string类型
     */
-    public String getNowDate(){
+    public static String getNowDate(){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String nowtime = df.format(new Date());
         return nowtime;
