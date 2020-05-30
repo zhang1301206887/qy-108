@@ -1,21 +1,26 @@
 package com.aaa.zk.model;
 
-import com.aaa.zk.base.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Table(name = "t_resource")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class Resource extends BaseModel {
-
+public class Resource {
+    /**
+     * 编号
+     */
+    @Id
+    private Long id;
 
     /**
      * 资源名称
@@ -54,6 +59,18 @@ public class Resource extends BaseModel {
      */
     @Column(name = "ref_biz_id")
     private Long refBizId;
+
+    /**
+     * 创建时间
+     */
+    @Column(name = "create_time")
+    private Date createTime;
+
+    /**
+     * 修改时间
+     */
+    @Column(name = "modify_time")
+    private Date modifyTime;
 
     /**
      * 备注

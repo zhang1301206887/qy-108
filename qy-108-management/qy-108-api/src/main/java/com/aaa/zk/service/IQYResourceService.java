@@ -1,17 +1,27 @@
-package com.aaa.zk.service;/*
- *@Company：
- *@Author：何康
- *@Date：2020/5/29 22:25
- *@Description:
- */
+package com.aaa.zk.service;
 
 import com.aaa.zk.base.ResultData;
+import com.aaa.zk.model.Resource;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
+/**
+ * @Author zk
+ * @Date 2020/5/29
+ */
 @FeignClient(value = "resource-interface")
 public interface IQYResourceService {
+
+    /**
+     * @author zk
+     * @Date
+     *       根据项目id查询附件材料
+     */
+    @GetMapping("selectResourceByRefBizId/{id}")
+    List<Resource> selectResourceByRefBizId(@PathVariable("id") Object id);
     /**
      * @Author: He create on 2020/5/29 22:24
      * @param: [id]
@@ -20,4 +30,5 @@ public interface IQYResourceService {
      */
     @GetMapping("selectResourceById/{id}")
     public ResultData selectResourceById(@PathVariable("id") Object id);
+
 }
