@@ -33,8 +33,8 @@ public class DeptController extends BaseController {
     */
     @GetMapping("/selectAllDept")
     @ApiOperation(value = "查询功能",notes = "查询所有的部门数据")
-    public ResultData selectAll(){
-        return deptService.selectAllDept();
+    public ResultData selectAll(@RequestParam("id") Object id){
+        return deptService.selectAllDept(id);
     }
 
     /**

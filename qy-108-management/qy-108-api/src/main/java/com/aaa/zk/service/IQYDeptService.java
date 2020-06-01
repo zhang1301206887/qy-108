@@ -22,7 +22,7 @@ public interface IQYDeptService {
      * @Description: 查询所有部门信息  和provider中的deptcontroller对应
      */
     @GetMapping("/selectAllDept")
-    ResultData selectAllDept();
+    ResultData selectAllDept(@RequestParam("id") Object id);
 
     /**
     * @Author: He create on 2020/5/26 14:51

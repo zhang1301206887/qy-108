@@ -17,10 +17,7 @@
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="MODIFY_TIME" property="modifyTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="MenuVo" type="com.aaa.zk.vo.MenuVo">
-
-  </resultMap>
-  <select id="selectMenuByParentId" resultMap="MenuVo" parameterType="java.lang.Object">
+  <select id="selectMenuByParentId" resultType="com.aaa.zk.vo.MenuVo" parameterType="java.lang.Object">
         select * from t_menu where parent_id = #{parent_id}
   </select>
   <sql id="Base_List">
