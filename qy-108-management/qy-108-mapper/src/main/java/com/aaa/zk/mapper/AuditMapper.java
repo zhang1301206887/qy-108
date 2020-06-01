@@ -1,7 +1,6 @@
 package com.aaa.zk.mapper;
 
 import com.aaa.zk.model.Audit;
-import org.omg.CORBA.OBJ_ADAPTER;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.HashMap;

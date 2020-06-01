@@ -25,6 +25,7 @@
   <select id="MPAuditSelect" resultType="HashMap">
     select distinct a.*,b.id auditid from t_mapping_project a inner join t_audit b on a.id=b.ref_id where b.type=2 and b.status=2
   </select>
+
   <select id="likeMProAuditSelect" resultType="HashMap" parameterType="Object">
     select distinct a.* from t_mapping_project a inner join t_audit b on a.id=b.ref_id where b.type=2 and a.project_name like "%"#{projectName}"%"
   </select>

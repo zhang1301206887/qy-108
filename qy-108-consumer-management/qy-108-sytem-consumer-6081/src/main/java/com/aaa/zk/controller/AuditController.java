@@ -1,5 +1,6 @@
 package com.aaa.zk.controller;
 
+import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Audit;
 import com.aaa.zk.service.IQYAuditService;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  **/
 @RestController
 @Api(value = "项目审核", tags = "项目审核信息")
-public class AuditController {
+public class AuditController extends BaseController {
     @Autowired
     private IQYAuditService iqyAuditService;
 
