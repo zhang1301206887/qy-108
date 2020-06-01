@@ -1,6 +1,5 @@
 package com.aaa.zk.controller;
 
-import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Audit;
 import com.aaa.zk.service.IQYAuditService;
@@ -8,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 /**
  * @ClassName AuditController
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  **/
 @RestController
 @Api(value = "项目审核", tags = "项目审核信息")
-public class AuditController extends BaseController {
+public class AuditController {
     @Autowired
     private IQYAuditService iqyAuditService;
 
@@ -46,13 +46,34 @@ public class AuditController extends BaseController {
 
     /**
      * @Author gfq
-     * 项目审核-项目审核-查询待审核的项目 根据项目审核状态
+     * 项目审核-项目信息-根据项目名称查找项目
+     * @Date 13:21 2020/6/1
+     **/
+    @PostMapping("likeMProAuditSelect")
+    @ApiOperation(value = "查询功能",notes = "根据项目名称查找项目")
+    public ResultData likeMProAuditSelect(@RequestBody Object projectName){
+        return iqyAuditService.likeMProAuditSelect(projectName);
+    }
+
+    /**
+     * @Author gfq
+     * 项目审核-项目审核-查询待审核的项目
      * @Date 21:00 2020/5/26
      **/
     @GetMapping("MPAuditSelect")
     @ApiOperation(value = "查询功能",notes = "查询待审核的项目")
     public ResultData MPAuditSelect(){
         return iqyAuditService.MPAuditSelect();
+    }
+
+    /**
+     * @Author gfq
+     * 项目审核-项目审核-根据项目名称查询待审核的项目
+     * @Date 18:00 2020/5/26
+     **/
+    @PostMapping("likeMappingProAuditSelect")
+    public ResultData likeMappingProAuditSelect(@RequestBody Object projectName){
+        return iqyAuditService.likeMappingProAuditSelect(projectName);
     }
 
     /**
@@ -79,10 +100,10 @@ public class AuditController extends BaseController {
     }
 
     /**
-    * @author zk
-    * @Date
-    *    添加项目成果汇交审核记录   传入audit
-    */
+     * @author zk
+     * @Date
+     *    添加项目成果汇交审核记录   传入audit
+     */
 
     @PostMapping("MappingProjectResultAuditAdd")
     @ApiOperation(value = "添加功能",notes = "项目成果审核 通过或不通过")
@@ -93,5 +114,4 @@ public class AuditController extends BaseController {
         }
         return insertFalied();
     }
-
 }

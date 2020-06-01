@@ -6,7 +6,6 @@ import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.unit.DataUnit;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +28,7 @@ public class AuditService {
 
     /**
      * @Author gfq 
-     * 项目审核中项目信息
+     * 项目审核中查看所有项目信息
      * @Date 16:21 2020/5/26
      **/
     public List<HashMap> MProAuditSelectAll(){
@@ -58,6 +57,28 @@ public class AuditService {
          }
          return null;
      }
+     
+     /**
+      * @Author gfq 
+      * 项目审核-项目信息-根据项目名称查找项目
+      * @Date 13:03 2020/6/1
+      **/
+     public List<HashMap> likeMProAuditSelect(Object projectName){
+         System.out.println(projectName);
+         if (projectName != null){
+             List<HashMap> hashMaps = auditMapper.likeMProAuditSelect(projectName);
+             System.out.println(hashMaps);
+             if (hashMaps.size()>0 && !"".equals(hashMaps)){
+                 return hashMaps;
+             }else {
+                 return null;
+             }
+         }
+         return null;
+
+     }
+
+     
 
      /**
       * @Author gfq
@@ -72,6 +93,23 @@ public class AuditService {
                  return null;
              }
      }
+
+    /**
+     * @Author gfq
+     * 项目审核-项目审核-根据项目名称查询待审核的项目
+     * @Date 18:00 2020/5/26
+     **/
+    public List<HashMap> likeMappingProAuditSelect(Object projectName){
+        if (projectName != null){
+            List<HashMap> hashMaps = auditMapper.likeMappingProAuditSelect(projectName);
+            if (hashMaps.size()>0 && !"".equals(hashMaps)){
+                return hashMaps;
+            }else {
+                return null;
+            }
+        }
+        return null;
+    }
 
      /**
       * @Author gfq

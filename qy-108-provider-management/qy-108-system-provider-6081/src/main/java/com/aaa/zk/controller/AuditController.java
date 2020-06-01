@@ -65,6 +65,24 @@ public class AuditController  extends BaseController {
 
     /**
      * @Author gfq
+     * 项目审核-项目信息-根据项目名称查找项目
+     * @Date 13:21 2020/6/1
+     **/
+    @PostMapping("likeMProAuditSelect")
+    public ResultData likeMProAuditSelect(@RequestBody Object projectName){
+        System.out.println("***"+projectName);
+        List<HashMap> hashMaps = auditService.likeMProAuditSelect(projectName);
+        System.out.println(hashMaps);
+        if (hashMaps.size()>0 && !"".equals(hashMaps)){
+            return selelctSuccess(hashMaps);
+        }else {
+            return selelctFalied();
+        }
+    }
+
+
+    /**
+     * @Author gfq
      * 项目审核-项目审核-查询待审核的项目
      * @Date 21:00 2020/5/26
      **/
@@ -72,6 +90,21 @@ public class AuditController  extends BaseController {
     public ResultData MPAuditSelect(){
         List<HashMap> hashMaps = auditService.MPAuditSelect();
         if (null != hashMaps && !"".equals(hashMaps)){
+            return selelctSuccess(hashMaps);
+        }else {
+            return selelctFalied();
+        }
+    }
+
+    /**
+     * @Author gfq
+     * 项目审核-项目审核-根据项目名称查询待审核的项目
+     * @Date 18:00 2020/5/26
+     **/
+    @PostMapping("likeMappingProAuditSelect")
+    public ResultData likeMappingProAuditSelect(@RequestBody Object projectName){
+        List<HashMap> hashMaps = auditService.likeMappingProAuditSelect(projectName);
+        if (hashMaps.size()>0 && !"".equals(hashMaps)){
             return selelctSuccess(hashMaps);
         }else {
             return selelctFalied();

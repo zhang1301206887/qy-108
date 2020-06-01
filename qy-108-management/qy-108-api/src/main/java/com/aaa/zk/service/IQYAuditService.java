@@ -4,6 +4,7 @@ import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Audit;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,11 +37,27 @@ public interface IQYAuditService {
 
     /**
      * @Author gfq
+     * 项目审核-项目信息-根据项目名称查找项目
+     * @Date 13:21 2020/6/1
+     **/
+    @PostMapping("likeMProAuditSelect")
+    ResultData likeMProAuditSelect(@RequestBody Object projectName);
+
+    /**
+     * @Author gfq
      * 项目审核-项目审核-查询待审核的项目
      * @Date 21:00 2020/5/26
      **/
     @GetMapping("MPAuditSelect")
     ResultData MPAuditSelect();
+
+    /**
+     * @Author gfq
+     * 项目审核-项目审核-根据项目名称查询待审核的项目
+     * @Date 18:00 2020/5/26
+     **/
+    @PostMapping("likeMappingProAuditSelect")
+    ResultData likeMappingProAuditSelect(@RequestBody Object projectName);
 
     /**
      * @Author gfq
