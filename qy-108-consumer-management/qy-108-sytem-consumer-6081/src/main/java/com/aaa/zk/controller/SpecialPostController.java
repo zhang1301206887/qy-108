@@ -26,15 +26,15 @@ public class SpecialPostController extends BaseController {
         return iqySpecialPostService.selectSpecialPostCount(userId);
     }
 
-    @GetMapping("selectSpecialPostByUserId/{userId}")
+    @GetMapping("selectSpecialPostByUserId")
     @ApiOperation(value = "查询功能",notes = "根据公司id查询特殊岗位员工数据")
-    public ResultData selectSpecialPostByUserId(@PathVariable("userId") Object userId){
+    public ResultData selectSpecialPostByUserId(@RequestParam("userId") Object userId){
         return iqySpecialPostService.selectSpecialPostByUserId(userId);
     }
 
-    @GetMapping("selectSpecialByPrimaryKey/{id}")
+    @GetMapping("selectSpecialByPrimaryKey")
     @ApiOperation(value = "查询功能",notes = "根据id查询特殊岗位员工的数据")
-    public ResultData selectSpecialByPrimaryKey(@PathVariable("id") Object id){
+    public ResultData selectSpecialByPrimaryKey(@RequestParam("id") Object id){
         return iqySpecialPostService.selectSpecialByPrimaryKey(id);
     }
 
@@ -50,9 +50,9 @@ public class SpecialPostController extends BaseController {
         return iqySpecialPostService.updateSpecialByPrimaryKey(specialPost);
     }
 
-    @DeleteMapping("deleteSpecialByPrimaryKey/{id}")
+    @DeleteMapping("deleteSpecialByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键删除特殊岗位员工数据")
-    public ResultData deleteSpecialByPrimaryKey(@PathVariable("id") Object id){
+    public ResultData deleteSpecialByPrimaryKey(@RequestParam("id") Object id){
         return iqySpecialPostService.deleteSpecialByPrimaryKey(id);
     }
 }

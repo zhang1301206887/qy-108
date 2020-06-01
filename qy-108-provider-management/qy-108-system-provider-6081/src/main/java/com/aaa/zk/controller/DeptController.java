@@ -43,8 +43,8 @@ public class DeptController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据id查询部门信息
     */
-    @GetMapping("selectDeptByPrimaryKey/{id}")
-    public ResultData selectDeptByPrimaryKey(@PathVariable("id") Object id){
+    @GetMapping("selectDeptByPrimaryKey")
+    public ResultData selectDeptByPrimaryKey(@RequestParam("id") Object id){
         Dept dept = deptService.selectDeptByPrimaryKey(id);
         if (null != dept){
             return selelctSuccess(dept);

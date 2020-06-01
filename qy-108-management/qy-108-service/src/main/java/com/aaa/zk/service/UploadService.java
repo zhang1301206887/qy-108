@@ -34,6 +34,7 @@ public class UploadService {
     **/
     public Boolean upload(MultipartFile file) {
         if (null != file){
+            System.out.println(ftpProperties.getPort()+ftpProperties.getPassword());
             // 1.获取原始文件的名称(获取目的就是为了获取文件的后缀名)
             String oldFileName = file.getOriginalFilename();
             // 2.获取新的文件名(不带后缀)
@@ -51,5 +52,4 @@ public class UploadService {
         }
         return false;
     }
-
 }

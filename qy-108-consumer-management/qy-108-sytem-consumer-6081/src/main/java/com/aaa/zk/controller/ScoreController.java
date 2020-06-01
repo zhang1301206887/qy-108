@@ -25,9 +25,9 @@ public class ScoreController extends BaseController {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据单位id查询所有的分值记录
      */
-    @GetMapping("selectScoreByUserId/{userId}")
+    @GetMapping("selectScoreByUserId")
     @ApiOperation(value = "查询功能",notes = "根据单位id查询具体的分值记录")
-    public ResultData selectScoreByUserId(@PathVariable("userId") Object userId){
+    public ResultData selectScoreByUserId(@RequestParam("userId") Object userId){
         return scoreService.selectScoreByUserId(userId);
     }
     /**

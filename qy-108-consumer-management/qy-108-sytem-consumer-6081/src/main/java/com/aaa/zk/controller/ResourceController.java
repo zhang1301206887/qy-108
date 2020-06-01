@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -38,9 +39,9 @@ public class ResourceController extends BaseController {
             return selelctFalied();
         }
     }
-    @GetMapping("selectResourceById/{id}")
+    @GetMapping("selectResourceById")
     @ApiOperation(value = "查询功能",notes = "根据单位id查询所有的资源数据")
-    public ResultData selectResourceById(@PathVariable("id") Object id){
+    public ResultData selectResourceById(@RequestParam("id") Object id){
         return iqyResourceService.selectResourceById(id);
     }
 }

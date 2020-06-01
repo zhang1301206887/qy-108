@@ -25,8 +25,8 @@ public class EquipmentController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据公司id查询设备信息
     */
-    @GetMapping("selectEquiByUserId/{userId}")
-    public ResultData selectEquiByUserId(@PathVariable("userId") Object userId){
+    @GetMapping("selectEquiByUserId")
+    public ResultData selectEquiByUserId(@RequestParam("userId") Object userId){
         List<Equipment> equipment = equipmentService.selectEquiByUserId(userId);
         if (null != equipment){
             return selelctSuccess(equipment);
@@ -39,8 +39,8 @@ public class EquipmentController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id查询设备信息
     */
-    @GetMapping("selectEquiByPrimaryKey/{id}")
-    public ResultData selectEquiByPrimaryKey(@PathVariable("id") Object id){
+    @GetMapping("selectEquiByPrimaryKey")
+    public ResultData selectEquiByPrimaryKey(@RequestParam("id") Object id){
         Equipment equipment = equipmentService.selectEquiByPrimaryKey(id);
         if (null != equipment){
             return selelctSuccess(equipment);
@@ -81,8 +81,8 @@ public class EquipmentController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id删除设备数据
     */
-    @DeleteMapping("deleteEquiByPrimaryKey/{id}")
-    public ResultData deleteEquiByPrimaryKey(@PathVariable("id") Object id){
+    @DeleteMapping("deleteEquiByPrimaryKey")
+    public ResultData deleteEquiByPrimaryKey(@RequestParam("id") Object id){
         Integer deleteEquiByPrimaryKey = equipmentService.deleteEquiByPrimaryKey(id);
         if (deleteEquiByPrimaryKey > 0){
             return deleteSuccess();

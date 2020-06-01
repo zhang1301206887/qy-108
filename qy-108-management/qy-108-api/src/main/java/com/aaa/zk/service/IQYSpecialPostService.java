@@ -25,8 +25,8 @@ public interface IQYSpecialPostService {
      * @return: java.util.List<com.aaa.zk.model.SpecialPost>
      * @Description: 根据公司id查询特殊岗位人员信息
      */
-    @GetMapping("selectSpecialPostByUserId/{userId}")
-    public ResultData selectSpecialPostByUserId(@PathVariable("userId") Object userId);
+    @GetMapping("selectSpecialPostByUserId")
+    public ResultData selectSpecialPostByUserId(@RequestParam("userId") Object userId);
 
     /**
      * @Author: He create on 2020/5/26 22:08
@@ -34,8 +34,8 @@ public interface IQYSpecialPostService {
      * @return: com.aaa.zk.model.SpecialPost
      * @Description: 根据主键id查询特殊岗位人员信息
      */
-    @GetMapping("selectSpecialByPrimaryKey/{id}")
-    public ResultData selectSpecialByPrimaryKey(@PathVariable("id") Object id);
+    @GetMapping("selectSpecialByPrimaryKey")
+    public ResultData selectSpecialByPrimaryKey(@RequestParam("id") Object id);
 
     /**
      * @Author: He create on 2020/5/26 22:08
@@ -61,7 +61,7 @@ public interface IQYSpecialPostService {
      * @return: java.lang.Integer
      * @Description: 根据主键id删除特殊岗位人员信息
      */
-    @DeleteMapping("deleteSpecialByPrimaryKey/{id}")
-    public ResultData deleteSpecialByPrimaryKey(@PathVariable("id") Object id);
+    @DeleteMapping("deleteSpecialByPrimaryKey")
+    public ResultData deleteSpecialByPrimaryKey(@RequestParam("id") Object id);
 
 }

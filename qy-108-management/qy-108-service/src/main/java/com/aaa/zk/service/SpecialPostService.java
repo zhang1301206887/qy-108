@@ -2,6 +2,7 @@ package com.aaa.zk.service;
 
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.SpecialPostMapper;
+import com.aaa.zk.model.Resource;
 import com.aaa.zk.model.SpecialPost;
 import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import static com.aaa.zk.status.CURDStatus.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author zk
@@ -45,9 +48,9 @@ public class SpecialPostService extends BaseService<SpecialPost> {
     * @return: java.util.List<com.aaa.zk.model.SpecialPost>
     * @Description: 根据公司id查询特殊岗位人员信息
     */
-    public List<SpecialPost> selectSpecialPostByUserId(Object userId){
+    public List<Map> selectSpecialPostByUserId(Object userId){
         if (null != userId){
-            List<SpecialPost> specialPosts = specialPostMapper.selectSpecialPostByUserId(userId);
+            List<Map> specialPosts = specialPostMapper.selectSpecialPostByUserId(userId);
             if (null != specialPosts && specialPosts.size() > 0){
                 return specialPosts;
             }
@@ -59,13 +62,20 @@ public class SpecialPostService extends BaseService<SpecialPost> {
     * @Author: He create on 2020/5/26 22:08
     * @param: [id]
     * @return: com.aaa.zk.model.SpecialPost
-    * @Description: 根据主键id查询特殊岗位人员信息
+    * @Description: 根据主键id查询特殊岗位人员信息和对应的附件信息
     */
-    public SpecialPost selectSpecialByPrimaryKey(Object id){
+    public Map selectSpecialByPrimaryKey(Object id){
         if (null != id){
+            Map map = new HashMap();
             SpecialPost specialPost = specialPostMapper.selectByPrimaryKey(id);
+            List<Resource> maps = specialPostMapper.selectResourceById(id);
             if (null != specialPost){
-                return specialPost;
+                map.put("specialPost",specialPost);
+                if (null != maps && maps.size() > 0){
+                    map.put("resource",maps);
+                    return map;
+                }
+                return map;
             }
             return null;
         }

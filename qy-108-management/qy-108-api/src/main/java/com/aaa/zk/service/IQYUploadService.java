@@ -17,5 +17,5 @@ public interface IQYUploadService {
     @PostMapping(value = "/uploadFile",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResultData uploadFile(@RequestBody MultipartFile file);
+    ResultData uploadFile(@RequestBody MultipartFile file);
 }

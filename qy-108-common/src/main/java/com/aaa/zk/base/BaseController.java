@@ -549,8 +549,8 @@ public class BaseController {
     */
     protected ResultData uploadSuccess(){
         ResultData resultData = new ResultData();
-        resultData.setCode(UPDATE_SUCCESS.getCode());
-        resultData.setMsg(UPDATE_SUCCESS.getMsg());
+        resultData.setCode(UPLOAD_SUCCESS.getCode());
+        resultData.setMsg(UPLOAD_SUCCESS.getMsg());
         return resultData;
     }
     /**
@@ -561,7 +561,7 @@ public class BaseController {
     */
     protected ResultData uploadSuccess(String msg){
         ResultData resultData = new ResultData();
-        resultData.setCode(UPDATE_SUCCESS.getCode());
+        resultData.setCode(UPLOAD_SUCCESS.getCode());
         resultData.setMsg(msg);
         return resultData;
     }
@@ -573,8 +573,8 @@ public class BaseController {
     */
     protected ResultData uploadFailed(){
         ResultData resultData = new ResultData();
-        resultData.setCode(UPDATE_FAILED.getCode());
-        resultData.setMsg(UPDATE_FAILED.getMsg());
+        resultData.setCode(UPLOAD_FAILED.getCode());
+        resultData.setMsg(UPLOAD_FAILED.getMsg());
         return resultData;
     }
     /**
@@ -585,7 +585,7 @@ public class BaseController {
     */
     protected ResultData uploadFailed(String msg){
         ResultData resultData = new ResultData();
-        resultData.setCode(UPDATE_FAILED.getCode());
+        resultData.setCode(UPLOAD_FAILED.getCode());
         resultData.setMsg(msg);
         return resultData;
     }

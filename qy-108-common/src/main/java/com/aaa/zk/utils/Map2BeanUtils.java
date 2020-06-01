@@ -8,9 +8,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @Author zk
- * @Date 2020/5/12
- */
+ * @Company AAA软件教育
+ * @Author Seven Lee
+ * @Date Create in 2020/5/12 14:13
+ * @Description
+ *      map和bean之间的转换
+ **/
 public class Map2BeanUtils {
 
     private Map2BeanUtils() {
@@ -33,7 +36,7 @@ public class Map2BeanUtils {
      * @date 2020/5/12
      * @return T
      * @throws
-     **/
+    **/
     public static <T> T map2Bean(Map<String, Object> map, Class<T> clazz) {
         // 通过clazz类型获取泛型对象(获取咱们所需要的对象)(但是这个对象是一个空对象)
         T instance = OBJENESIS.newInstance(clazz);
@@ -66,8 +69,8 @@ public class Map2BeanUtils {
      * @param [fieldName]
      * @date 2020/5/12
      * @return java.lang.String
-     * @throws
-     **/
+     * @throws 
+    **/
     private static String setMethodName(String fieldName) {
         // fieldName--->bookName--->getBookName()
         // 所以第一步并不是直接获取，而是先把这个字段的首字母大写
@@ -85,10 +88,9 @@ public class Map2BeanUtils {
      * @date 2020/5/12
      * @return java.lang.String
      * @throws
-     **/
+    **/
     private static String firstToUpperCase(String field) {
         return field.substring(0,1).toUpperCase() + field.substring(1);
     }
-
 
 }

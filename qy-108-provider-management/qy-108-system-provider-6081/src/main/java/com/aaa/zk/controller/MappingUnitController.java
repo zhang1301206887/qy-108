@@ -70,8 +70,8 @@ public class MappingUnitController extends CommonController<MappingUnit> {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据id查询单位信息
     */
-    @GetMapping("selectOneUnit/{id}")
-    public ResultData selectOneUnit(@PathVariable("id") Object id){
+    @GetMapping("selectOneUnit")
+    public ResultData selectOneUnit(@RequestParam("id") Object id){
         try {
             MappingUnit mappingUnit = (MappingUnit) new MappingUnit().setId(Long.valueOf(id.toString()));
             MappingUnit mappingUnit1 = mappingUnitService.queryOne(mappingUnit);

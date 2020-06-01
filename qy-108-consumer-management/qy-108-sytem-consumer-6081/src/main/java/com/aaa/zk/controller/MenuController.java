@@ -30,15 +30,15 @@ public class MenuController extends BaseController {
         return menuService.selectMenuByField(map);
     }
 
-    @GetMapping("selectMenuByPrimaryKey/{id}")
+    @GetMapping("selectMenuByPrimaryKey")
     @ApiOperation(value = "查询功能",notes = "根据主键id查询菜单表数据")
-    public ResultData selectMenuByPrimaryKey(@PathVariable("id") Object id){
+    public ResultData selectMenuByPrimaryKey(@RequestParam("id") Object id){
         return menuService.selectMenuByPrimaryKey(id);
     }
 
-    @GetMapping("selectMenuByParentId/{id}")
+    @GetMapping("selectMenuByParentId")
     @ApiOperation(value = "查询功能",notes = "查询所有菜单数据")
-    public ResultData selectMenuByParentId(@PathVariable("id") Object id){
+    public ResultData selectMenuByParentId(@RequestParam("id") Object id){
         return menuService.selectMenuByParentId(id);
     }
 
@@ -56,7 +56,7 @@ public class MenuController extends BaseController {
 
     @DeleteMapping("deleteMenuByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除菜单数据")
-    ResultData deleteMenuByPrimaryKey(@RequestBody Object id){
+    ResultData deleteMenuByPrimaryKey(@RequestParam("id") Object id){
         return menuService.deleteMenuByPrimaryKey(id);
     }
 

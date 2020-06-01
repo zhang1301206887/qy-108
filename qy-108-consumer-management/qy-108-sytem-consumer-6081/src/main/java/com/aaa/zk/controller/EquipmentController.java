@@ -20,14 +20,14 @@ public class EquipmentController extends BaseController {
     @Autowired
     private IQYEquipmentService equipmentService;
 
-    @GetMapping("selectEquiByUserId/{userId}")
+    @GetMapping("selectEquiByUserId")
     @ApiOperation(value = "查询功能",notes = "根据公司id查询设备数据")
-    public ResultData selectEquiByUserId(@PathVariable("userId") Object userId){
+    public ResultData selectEquiByUserId(@RequestParam("userId") Object userId){
         return equipmentService.selectEquiByUserId(userId);
     }
-    @GetMapping("selectEquiByPrimaryKey/{id}")
+    @GetMapping("selectEquiByPrimaryKey")
     @ApiOperation(value = "查询功能",notes = "根据主键id查询设备数据")
-    public ResultData selectEquiByPrimaryKey(@PathVariable("id") Object id){
+    public ResultData selectEquiByPrimaryKey(@RequestParam("id") Object id){
         return equipmentService.selectEquiByPrimaryKey(id);
     }
     @PutMapping("insertEqui")
@@ -40,9 +40,9 @@ public class EquipmentController extends BaseController {
     public ResultData updateEquiByPrimaryKey(@RequestBody Equipment equipment){
         return equipmentService.updateEquiByPrimaryKey(equipment);
     }
-    @DeleteMapping("deleteEquiByPrimaryKey/{id}")
+    @DeleteMapping("deleteEquiByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除设备数据")
-    public ResultData deleteEquiByPrimaryKey(@PathVariable("id") Object id){
+    public ResultData deleteEquiByPrimaryKey(@RequestParam("id") Object id){
         return equipmentService.deleteEquiByPrimaryKey(id);
     }
 }

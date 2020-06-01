@@ -30,9 +30,9 @@ public class RoleController extends BaseController {
         return roleService.selectAllRole();
     }
 
-    @GetMapping("selectRoleByPrimaryKey/{id}")
+    @GetMapping("selectRoleByPrimaryKey")
     @ApiOperation(value = "查询功能",notes = "根据主键id查询角色数据")
-    public ResultData selectRoleByPrimaryKey(@PathVariable("id") Object id){
+    public ResultData selectRoleByPrimaryKey(@RequestParam("id") Object id){
         return roleService.selectRoleByPrimaryKey(id);
     }
     @PostMapping("selectRoleByField")
@@ -41,9 +41,9 @@ public class RoleController extends BaseController {
         return roleService.selectRoleByField(map);
     }
 
-    @GetMapping("selectRoleMenuById/{id}")
+    @GetMapping("selectRoleMenuById")
     @ApiOperation(value = "查询功能",notes = "根据角色id查询角色的具体权限")
-    public ResultData selectRoleMenuById(@PathVariable("id") Object id){
+    public ResultData selectRoleMenuById(@RequestParam("id") Object id){
         return roleService.selectRoleMenuById(id);
     }
 
@@ -57,9 +57,9 @@ public class RoleController extends BaseController {
     @ApiOperation(value = "修改功能",notes = "根据角色主键修改角色和对应的权限数据")
     public ResultData updateRoleByPrimaryKey(@RequestBody Map map){return roleService.updateRoleByPrimaryKey(map);}
 
-    @DeleteMapping("deleteRoleByPrimaryKey/{id}")
+    @DeleteMapping("deleteRoleByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除角色数据")
-    public ResultData deleteRoleByPrimaryKey(@PathVariable("id") Object id){
+    public ResultData deleteRoleByPrimaryKey(@RequestParam("id") Object id){
         return roleService.deleteRoleByPrimaryKey(id);
     }
 
