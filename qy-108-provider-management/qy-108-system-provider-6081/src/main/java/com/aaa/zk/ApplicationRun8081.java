@@ -18,8 +18,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @SpringBootApplication(exclude = {
         RedisAutoConfiguration.class,
-        RedisRepositoriesAutoConfiguration.class,
-        DataSourceAutoConfiguration.class
+        RedisRepositoriesAutoConfiguration.class
 })
 @MapperScan("com.aaa.zk.mapper")
 @EnableDiscoveryClient

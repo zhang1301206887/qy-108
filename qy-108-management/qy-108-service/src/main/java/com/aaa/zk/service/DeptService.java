@@ -6,7 +6,6 @@ package com.aaa.zk.service;/*
  */
 
 import com.aaa.zk.base.BaseService;
-import com.aaa.zk.dynamic.annotation.TDS;
 import com.aaa.zk.mapper.DeptMapper;
 import com.aaa.zk.model.Dept;
 import com.aaa.zk.utils.DateUtils;
