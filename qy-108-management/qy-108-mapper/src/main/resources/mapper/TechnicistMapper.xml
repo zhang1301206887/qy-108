@@ -33,7 +33,11 @@
     <result column="create_time" property="createTime" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="selectTechByUserId" resultMap="BaseResultMap" parameterType="java.lang.Object">
-        select * from t_technicist where user_id = #{userid}
+  <select id="selectTechByUserId" resultType="Map" parameterType="java.lang.Object">
+         select t.id,t.name,t.number,t.major_type,d.valuee,t.age,t.major,t.duty,t.title_major
+         from t_technicist as t inner join t_dict as t on s.sex = d.keyy and d.FIELD_NAME = 'ssex' user_id =  #{userid}
+  </select>
+  <select id="selectResourceById"  resultType="com.aaa.zk.model.Resource" parameterType="java.lang.Object">
+        select * from t_resource where ref_biz_id = #{id}
   </select>
 </mapper>

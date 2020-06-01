@@ -30,8 +30,8 @@ public interface IQYTechService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据公司id查询技术人员信息
      */
-    @GetMapping("selectTechByUserId/{userId}")
-    public ResultData selectTechByUserId(@PathVariable("userId") Object userId);
+    @GetMapping("selectTechByUserId")
+    public ResultData selectTechByUserId(@RequestParam("userId") Object userId);
 
     /**
      * @Author: He create on 2020/5/24 23:39
@@ -39,8 +39,8 @@ public interface IQYTechService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据主键id查询技术人员信息
      */
-    @GetMapping("selectTechByPrimaryKey/{id}")
-    public ResultData selectTechByPrimaryKey(@PathVariable("id") Object id);
+    @GetMapping("selectTechByPrimaryKey")
+    public ResultData selectTechByPrimaryKey(@RequestParam("id") Object id);
 
     /**
      * @Author: He create on 2020/5/24 23:39
@@ -66,7 +66,7 @@ public interface IQYTechService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据主键删除技术人员信息
      */
-    @DeleteMapping("deleteTechByPrimaryKey/{id}")
-    public ResultData deleteTechByPrimaryKey(@PathVariable("id") Object id);
+    @DeleteMapping("deleteTechByPrimaryKey")
+    public ResultData deleteTechByPrimaryKey(@RequestParam("id") Object id);
 
 }

@@ -9,6 +9,8 @@ import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.DeptMapper;
 import com.aaa.zk.model.Dept;
 import com.aaa.zk.utils.DateUtils;
+import com.aaa.zk.vo.DeptVo;
+import com.aaa.zk.vo.MenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +31,20 @@ public class DeptService extends BaseService<Dept> {
     * @return: java.util.List<com.aaa.zk.model.Dept>
     * @Description: 查询所有部门信息
     */
-    public List<Dept> selectAllDept(){
-        List<Dept> depts = deptMapper.selectAll();
-        if (null != depts && depts.size()>0){
-           return depts;
+    public List<DeptVo> selectAllDept(Object id){
+        //第一次查询传入的id为0 则为查询所有的菜单表
+        List<DeptVo> deptVos = deptMapper.selectAllDept(id);
+        if (null != deptVos && deptVos.size() > 0){
+            //循环遍历第一次查询的集合
+            for (DeptVo deptVo : deptVos) {
+                //以本身的id为参数  进行查询本身的子菜单
+                Object id1 = deptVo.getId();
+                //循环查询 直到本身菜单不在存在子菜单
+                List<DeptVo> deptVos1 = this.selectAllDept(id1);
+                //添加到父级菜单的集合中 进行数据的返回
+                deptVo.setChildrenList(deptVos1);
+            }
+            return deptVos;
         }
         return null;
     }

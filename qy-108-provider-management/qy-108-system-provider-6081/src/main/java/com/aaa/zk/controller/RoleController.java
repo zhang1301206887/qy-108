@@ -44,8 +44,8 @@ public class RoleController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id查询角色数据
     */
-    @GetMapping("selectRoleByPrimaryKey/{id}")
-    public ResultData selectRoleByPrimaryKey(@PathVariable("id") Object id){
+    @GetMapping("selectRoleByPrimaryKey")
+    public ResultData selectRoleByPrimaryKey(@RequestParam("id") Object id){
         Role role = roleService.selectRoleByPrimaryKey(id);
         if (null != role){
             return selelctSuccess(role);
@@ -72,8 +72,8 @@ public class RoleController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据角色的id查询角色的权限信息
     */
-    @GetMapping("selectRoleMenuById/{id}")
-    public ResultData selectRoleMenuById(@PathVariable("id") Object id){
+    @GetMapping("selectRoleMenuById")
+    public ResultData selectRoleMenuById(@RequestParam("id") Object id){
         List<RoleMenu> roleMenus = roleMenuService.selectRoleMenuById(id);
         if (null != roleMenus){
             return selelctSuccess(roleMenus);
@@ -157,8 +157,8 @@ public class RoleController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id删除单个角色 并且删除角色权限表中的数据
     */
-    @DeleteMapping("deleteRoleByPrimaryKey/{id}")
-    public ResultData deleteRoleByPrimaryKey(@PathVariable("id") Object id){
+    @DeleteMapping("deleteRoleByPrimaryKey")
+    public ResultData deleteRoleByPrimaryKey(@RequestParam("id") Object id){
         Integer deleteRoleByPrimaryKey = roleService.deleteRoleByPrimaryKey(id);
         if (deleteRoleByPrimaryKey > 0){
             Integer delete = roleMenuService.deleteMenuByRoleId(id);

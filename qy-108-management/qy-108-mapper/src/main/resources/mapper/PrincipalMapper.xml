@@ -21,7 +21,11 @@
     <result column="create_time" property="createTime" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="selectPrinByUserId" resultMap="BaseResultMap" parameterType="java.lang.Object">
-        select * from t_principal where user_id = #{userId}
+  <select id="selectPrinByUserId" resultType="Map" parameterType="java.lang.Object">
+        select p.id,p.type,p.name,d.valuee,p.id_number,p.age,p.title,p.major
+         from t_principal as p inner join t_dict as d on p.sex = d.keyy and d.FIELD_NAME = 'ssex' and user_id = #{userId}
+  </select>
+  <select id="selectResourceById" resultType="com.aaa.zk.model.Resource" parameterType="java.lang.Object">
+        select * from t_resource where ref_biz_id = #{prinId}
   </select>
 </mapper>

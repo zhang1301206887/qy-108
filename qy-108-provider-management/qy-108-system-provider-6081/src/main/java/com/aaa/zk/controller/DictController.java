@@ -43,8 +43,8 @@ public class DictController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据id查询字典表信息
     */
-    @GetMapping("selectDictByPrimaryKey/{id}")
-    public ResultData selectDictByPaimaryKey(@PathVariable("id") Object id){
+    @GetMapping("selectDictByPrimaryKey")
+    public ResultData selectDictByPaimaryKey(@RequestParam("id") Object id){
         Dict dict = dictService.selectDictByPrimaryKey(id);
         if (null != dict){
             return selelctSuccess(dict);
@@ -100,7 +100,7 @@ public class DictController extends BaseController {
     * @Description: 根据主键id删除 数据
     */
     @DeleteMapping("/deleteDictByPrimaryKey")
-    public ResultData deleteByPrimaryKey(@RequestBody Object id){
+    public ResultData deleteByPrimaryKey(@RequestParam("id") Object id){
         Integer deleteResult = dictService.delectDictByPrimaryKey(id);
         if (deleteResult > 0){
             return deleteSuccess();

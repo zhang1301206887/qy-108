@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class TechnicistController extends BaseController {
@@ -42,9 +43,9 @@ public class TechnicistController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据公司id查询技术人员信息
     */
-    @GetMapping("selectTechByUserId/{userId}")
-    public ResultData selectTechByUserId(@PathVariable("userId") Object userId){
-        List<Technicist> selectTechByUserId = technicistService.selectTechByUserId(userId);
+    @GetMapping("selectTechByUserId")
+    public ResultData selectTechByUserId(@RequestParam("userId") Object userId){
+        List<Map> selectTechByUserId = technicistService.selectTechByUserId(userId);
         if (null != selectTechByUserId){
             return selelctSuccess(selectTechByUserId);
         }
@@ -54,13 +55,13 @@ public class TechnicistController extends BaseController {
     * @Author: He create on 2020/5/24 23:39
     * @param: [technicist]
     * @return: com.aaa.zk.base.ResultData
-    * @Description: 根据主键id查询技术人员信息
+    * @Description: 根据主键id查询技术人员信息和对应的附件信息
     */
-    @GetMapping("selectTechByPrimaryKey/{id}")
-    public ResultData selectTechByPrimaryKey(@PathVariable("id") Object id){
-        Technicist technicist = technicistService.selectTechByPrimaryKey(id);
-        if (null != technicist){
-            return selelctSuccess(technicist);
+    @GetMapping("selectTechByPrimaryKey")
+    public ResultData selectTechByPrimaryKey(@RequestParam("id") Object id){
+        Map map = technicistService.selectTechByPrimaryKey(id);
+        if (null != map){
+            return selelctSuccess(map);
         }
         return selelctFalied();
     }
@@ -98,8 +99,8 @@ public class TechnicistController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键删除技术人员信息
     */
-    @DeleteMapping("deleteTechByPrimaryKey/{id}")
-    public ResultData deleteTechByPaimaryKey(@PathVariable("id") Object id){
+    @DeleteMapping("deleteTechByPrimaryKey")
+    public ResultData deleteTechByPaimaryKey(@RequestParam("id") Object id){
         Integer integer = technicistService.deleteTechByPrimaryKey(id);
         if (integer > 0){
             return deleteSuccess();

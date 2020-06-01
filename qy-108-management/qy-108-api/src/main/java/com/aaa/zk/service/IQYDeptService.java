@@ -22,7 +22,7 @@ public interface IQYDeptService {
      * @Description: 查询所有部门信息  和provider中的deptcontroller对应
      */
     @GetMapping("/selectAllDept")
-    ResultData selectAllDept();
+    ResultData selectAllDept(@RequestParam("id") Object id);
 
     /**
     * @Author: He create on 2020/5/26 14:51
@@ -30,8 +30,8 @@ public interface IQYDeptService {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id查询部门信息
     */
-    @GetMapping("selectDeptByPrimaryKey/{id}")
-    public ResultData selectDeptByPrimaryKey(@PathVariable("id") Object id);
+    @GetMapping("selectDeptByPrimaryKey")
+    public ResultData selectDeptByPrimaryKey(@RequestParam("id") Object id);
     /**
      * @Author: He create on 2020/5/22 9:55
      * @param: [dept]

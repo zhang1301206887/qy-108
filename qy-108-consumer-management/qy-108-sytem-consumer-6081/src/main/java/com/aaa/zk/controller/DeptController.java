@@ -33,8 +33,8 @@ public class DeptController extends BaseController {
     */
     @GetMapping("/selectAllDept")
     @ApiOperation(value = "查询功能",notes = "查询所有的部门数据")
-    public ResultData selectAll(){
-        return deptService.selectAllDept();
+    public ResultData selectAll(@RequestParam("id") Object id){
+        return deptService.selectAllDept(id);
     }
 
     /**
@@ -43,9 +43,9 @@ public class DeptController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id查询部门数据
     */
-    @GetMapping("selectDeptByPrimaryKey/{id}")
+    @GetMapping("selectDeptByPrimaryKey")
     @ApiOperation(value = "查询功能",notes = "根据主键id查询部门数据")
-    public ResultData selectDeptByPrimaryKey(@PathVariable("id") Object id){
+    public ResultData selectDeptByPrimaryKey(@RequestParam("id") Object id){
         return deptService.selectDeptByPrimaryKey(id);
     }
     /**

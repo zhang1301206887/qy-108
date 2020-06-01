@@ -1,11 +1,10 @@
 package com.aaa.zk.vo;/*
  *@Company：
  *@Author：何康
- *@Date：2020/5/21 16:40
+ *@Date：2020/6/1 21:05
  *@Description:
  */
 
-import com.aaa.zk.model.Menu;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class MenuVo implements Serializable {
+public class DeptVo implements Serializable {
+
 
     @Id
     @NotNull
@@ -34,44 +34,19 @@ public class MenuVo implements Serializable {
     @Max(value = 100,message ="时间长度最长不能超过100")
     private String modifyTime;
     /**
-     * 上级菜单ID
+     * 上级部门ID
      */
     private Long parentId;
 
     /**
-     * 菜单/按钮名称
+     * 部门名称
      */
-    private String menuName;
-
-    /**
-     * 对应路由path
-     */
-    private String path;
-
-    /**
-     * 对应路由组件component
-     */
-    private String component;
-
-    /**
-     * 权限标识
-     */
-    private String perms;
-
-    /**
-     * 图标
-     */
-    private String icon;
-
-    /**
-     * 类型 0菜单 1按钮
-     */
-    private String type;
+    private String deptName;
 
     /**
      * 排序
      */
     private Double orderNum;
 
-    private List<MenuVo> childrenList;
+    private List<DeptVo> childrenList;
 }

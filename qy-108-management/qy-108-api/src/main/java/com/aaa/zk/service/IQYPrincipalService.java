@@ -18,16 +18,16 @@ public interface IQYPrincipalService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据公司id查询负责人信息
      */
-    @GetMapping("selectPrinByUserId/{userId}")
-    public ResultData selectPrinByUserId(@PathVariable("userId") Object userId);
+    @GetMapping("selectPrinByUserId")
+    ResultData selectPrinByUserId(@RequestParam("userId") Object userId);
     /**
      * @Author: He create on 2020/5/26 15:08
      * @param: [id]
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据主键id查询负责人信息
      */
-    @GetMapping("selectPrinByPrimaryKey/{id}")
-    public ResultData selectPrinByPrimaryKey(@PathVariable("id") Object id);
+    @GetMapping("selectPrinByPrimaryKey")
+    ResultData selectPrinByPrimaryKey(@RequestParam("id") Object id);
     /**
      * @Author: He create on 2020/5/26 15:10
      * @param: [principal]
@@ -35,7 +35,7 @@ public interface IQYPrincipalService {
      * @Description: 添加新的负责人信息
      */
     @PutMapping("insertPrin")
-    public ResultData insertPrin(@RequestBody Principal principal);
+    ResultData insertPrin(@RequestBody Principal principal);
     /**
      * @Author: He create on 2020/5/26 15:13
      * @param: [principal]
@@ -43,7 +43,7 @@ public interface IQYPrincipalService {
      * @Description: 根据主键id更新负责人信息
      */
     @PostMapping("updatePrinByPrimaryKey")
-    public ResultData updatePrinByPrimaryKey(@RequestBody Principal principal);
+    ResultData updatePrinByPrimaryKey(@RequestBody Principal principal);
     /**
      * @Author: He create on 2020/5/26 15:13
      * @param: [id]
@@ -51,5 +51,5 @@ public interface IQYPrincipalService {
      * @Description: 根据主键id删除负责人信息
      */
     @DeleteMapping("deletePrinByPrimaryKey")
-    public ResultData deletePrinByPrimaryKey(@RequestBody Long id);
+    ResultData deletePrinByPrimaryKey(@RequestParam("id") Object id);
 }

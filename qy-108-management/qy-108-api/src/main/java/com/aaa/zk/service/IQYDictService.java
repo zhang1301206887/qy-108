@@ -30,8 +30,8 @@ public interface IQYDictService {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id查询字典表信息
     */
-    @GetMapping("selectDictByPrimaryKey/{id}")
-    public ResultData selectDictByPrimaryKey(@PathVariable("id") Object id);
+    @GetMapping("selectDictByPrimaryKey")
+    public ResultData selectDictByPrimaryKey(@RequestParam("id") Object id);
     /**
     * @Author: He create on 2020/5/22 11:51
     * @param: [dict]
@@ -63,7 +63,7 @@ public interface IQYDictService {
     * @Description: 根据主键id删除字典信息
     */
     @DeleteMapping("/deleteDictByPrimaryKey")
-    ResultData deleteDictByPrimaryKey(@RequestBody Object id);
+    ResultData deleteDictByPrimaryKey(@RequestParam("id") Object id);
     /**
     * @Author: He create on 2020/5/22 11:52
     * @param: [list]

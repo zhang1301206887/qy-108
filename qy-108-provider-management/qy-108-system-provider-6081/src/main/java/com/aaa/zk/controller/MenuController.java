@@ -45,8 +45,8 @@ public class MenuController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id查询菜单信息
     */
-    @GetMapping("selectMenuByPrimaryKey/{id}")
-    public ResultData selectMenuByPrimaryKey(@PathVariable("id") Object id){
+    @GetMapping("selectMenuByPrimaryKey")
+    public ResultData selectMenuByPrimaryKey(@RequestParam("id") Object id){
         Menu menu = menuService.selectMenuByPrimaryKey(id);
         if (null != menu){
             return selelctSuccess(menu);
@@ -59,8 +59,8 @@ public class MenuController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 遍历查询所有的权限菜单
     */
-    @GetMapping("selectMenuByParentId/{id}")
-    public ResultData selectMenuByParentId(@PathVariable("id") Object id){
+    @GetMapping("selectMenuByParentId")
+    public ResultData selectMenuByParentId(@RequestParam("id") Object id){
         List<MenuVo> menuVos = menuService.selectMenuByParentId(id);
         if (null != menuVos){
             return selelctSuccess(menuVos);
@@ -102,7 +102,7 @@ public class MenuController extends BaseController {
     * @Description: 根据主键id删除菜单数据
     */
     @DeleteMapping("deleteMenuByPrimaryKey")
-    public ResultData deleteMenuByPrimaryKey(@RequestBody Object id){
+    public ResultData deleteMenuByPrimaryKey(@RequestParam("id") Object id){
         Integer deleteResult = menuService.deleteMenuByPrimaryKey(id);
         if (deleteResult > 0 ){
             return deleteSuccess();

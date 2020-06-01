@@ -3,10 +3,7 @@ package com.aaa.zk.service;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.MappingUnit;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -45,8 +42,8 @@ public interface IQYMappingUnitService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据id查询单位信息
      */
-    @GetMapping("selectOneUnit/{id}")
-    public ResultData selectOneUnit(@PathVariable("id") Object id);
+    @GetMapping("selectOneUnit")
+    public ResultData selectOneUnit(@RequestParam("id") Object id);
     /**
      * @Author: He create on 2020/5/28 20:44
      * @param: [mappingUnit]

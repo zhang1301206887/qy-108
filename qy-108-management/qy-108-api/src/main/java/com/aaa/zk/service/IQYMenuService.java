@@ -31,8 +31,8 @@ public interface IQYMenuService {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据主键id查询菜单表数据
     */
-    @GetMapping("selectMenuByPrimaryKey/{id}")
-    public ResultData selectMenuByPrimaryKey(@PathVariable("id") Object id);
+    @GetMapping("selectMenuByPrimaryKey")
+    public ResultData selectMenuByPrimaryKey(@RequestParam("id") Object id);
 
     /**
     * @Author: He create on 2020/5/22 12:06
@@ -40,8 +40,8 @@ public interface IQYMenuService {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 查询菜单表所有信息 并且把子菜单放在父级菜单下（传入的id应为最大父级id 0）
     */
-    @GetMapping("selectMenuByParentId/{id}")
-    public ResultData selectMenuByParentId(@PathVariable("id") Object id);
+    @GetMapping("selectMenuByParentId")
+    public ResultData selectMenuByParentId(@RequestParam("id") Object id);
 
     /**
     * @Author: He create on 2020/5/22 12:07
@@ -68,7 +68,7 @@ public interface IQYMenuService {
     * @Description: 根据主键id删除一条数据
     */
     @DeleteMapping("deleteMenuByPrimaryKey")
-    ResultData deleteMenuByPrimaryKey(@RequestBody Object id);
+    ResultData deleteMenuByPrimaryKey(@RequestParam("id") Object id);
 
     /**
     * @Author: He create on 2020/5/22 12:08

@@ -12,6 +12,8 @@ import com.aaa.zk.service.PrincipaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 public class PrincipalController extends BaseController {
     @Autowired
@@ -23,9 +25,9 @@ public class PrincipalController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据公司id查询负责人信息
     */
-    @GetMapping("selectPrinByUserId/{userId}")
-    public ResultData selectPrinByUserId(@PathVariable("userId") Object userId){
-        Principal principal = principaService.selectPrinByUserId(userId);
+    @GetMapping("selectPrinByUserId")
+    public ResultData selectPrinByUserId(@RequestParam("userId") Object userId){
+        Map principal = principaService.selectPrinByUserId(userId);
         if (null != principal){
             return selelctSuccess(principal);
         }
@@ -35,13 +37,13 @@ public class PrincipalController extends BaseController {
     * @Author: He create on 2020/5/26 15:08
     * @param: [id]
     * @return: com.aaa.zk.base.ResultData
-    * @Description: 根据主键id查询负责人信息
+    * @Description: 根据主键id查询负责人信息和对应的附件信息
     */
-    @GetMapping("selectPrinByPrimaryKey/{id}")
-    public ResultData selectPrinByPrimaryKey(@PathVariable("id") Object id){
-        Principal principal = principaService.selectPrinByPrimaryKey(id);
-        if (null != principal){
-            return selelctSuccess(principal);
+    @GetMapping("selectPrinByPrimaryKey")
+    public ResultData selectPrinByPrimaryKey(@RequestParam("id") Object id){
+        Map map = principaService.selectPrinByPrimaryKey(id);
+        if (null != map){
+            return selelctSuccess(map);
         }
         return selelctFalied();
     }
@@ -80,7 +82,7 @@ public class PrincipalController extends BaseController {
     * @Description: 根据主键id删除负责人信息
     */
     @DeleteMapping("deletePrinByPrimaryKey")
-    public ResultData deletePrinByPrimaryKey(@RequestBody Long id){
+    public ResultData deletePrinByPrimaryKey(@RequestParam("id") Object id){
         Integer deletePrinByPrimaryKey = principaService.deletePrinByPrimaryKey(id);
         if(deletePrinByPrimaryKey > 0){
             return deleteSuccess();

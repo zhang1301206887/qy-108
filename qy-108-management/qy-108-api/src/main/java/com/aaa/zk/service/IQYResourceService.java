@@ -5,6 +5,7 @@ import com.aaa.zk.model.Resource;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public interface IQYResourceService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据单位id查询资源信息 选择展示
      */
-    @GetMapping("selectResourceById/{id}")
-    public ResultData selectResourceById(@PathVariable("id") Object id);
+    @GetMapping("selectResourceById")
+    public ResultData selectResourceById(@RequestParam("id") Object id);
 
 }

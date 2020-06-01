@@ -7,13 +7,16 @@ package com.aaa.zk.service;/*
 
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.TechnicistMapper;
+import com.aaa.zk.model.Resource;
 import com.aaa.zk.model.Technicist;
 import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.aaa.zk.status.CURDStatus.CRUD_FALIED;
 
@@ -42,8 +45,8 @@ public class TechnicistService extends BaseService<Technicist> {
     * @return: java.util.List<com.aaa.zk.model.Technicist>
     * @Description: 根据公司id查询技术人员信息
     */
-    public List<Technicist> selectTechByUserId(Object userId){
-        List<Technicist> technicists = technicistMapper.selectTechByUserId(userId);
+    public List<Map> selectTechByUserId(Object userId){
+        List<Map> technicists = technicistMapper.selectTechByUserId(userId);
         if (null != technicists && technicists.size() > 0){
             return technicists;
         }
@@ -53,13 +56,20 @@ public class TechnicistService extends BaseService<Technicist> {
     * @Author: He create on 2020/5/24 23:12
     * @param: [technicist]
     * @return: com.aaa.zk.model.Technicist
-    * @Description: 根据主键id查询技术人员信息
+    * @Description: 根据主键id查询技术人员信息和对应的附件信息
     */
-    public Technicist selectTechByPrimaryKey (Object id){
+    public Map selectTechByPrimaryKey (Object id){
         if (null != id){
+            Map map = new HashMap();
             Technicist selectByPrimaryKey = technicistMapper.selectByPrimaryKey(id);
-            if (null != selectByPrimaryKey && "".equals(selectByPrimaryKey)){
-                return selectByPrimaryKey;
+            List<Resource> resources = technicistMapper.selectResourceById(id);
+            if (null != selectByPrimaryKey ){
+                map.put("technicist",selectByPrimaryKey);
+                if (null != resources && resources.size() > 0){
+                    map.put("resource",resources);
+                    return map;
+                }
+                return map;
             }
         }
         return null;

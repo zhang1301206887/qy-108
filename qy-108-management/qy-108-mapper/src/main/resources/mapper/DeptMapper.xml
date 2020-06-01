@@ -24,4 +24,7 @@
       and CREATE_TIME >= #{beginDate} and #{endDate} >= CREATE_TIME
     </if>
   </select>
+  <select id="selectAllDept" resultType="com.aaa.zk.vo.DeptVo" parameterType="java.lang.Object">
+        select * from t_dept where parent_id = #{parent_id}
+  </select>
 </mapper>

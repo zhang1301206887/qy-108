@@ -18,16 +18,16 @@ public interface IQYEquipmentService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据公司id查询设备信息
      */
-    @GetMapping("selectEquiByUserId/{userId}")
-    public ResultData selectEquiByUserId(@PathVariable("userId") Object userId);
+    @GetMapping("selectEquiByUserId")
+    public ResultData selectEquiByUserId(@RequestParam("userId") Object userId);
     /**
      * @Author: He create on 2020/5/26 16:55
      * @param: [id]
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据主键id查询设备信息
      */
-    @GetMapping("selectEquiByPrimaryKey/{id}")
-    public ResultData selectEquiByPrimaryKey(@PathVariable("id") Object id);
+    @GetMapping("selectEquiByPrimaryKey")
+    public ResultData selectEquiByPrimaryKey(@RequestParam("id") Object id);
     /**
      * @Author: He create on 2020/5/26 16:55
      * @param: [equipment]
@@ -50,6 +50,6 @@ public interface IQYEquipmentService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据主键id删除设备数据
      */
-    @DeleteMapping("deleteEquiByPrimaryKey/{id}")
-    public ResultData deleteEquiByPrimaryKey(@PathVariable("id") Object id);
+    @DeleteMapping("deleteEquiByPrimaryKey")
+    public ResultData deleteEquiByPrimaryKey(@RequestParam("id") Object id);
 }

@@ -8,10 +8,7 @@ package com.aaa.zk.service;/*
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Score;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient("score-interface")
 public interface IQYScoreService {
@@ -21,8 +18,8 @@ public interface IQYScoreService {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据单位id查询所有的分值记录
      */
-    @GetMapping("selectScoreByUserId/{userId}")
-    public ResultData selectScoreByUserId(@PathVariable("userId") Object userId);
+    @GetMapping("selectScoreByUserId")
+    public ResultData selectScoreByUserId(@RequestParam("userId") Object userId);
     /**
      * @Author: He create on 2020/5/28 19:53
      * @param: [score]

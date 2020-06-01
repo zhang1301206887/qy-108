@@ -46,9 +46,9 @@ public class MappingUnitController extends BaseController {
     public ResultData selectUnitByField(@RequestBody Map map){
         return iqyMappingUnitService.selectUnitByField(map);
     }
-    @GetMapping("selectOneUnit/{id}")
+    @GetMapping("selectOneUnit")
     @ApiOperation(value = "查询功能",notes = "根据主键id查询单位信息")
-    public ResultData selectOneUnit(@PathVariable("id") Object id){
+    public ResultData selectOneUnit(@RequestParam("id") Object id){
         return iqyMappingUnitService.selectOneUnit(id);
     }
     @PostMapping("updateUnit")

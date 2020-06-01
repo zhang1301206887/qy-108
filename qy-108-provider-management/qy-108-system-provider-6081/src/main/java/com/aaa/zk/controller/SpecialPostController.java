@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author zk
@@ -25,7 +26,6 @@ public class SpecialPostController extends BaseController{
     */
     @GetMapping("selectSpecialPostCount/{userId}")
     public ResultData selectSpecialPostCount(@PathVariable("userId") Object userId){
-        System.out.println(userId);
         Integer i = specialPostService.selectSpecialPostCount(userId);
         if (i > 0){
             return selelctSuccess(i);
@@ -40,11 +40,10 @@ public class SpecialPostController extends BaseController{
      * @return: java.util.List<com.aaa.zk.model.SpecialPost>
      * @Description: 根据公司id查询特殊岗位人员信息
      */
-    @GetMapping("selectSpecialPostByUserId/{userId}")
-    public ResultData selectSpecialPostByUserId(@PathVariable("userId") Object userId){
-        System.out.println(userId);
-        List<SpecialPost> specialPosts = specialPostService.selectSpecialPostByUserId(userId);
-        if (null != specialPosts){
+    @GetMapping("selectSpecialPostByUserId")
+    public ResultData selectSpecialPostByUserId(@RequestParam("userId") Object userId){
+        List<Map> specialPosts = specialPostService.selectSpecialPostByUserId(userId);
+        if (null != specialPosts ){
             return selelctSuccess(specialPosts);
         }
         return selelctFalied();
@@ -54,13 +53,13 @@ public class SpecialPostController extends BaseController{
      * @Author: He create on 2020/5/26 22:08
      * @param: [id]
      * @return: com.aaa.zk.model.SpecialPost
-     * @Description: 根据主键id查询特殊岗位人员信息
+     * @Description: 根据主键id查询特殊岗位人员信息和对应的附件信息
      */
-    @GetMapping("selectSpecialByPrimaryKey/{id}")
-    public ResultData selectSpecialByPrimaryKey(@PathVariable("id") Object id){
-        SpecialPost specialPost = specialPostService.selectSpecialByPrimaryKey(id);
-        if (null != specialPost){
-            return selelctSuccess(specialPost);
+    @GetMapping("selectSpecialByPrimaryKey")
+    public ResultData selectSpecialByPrimaryKey(@RequestParam("id") Object id){
+        Map map = specialPostService.selectSpecialByPrimaryKey(id);
+        if (null != map){
+            return selelctSuccess(map);
         }
         return selelctFalied();
     }
@@ -98,8 +97,8 @@ public class SpecialPostController extends BaseController{
      * @return: java.lang.Integer
      * @Description: 根据主键id删除特殊岗位人员信息
      */
-    @DeleteMapping("deleteSpecialByPrimaryKey/{id}")
-    public ResultData deleteSpecialByPrimaryKey(@PathVariable("id") Object id){
+    @DeleteMapping("deleteSpecialByPrimaryKey")
+    public ResultData deleteSpecialByPrimaryKey(@RequestParam("id") Object id){
         Integer deleteSpecialByPrimaryKey = specialPostService.deleteSpecialByPrimaryKey(id);
         if (deleteSpecialByPrimaryKey > 0){
             return deleteSuccess();

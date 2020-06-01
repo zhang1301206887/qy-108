@@ -12,6 +12,7 @@ import com.aaa.zk.base.CommonController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Dept;
 import com.aaa.zk.service.DeptService;
+import com.aaa.zk.vo.DeptVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,8 @@ public class DeptController extends BaseController {
     * @Description: 查询所有部门信息
     */
     @GetMapping("/selectAllDept")
-    public ResultData selectAll(){
-        List<Dept> depts = deptService.selectAllDept();
+    public ResultData selectAll(@RequestParam("id") Object id){
+        List<DeptVo> depts = deptService.selectAllDept(id);
         if (null != depts){
             return selelctSuccess(depts);
         }
@@ -43,8 +44,8 @@ public class DeptController extends BaseController {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据id查询部门信息
     */
-    @GetMapping("selectDeptByPrimaryKey/{id}")
-    public ResultData selectDeptByPrimaryKey(@PathVariable("id") Object id){
+    @GetMapping("selectDeptByPrimaryKey")
+    public ResultData selectDeptByPrimaryKey(@RequestParam("id") Object id){
         Dept dept = deptService.selectDeptByPrimaryKey(id);
         if (null != dept){
             return selelctSuccess(dept);

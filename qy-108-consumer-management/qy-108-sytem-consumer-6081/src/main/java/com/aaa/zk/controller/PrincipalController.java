@@ -20,15 +20,15 @@ public class PrincipalController extends BaseController {
     @Autowired
     private IQYPrincipalService principalService;
 
-    @GetMapping("selectPrinByUserId/{userId}")
+    @GetMapping("selectPrinByUserId")
     @ApiOperation(value = "查询功能",notes = "根据公司id查询负责人数据")
-    public ResultData selectPrinByUserId(@PathVariable("userId") Object userId){
+    public ResultData selectPrinByUserId(@RequestParam("userId") Object userId){
         return principalService.selectPrinByUserId(userId);
     }
 
-    @GetMapping("selectPrinByPrimaryKey/{id}")
+    @GetMapping("selectPrinByPrimaryKey")
     @ApiOperation(value = "查询功能",notes = "根据主键id查询负责人数据")
-    public ResultData selectPrinByPrimaryKey(@PathVariable("id") Object id){
+    public ResultData selectPrinByPrimaryKey(@RequestParam("id") Object id){
         return principalService.selectPrinByPrimaryKey(id);
     }
 
@@ -46,7 +46,7 @@ public class PrincipalController extends BaseController {
 
     @DeleteMapping("deletePrinByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除负责人数据")
-    public ResultData deletePrinByPrimaryKey(@RequestBody Long id){
+    public ResultData deletePrinByPrimaryKey(@RequestParam("id") Object id){
         return principalService.deletePrinByPrimaryKey(id);
     }
 }

@@ -36,8 +36,8 @@ public class ScoreController extends CommonController<Score> {
     * @return: com.aaa.zk.base.ResultData
     * @Description: 根据单位id查询所有的分值记录
     */
-    @GetMapping("selectScoreByUserId/{userId}")
-    public ResultData selectScoreByUserId(@PathVariable("userId") Object userId){
+    @GetMapping("selectScoreByUserId")
+    public ResultData selectScoreByUserId(@RequestParam("userId") Object userId){
         Score score = new Score().setUnitId(Long.valueOf(userId.toString()));
         List<Score> scores = null;
         try {

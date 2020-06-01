@@ -8,10 +8,17 @@ package com.aaa.zk.service;/*
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.PrincipalMapper;
 import com.aaa.zk.model.Principal;
+import com.aaa.zk.model.Resource;
 import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
+import com.aaa.zk.utils.Map2BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static com.aaa.zk.status.CURDStatus.*;
 
 @Service
@@ -26,11 +33,11 @@ public class PrincipaService extends BaseService<Principal> {
     * @return: com.aaa.zk.model.Principal
     * @Description: 根据公司id查询负责人
     */
-    public Principal selectPrinByUserId(Object userId){
+    public Map selectPrinByUserId(Object userId){
         if (null != userId){
-            Principal principal = principalMapper.selectPrinByUserId(userId);
-            if (null != principal){
-                return principal;
+            Map map = principalMapper.selectPrinByUserId(userId);
+            if (null != map){
+                return map;
             }
             return null;
         }
@@ -41,13 +48,23 @@ public class PrincipaService extends BaseService<Principal> {
     * @Author: He create on 2020/5/26 11:37
     * @param: [prinId]
     * @return: com.aaa.zk.model.Principal
-    * @Description: 根据主键id查询负责人
+    * @Description: 根据主键id查询负责人和对应的附件信息
     */
-    public Principal selectPrinByPrimaryKey(Object prinId){
+    public Map selectPrinByPrimaryKey(Object prinId){
         if (null != prinId){
+            Map map = new HashMap();
+            //查询复制人的信息
             Principal principal = principalMapper.selectByPrimaryKey(prinId);
+            //查询负责人的附件信息
+            List<Resource> maps = principalMapper.selectResourceById(prinId);
             if (null != principal ){
-                return principal;
+                map.put("principal",principal);
+                //如果没有附件信息 则直接返回人员信息
+                if (null != maps && maps.size() > 0){
+                    map.put("resource",maps);
+                    return map;
+                }
+                return map;
             }
             return null;
         }
