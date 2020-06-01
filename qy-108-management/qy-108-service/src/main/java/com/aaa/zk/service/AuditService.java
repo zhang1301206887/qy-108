@@ -26,6 +26,7 @@ public class AuditService {
     private AuditMapper auditMapper;
 
 
+
     /**
      * @Author gfq 
      * 项目审核中项目信息
@@ -94,7 +95,7 @@ public class AuditService {
        public Integer MPAuditAdd(Audit audit){
            if (audit != null){
                audit.setAuditTime(DateUtils.getNowDate()).setName(NAME).setType(TYPE).setId(IDUtils.getID());
-               int i = auditMapper.insert(audit);
+               int i = auditMapper.insertSelective(audit);
                if (i>0){
                    return i;
                }else {
@@ -103,4 +104,22 @@ public class AuditService {
            }
            return null;
        }
+       /**
+       * @author zk
+       * @Date
+       *    添加项目成果汇交审核记录   传入audit
+       */
+        public Integer MappingProjectResultAuditAdd(Audit audit) {
+            if (audit != null){
+                audit.setAuditTime(DateUtils.getNowDate()).setName(SUBMIT_NAME).setType(SUBMIT_TYPE).setId(IDUtils.getID());
+                int i = auditMapper.insertSelective(audit);
+                if (i > 0 ){
+                    return i;
+                }else {
+                    return 0;
+                }
+
+            }
+            return 0;
+        }
 }

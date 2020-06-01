@@ -26,7 +26,7 @@ public interface IQYMappingUnitService {
     /**
     * @author zk
     * @Date
-    * 查询所有单位本信息
+    * 查询所有单位信息
     */
     @GetMapping("/selectAllUnit")
     public ResultData selectAllUnit();

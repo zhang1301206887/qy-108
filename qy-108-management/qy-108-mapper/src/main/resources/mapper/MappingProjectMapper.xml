@@ -56,5 +56,8 @@
   <select id="selectProjectCountByUserId" resultType="Integer">
     select count(*) from t_mapping_project where user_id = #{userId};
   </select>
+  <select id="selectByResultsStatus"  resultType="com.aaa.zk.model.MappingProject">
+    select * from t_mapping_project where results_status = #{ResultsStatus};
+  </select>
 
 </mapper>

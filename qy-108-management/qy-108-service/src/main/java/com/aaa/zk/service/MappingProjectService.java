@@ -27,6 +27,21 @@ public class MappingProjectService extends BaseService<MappingProject> {
     private AuditMapper auditMapper;
 
     /**
+    * @author zk
+    * @Date
+    *    根据项目成果汇交状态 查询 项目  0:通过 1:未通过 2:已提交 3:未提交
+    */
+    public List<MappingProject> selectByResultsStatus(Integer resultsStatus){
+        if (null != resultsStatus){
+            List<MappingProject> list = mappingProjectMapper.selectByResultsStatus(resultsStatus);
+            if (null != list && !"".equals(list)){
+                return list;
+            }
+        }
+        return null;
+    }
+
+    /**
      * @author zk
      * @Date
      *   根据user_id查询公司项目数量

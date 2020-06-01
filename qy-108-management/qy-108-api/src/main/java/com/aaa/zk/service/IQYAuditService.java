@@ -6,6 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @ClassName AuditService
@@ -57,4 +58,11 @@ public interface IQYAuditService {
      **/
     @PostMapping("MPAuditAdd")
     ResultData MPAuditAdd(@RequestBody Audit audit);
+    /**
+    * @author zk
+    * @Date
+    *    添加项目成果汇交审核记录   传入audit
+    */
+    @PostMapping("MappingProjectResultAuditAdd")
+    Integer MappingProjectResultAuditAdd(@RequestBody Audit audit);
 }

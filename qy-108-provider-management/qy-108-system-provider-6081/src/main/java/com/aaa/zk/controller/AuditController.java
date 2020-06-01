@@ -5,10 +5,7 @@ import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Audit;
 import com.aaa.zk.service.AuditService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +21,17 @@ public class AuditController  extends BaseController {
 
     @Autowired
     private AuditService auditService;
+
+    /**
+     * @author zk
+     * @Date
+     *    添加项目成果汇交审核记录   传入audit
+     */
+    @PostMapping("MappingProjectResultAuditAdd")
+    public Integer MappingProjectResultAuditAdd(@RequestBody Audit audit){
+        return auditService.MappingProjectResultAuditAdd(audit);
+    }
+
 
     /**
      * @Author gfq

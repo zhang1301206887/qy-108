@@ -1,11 +1,11 @@
-package com.aaa.zk.controller;/*
+package com.aaa.zk.controller;
+/*
  *@Company：
  *@Author：何康
  *@Date：2020/5/27 22:28
  *@Description:
  */
 
-import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.base.CommonController;
 import com.aaa.zk.base.ResultData;
@@ -14,14 +14,16 @@ import com.aaa.zk.service.LoginLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
-
+@RestController
 public class LoginLogController extends CommonController<LoginLog> {
 
     @Autowired
     private LoginLogService loginLogService;
 
+    @Override
     public BaseService<LoginLog> getBaseService() {
         return loginLogService;
     }

@@ -9,4 +9,5 @@ import java.util.List;
 public interface AuditMapper extends Mapper<Audit> {
        List<HashMap> MProAuditSelectAll();
        List<HashMap> MPAuditSelect();
+
 }

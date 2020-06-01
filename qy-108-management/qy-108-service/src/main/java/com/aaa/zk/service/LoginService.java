@@ -36,6 +36,7 @@ public class LoginService extends BaseService<User> {
         if (null != user){
             //验证用户传入的username和password是否正确
             User u = userMapper.selectOne(user);
+            System.out.println(u);
             //如果为空 证明不存在
             if (null != u){
                 //登陆成功

@@ -12,6 +12,15 @@ import java.util.Map;
 @FeignClient(value = "mappingProject-interface")
 public interface IQYMappingProjectService {
 
+
+    /**
+     * @author zk
+     * @Date
+     *    根据项目成果汇交状态 查询 项目  0:通过 1:未通过 2:已提交 3:未提交
+     */
+    @GetMapping("/selectByResultsStatus")
+    List<MappingProject> selectByResultsStatus(@RequestParam("resultsStatus")  Integer resultsStatus);
+
     /**
     * @author zk
     * @Date

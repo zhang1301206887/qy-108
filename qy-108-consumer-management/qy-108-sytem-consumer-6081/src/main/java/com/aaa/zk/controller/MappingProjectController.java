@@ -106,6 +106,20 @@ public class MappingProjectController extends BaseController {
             return super.selelctFalied();
         }
     }
-
+    /**
+     * @author zk
+     * @Date
+     *    根据项目成果汇交状态 查询 项目  0:通过 1:未通过 2:已提交 3:未提交
+     */
+    @GetMapping("/selectByResultsStatus")
+    @ApiOperation(value = "查询功能",notes = "根据项目成果汇交状态 查询 项目 ")
+    public ResultData selectByResultsStatus(@RequestParam("resultsStatus") Integer resultsStatus){
+        List<MappingProject> list = iqyMappingProjectService.selectByResultsStatus(resultsStatus);
+        if (null != list){
+            return selelctSuccess(list);
+        }else {
+            return selelctFalied();
+        }
+    }
 
 }

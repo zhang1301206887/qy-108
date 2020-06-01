@@ -21,8 +21,6 @@ public class LoginController {
     private LoginService loginService;
     @Autowired
     private RedisService redisService;
-    @Autowired
-    private LoginLogService loginLogService;
     /**
      * @Author: He create on 2020/5/15 22:30
      * @param: [user]

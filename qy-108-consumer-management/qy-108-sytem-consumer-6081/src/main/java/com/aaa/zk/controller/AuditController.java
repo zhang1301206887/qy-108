@@ -1,15 +1,13 @@
 package com.aaa.zk.controller;
 
+import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Audit;
 import com.aaa.zk.service.IQYAuditService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ClassName AuditController
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @Api(value = "项目审核", tags = "项目审核信息")
-public class AuditController {
+public class AuditController extends BaseController {
     @Autowired
     private IQYAuditService iqyAuditService;
 
@@ -48,7 +46,7 @@ public class AuditController {
 
     /**
      * @Author gfq
-     * 项目审核-项目审核-查询待审核的项目
+     * 项目审核-项目审核-查询待审核的项目 根据项目审核状态
      * @Date 21:00 2020/5/26
      **/
     @GetMapping("MPAuditSelect")
@@ -79,4 +77,21 @@ public class AuditController {
     public ResultData MPAuditAdd(@RequestBody Audit audit){
         return iqyAuditService.MPAuditAdd(audit);
     }
+
+    /**
+    * @author zk
+    * @Date
+    *    添加项目成果汇交审核记录   传入audit
+    */
+
+    @PostMapping("MappingProjectResultAuditAdd")
+    @ApiOperation(value = "添加功能",notes = "项目成果审核 通过或不通过")
+    public ResultData MappingProjectResultAuditAdd(@RequestBody Audit audit){
+        Integer i = iqyAuditService.MappingProjectResultAuditAdd(audit);
+        if (i > 0){
+            return insertSuccess();
+        }
+        return insertFalied();
+    }
+
 }
