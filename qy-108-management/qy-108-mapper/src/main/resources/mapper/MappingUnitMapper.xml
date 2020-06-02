@@ -64,7 +64,7 @@
 
 
   <select id="selectCountLevel" resultType="HashMap" >
-    select qualification_level,count(qualification_level) from t_mapping_unit group by qualification_level;
+    select qualification_level ,count(qualification_level) from t_mapping_unit group by qualification_level;
   </select>
   <update id="updateInsertScoreById" >
         UPDATE t_mapping_unit SET score = score + #{score} WHERE id = #{id}

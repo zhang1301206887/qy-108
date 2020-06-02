@@ -36,23 +36,27 @@ public class MappingUnitService extends BaseService<MappingUnit> {
      *   根据单位id
      *   查询 单位人员和项目数量
      */
-    public List<Map> selectPeopleProjectCountByUnit(Object userId){
+    public List<Map> selectPeopleProjectCountByUnitId(Object userId){
         if (null != userId){
-            //查询项目数量
-            Integer i = mappingProjectMapper.selectProjectCountByUserId(userId);
-            System.out.println(i);
-            Map map = new HashMap();
-            map.put("qqq","q");
-            map.put("bbb","b");
-            System.out.println(map);
-            //查询特岗员工数量
-            Integer ii = specialPostMapper.selectSpecialPostCount(userId);
-            System.out.println(ii);
             //查询技术人员数量
             List<Map> list = technicistMapper.selectTechCountByUserId(userId);
-
-            System.out.println(list);
-            return null;
+            //查询项目数量
+            Integer i = mappingProjectMapper.selectProjectCountByUserId(userId);
+            //把项目数量放到map中
+            Map map1 = new HashMap();
+            map1.put("type","项目数量");
+            map1.put("count",i);
+            //将map1对象添加到list中
+            list.add(map1);
+            //查询特岗员工数量
+            i = specialPostMapper.selectSpecialPostCount(userId);
+            //把特岗工人数放到map中
+            Map map2 = new HashMap();
+            map2.put("type","特岗人员");
+            map2.put("count",i);
+            //将map2对象添加到list中
+            list.add(map2);
+            return list;
         }
         return null;
     }

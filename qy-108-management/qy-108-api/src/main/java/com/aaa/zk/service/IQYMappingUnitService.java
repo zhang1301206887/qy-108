@@ -18,9 +18,10 @@ public interface IQYMappingUnitService {
     /**
      * @author zk
      * @Date
-     *   根据单位id
-     *   查询 单位人员和项目数量
+     *   根据单位id查询 单位人员 和项目数量
      */
+    @GetMapping("/selectPeopleProjectCountByUnitId")
+    List<Map> selectPeopleProjectCountByUnitId(@RequestParam("userId") Integer userId);
 
 
 
@@ -29,14 +30,14 @@ public interface IQYMappingUnitService {
      * 查询单位资质等级及数量，用于统计图
      **/
     @GetMapping("/selectCountLevel")
-    public ResultData selectCountLevel();
+    ResultData selectCountLevel();
     /**
     * @author zk
     * @Date
     * 查询所有单位信息
     */
     @GetMapping("/selectAllUnit")
-    public ResultData selectAllUnit();
+    ResultData selectAllUnit();
 
     /**
      * @Author: He create on 2020/5/28 21:24
@@ -45,7 +46,7 @@ public interface IQYMappingUnitService {
      * @Description: sql拼接的 多条件查询
      */
     @PostMapping("selectUnitByField")
-    public ResultData selectUnitByField(@RequestBody Map map);
+    ResultData selectUnitByField(@RequestBody Map map);
     /**
      * @Author: He create on 2020/5/28 20:44
      * @param: [id]
@@ -53,7 +54,7 @@ public interface IQYMappingUnitService {
      * @Description: 根据id查询单位信息
      */
     @GetMapping("selectOneUnit")
-    public ResultData selectOneUnit(@RequestParam("id") Object id);
+    ResultData selectOneUnit(@RequestParam("id") Object id);
     /**
      * @Author: He create on 2020/5/28 20:44
      * @param: [mappingUnit]
@@ -61,5 +62,5 @@ public interface IQYMappingUnitService {
      * @Description: 根据主键进行单位信息的修改
      */
     @PostMapping("updateUnit")
-    public ResultData updateUnit(@RequestBody MappingUnit mappingUnit);
+    ResultData updateUnit(@RequestBody MappingUnit mappingUnit);
 }

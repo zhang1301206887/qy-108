@@ -32,8 +32,8 @@ public class MappingUnitController extends CommonController<MappingUnit> {
     * @Date
     *   根据单位id查询 单位人员 和项目情况
     */
-    @GetMapping("/selectPeopleProjectCountByUnit")
-    public List<Map> selectPeopleProjectCountByUnit(@RequestParam("userId") Integer userId){
+    @GetMapping("/selectPeopleProjectCountByUnitId")
+    public List<Map> selectPeopleProjectCountByUnitId(@RequestParam("userId") Integer userId){
         return mappingUnitService.selectPeopleProjectCountByUnit(userId);
     }
 

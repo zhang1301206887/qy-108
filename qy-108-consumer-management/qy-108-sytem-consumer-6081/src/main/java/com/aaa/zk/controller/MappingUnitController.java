@@ -31,6 +31,15 @@ public class MappingUnitController extends BaseController {
      *   查询 单位人员和项目数量
     */
 
+    @GetMapping("/selectPeopleProjectCountByUnit")
+    @ApiOperation(value = "查询功能",notes = "根据单位id查询单位的人员和项目数量")
+    public ResultData selectPeopleProjectCountByUnitId(@RequestParam("userId") Integer userId){
+        List<Map> maps = iqyMappingUnitService.selectPeopleProjectCountByUnitId(userId);
+        if (maps != null && !"".equals(maps)){
+            return selelctSuccess(maps);
+        }
+        return selelctFalied();
+    }
 
     /**
      *查询单位资质等级及数量
