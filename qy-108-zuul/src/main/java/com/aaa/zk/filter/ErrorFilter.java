@@ -5,5 +5,26 @@ package com.aaa.zk.filter;/*
  *@Description:
  */
 
+import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.exception.ZuulException;
+import static com.aaa.zk.status.TokenStatus.*;
+
 public class ErrorFilter extends ZuulFilter {
+    @Override
+    public String filterType() {
+        return TYPE_ERROR;
+    }
+
+    @Override
+    public int filterOrder() {
+        return 0;
+    }
+
+    public boolean shouldFilter() {
+        return false;
+    }
+
+    public Object run() throws ZuulException {
+        return null;
+    }
 }

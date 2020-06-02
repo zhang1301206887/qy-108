@@ -2,7 +2,7 @@ package com.aaa.zk.utils;/*
  *@Company：
  *@Author：何康
  *@Date：2020/6/2 18:36
- *@Description:
+ *@Description: 从zuul发送数据到达controller
  */
 
 import com.alibaba.fastjson.JSONObject;
