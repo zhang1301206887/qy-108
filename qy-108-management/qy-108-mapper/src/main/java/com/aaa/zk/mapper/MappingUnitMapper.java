@@ -19,7 +19,7 @@ public interface MappingUnitMapper extends Mapper<MappingUnit> {
      * 根据id进行单位分值的减少
      * */
     Integer updateDeleteScoreById(MappingUnit mappingUnit);
-    /*
+    /**
     * 条件查询
     * */
     List<MappingUnit> selectUnitByField(Map map);

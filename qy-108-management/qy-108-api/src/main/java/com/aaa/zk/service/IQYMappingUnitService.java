@@ -16,6 +16,16 @@ import java.util.Map;
 public interface IQYMappingUnitService {
 
     /**
+     * @author zk
+     * @Date
+     *   根据单位id
+     *   查询 单位人员和项目数量
+     */
+
+
+
+
+    /**
      * 查询单位资质等级及数量，用于统计图
      **/
     @GetMapping("/selectCountLevel")

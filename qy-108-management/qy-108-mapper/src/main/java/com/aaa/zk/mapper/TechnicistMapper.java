@@ -13,4 +13,5 @@ public interface TechnicistMapper extends Mapper<Technicist> {
 
     List<Resource> selectResourceById(Object id);
 
+    List<Map> selectTechCountByUserId(Object userId);
 }

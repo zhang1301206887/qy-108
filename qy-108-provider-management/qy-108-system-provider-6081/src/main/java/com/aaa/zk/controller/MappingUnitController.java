@@ -26,6 +26,18 @@ public class MappingUnitController extends CommonController<MappingUnit> {
     public BaseService<MappingUnit> getBaseService() {
         return mappingUnitService;
     }
+
+    /**
+    * @author zk
+    * @Date
+    *   根据单位id查询 单位人员 和项目情况
+    */
+    @GetMapping("/selectPeopleProjectCountByUnit")
+    public List<Map> selectPeopleProjectCountByUnit(@RequestParam("userId") Integer userId){
+        return mappingUnitService.selectPeopleProjectCountByUnit(userId);
+    }
+
+
     /**
      * 查询单位资质等级及数量
      * */
