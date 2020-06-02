@@ -40,4 +40,7 @@
   <select id="selectResourceById"  resultType="com.aaa.zk.model.Resource" parameterType="java.lang.Object">
         select * from t_resource where ref_biz_id = #{id}
   </select>
+  <select id="selectTechCountByUserId" resultType="HashMap">
+        select major_type,COUNT(major_type) from t_technicist where user_id = #{userId} GROUP BY major_type ;
+  </select>
 </mapper>
