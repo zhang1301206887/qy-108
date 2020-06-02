@@ -34,7 +34,7 @@ public class MappingUnitController extends CommonController<MappingUnit> {
     */
     @GetMapping("/selectPeopleProjectCountByUnitId")
     public List<Map> selectPeopleProjectCountByUnitId(@RequestParam("userId") Integer userId){
-        return mappingUnitService.selectPeopleProjectCountByUnit(userId);
+        return mappingUnitService.selectPeopleProjectCountByUnitId(userId);
     }
 
 

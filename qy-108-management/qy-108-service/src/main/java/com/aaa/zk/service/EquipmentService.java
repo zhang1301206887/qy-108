@@ -8,13 +8,16 @@ package com.aaa.zk.service;/*
 import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.EquipmentMapper;
 import com.aaa.zk.model.Equipment;
+import com.aaa.zk.model.Resource;
 import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import static com.aaa.zk.status.CURDStatus.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EquipmentService extends BaseService<Equipment> {
@@ -44,11 +47,18 @@ public class EquipmentService extends BaseService<Equipment> {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据主键id查询设备信息
      */
-    public Equipment selectEquiByPrimaryKey(Object id){
+    public Map selectEquiByPrimaryKey(Object id){
         if (null != id){
+            Map map = new HashMap();
             Equipment equipment = equipmentMapper.selectByPrimaryKey(id);
+            List<Resource> resources = equipmentMapper.selectResourceById(id);
             if (null != equipment){
-                return equipment;
+                map.put("equipment",equipment);
+                if (null != resources && resources.size() > 0){
+                    map.put("resources",resources);
+                    return map;
+                }
+                return map;
             }
             return null;
         }

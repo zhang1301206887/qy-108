@@ -7,12 +7,16 @@ package com.aaa.zk.controller;/*
 
 import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
+import com.aaa.zk.model.Dept;
 import com.aaa.zk.model.Equipment;
 import com.aaa.zk.service.EquipmentService;
+import com.aaa.zk.utils.Map2BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class EquipmentController extends BaseController {
@@ -41,9 +45,9 @@ public class EquipmentController extends BaseController {
     */
     @GetMapping("selectEquiByPrimaryKey")
     public ResultData selectEquiByPrimaryKey(@RequestParam("id") Object id){
-        Equipment equipment = equipmentService.selectEquiByPrimaryKey(id);
-        if (null != equipment){
-            return selelctSuccess(equipment);
+        Map map = equipmentService.selectEquiByPrimaryKey(id);
+        if (null != map){
+            return selelctSuccess(map);
         }
         return selelctFalied();
     }
@@ -54,8 +58,9 @@ public class EquipmentController extends BaseController {
     * @Description: 添加新设备信息
     */
     @PutMapping("insertEqui")
-    public ResultData insertEqui(@RequestBody Equipment equipment){
-        Integer insertEqui = equipmentService.insertEqui(equipment);
+    public ResultData insertEqui(@RequestBody List list){
+        Map equipment = (Map) list.get(0);
+        Integer insertEqui = equipmentService.insertEqui(Map2BeanUtils.map2Bean(equipment,Equipment.class));
         if (insertEqui > 0){
             return insertSuccess();
         }
@@ -88,5 +93,15 @@ public class EquipmentController extends BaseController {
             return deleteSuccess();
         }
         return deleteFalied();
+    }
+
+    public static void main(String[] args) {
+        Map map = new HashMap();
+        map.put("id","55");
+        map.put("parentId","0");
+        map.put("deptName","cs");
+        map.put("createTime","2020-06-02");
+        Dept dept = Map2BeanUtils.map2Bean(map, Dept.class);
+        System.out.println(dept);
     }
 }

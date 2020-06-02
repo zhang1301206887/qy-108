@@ -12,6 +12,7 @@ import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Resource;
 import com.aaa.zk.service.ResourceService;
 import com.aaa.zk.utils.DateUtils;
+import com.aaa.zk.utils.IDUtils;
 import com.aaa.zk.utils.Map2BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -57,7 +58,6 @@ public class ResourceController extends CommonController<Resource> {
     public ResultData updateResourceById(@RequestBody List<Map> list){
         System.out.println(list);
         try {
-            Integer i = 0;
             //前台传入的是多个附件信息 进行循环遍历
             for (Map map : list){
                 //将list中的map转化为实体类进行 操作
@@ -98,7 +98,7 @@ public class ResourceController extends CommonController<Resource> {
     @PutMapping("insertResource")
     public ResultData insertResource(@RequestBody Resource resource){
         try {
-            Integer add = resourceService.add(resource);
+            Integer add = resourceService.add((Resource) resource.setId(IDUtils.getID()).setCreateTime(DateUtils.getCurrentDate()));
             if (add > 0){
                  insertSuccess();
             }

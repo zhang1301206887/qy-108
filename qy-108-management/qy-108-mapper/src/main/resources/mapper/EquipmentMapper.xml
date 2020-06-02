@@ -23,4 +23,7 @@
   <select id="selectEquiByUserId" resultMap="BaseResultMap" parameterType="java.lang.Object">
         select * from t_equipment where user_id = #{userId}
   </select>
+  <select id="selectResourceById" resultType="com.aaa.zk.model.Resource" parameterType="java.lang.Object">
+        select * from t_resource where ref_biz_id = #{id}
+  </select>
 </mapper>
