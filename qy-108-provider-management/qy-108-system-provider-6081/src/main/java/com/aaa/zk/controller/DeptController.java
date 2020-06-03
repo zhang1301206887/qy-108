@@ -20,9 +20,13 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class DeptController extends BaseController {
+public class DeptController extends CommonController<Dept> {
     @Autowired
     private DeptService deptService;
+
+    public BaseService<Dept> getBaseService() {
+        return deptService;
+    }
 
     /**
     * @Author: He create on 2020/5/20 18:05
@@ -122,5 +126,6 @@ public class DeptController extends BaseController {
         }
         return deleteFalied();
     }
+
 
 }

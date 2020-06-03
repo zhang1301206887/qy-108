@@ -6,23 +6,31 @@ package com.aaa.zk.controller;/*
  */
 
 import com.aaa.zk.base.BaseController;
+import com.aaa.zk.base.BaseService;
+import com.aaa.zk.base.CommonController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Dept;
 import com.aaa.zk.model.Equipment;
 import com.aaa.zk.service.EquipmentService;
 import com.aaa.zk.utils.Map2BeanUtils;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tk.mybatis.mapper.util.Sqls;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-public class EquipmentController extends BaseController {
+public class EquipmentController extends CommonController<Equipment> {
 
     @Autowired
     private EquipmentService equipmentService;
+
+    public BaseService<Equipment> getBaseService() {
+        return equipmentService;
+    }
     /**
     * @Author: He create on 2020/5/26 16:56
     * @param: [userId]
@@ -93,4 +101,5 @@ public class EquipmentController extends BaseController {
         }
         return deleteFalied();
     }
+
 }

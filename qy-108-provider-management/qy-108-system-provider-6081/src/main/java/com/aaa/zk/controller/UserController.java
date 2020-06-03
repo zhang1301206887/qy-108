@@ -1,18 +1,24 @@
 package com.aaa.zk.controller;
 
 import com.aaa.zk.base.BaseController;
+import com.aaa.zk.base.BaseService;
+import com.aaa.zk.base.CommonController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.User;
 import com.aaa.zk.service.UserService;
+import com.aaa.zk.utils.IDUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tk.mybatis.mapper.util.Sqls;
 
 import java.util.List;
 import java.util.Map;
 
 
 @RestController
-public class UserController extends BaseController {
+public class UserController extends CommonController<User> {
     @Autowired
     private UserService userService;
 
@@ -32,9 +38,9 @@ public class UserController extends BaseController {
     */
     @PostMapping("selectUserByField")
     public ResultData selectUserByField(@RequestBody Map map){
-        List<User> users = userService.selectUserByField(map);
-        if (null != users){
-            return selelctSuccess(users);
+        PageInfo<User> pageInfo = userService.selectUserByField(map);
+        if (null != pageInfo && !"".equals(pageInfo)){
+            return selelctSuccess(pageInfo);
         }
         return selelctFalied();
     }
@@ -113,4 +119,7 @@ public class UserController extends BaseController {
     }
 
 
+    public BaseService<User> getBaseService() {
+        return userService;
+    }
 }

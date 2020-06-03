@@ -4,6 +4,8 @@ import com.aaa.zk.base.BaseService;
 import com.aaa.zk.mapper.UserMapper;
 import com.aaa.zk.model.User;
 import com.aaa.zk.utils.DateUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,11 +42,19 @@ public class UserService extends BaseService<User> {
     * @return: java.util.List<com.aaa.zk.model.User>
     * @Description: 多条件查询角色信息
     */
-    public List<User> selectUserByField(Map map){
+    public PageInfo<User> selectUserByField(Map map){
         if (null != map){
+            //获取map中的分页页数
+            Object pageNo = map.get("pageNo");
+            //获取分页的页数多少
+            Object pageSize = map.get("pageSize");
+            //封装进pagehelper
+            PageHelper.startPage(Integer.parseInt(pageNo.toString()),Integer.parseInt(pageSize.toString()));
             List<User> users = userMapper.selectUserByField(map);
             if (null != users && users.size() > 0){
-                return users;
+                //将搜索的结果集 放入pageinfo返回
+                PageInfo<User> pageInfo = new PageInfo<User>(users);
+                return pageInfo;
             }
             return null;
         }
