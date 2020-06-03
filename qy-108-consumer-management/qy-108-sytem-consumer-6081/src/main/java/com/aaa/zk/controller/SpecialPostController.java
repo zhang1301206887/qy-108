@@ -20,9 +20,9 @@ public class SpecialPostController extends BaseController {
     @Autowired
     private IQYSpecialPostService iqySpecialPostService;
 
-    @GetMapping("selectSpecialPostCount/{userId}")
+    @GetMapping("selectSpecialPostCount")
     @ApiOperation(value = "查询功能", notes = "特殊岗位员工数量查询")
-    public ResultData selectSpecialPostCount(@PathVariable("userId") Object userId){
+    public ResultData selectSpecialPostCount(@RequestParam("userId") Object userId){
         return iqySpecialPostService.selectSpecialPostCount(userId);
     }
 

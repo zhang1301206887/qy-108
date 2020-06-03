@@ -26,9 +26,9 @@ public class ResourceController extends BaseController {
      * @Date
      *   根据refBizId查询附件材料
      */
-    @GetMapping("selectResourceByRefBizId/{id}")
+    @GetMapping("selectResourceByRefBizId")
     @ApiOperation(value = "查询功能",notes = "根据项目id查询附件材料")
-    public ResultData selectResourceByRefBizId(@PathVariable("id") Object id){
+    public ResultData selectResourceByRefBizId(@RequestParam("id") Object id){
         List<Resource> list = iqyResourceService.selectResourceByRefBizId(id);
         if (null != list && !"".equals(list)){
             return selelctSuccess(list);

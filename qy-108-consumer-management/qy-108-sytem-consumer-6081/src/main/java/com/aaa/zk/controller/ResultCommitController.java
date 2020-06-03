@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,9 +28,9 @@ public class ResultCommitController extends BaseController {
      * @Date
      *   根据refId查询项目汇交结果
      */
-    @GetMapping("selectResultCommitByRefId/{refId}")
+    @GetMapping("selectResultCommitByRefId")
     @ApiOperation(value = "查询功能",notes = "根据refId查询项目汇交结果")
-    public ResultData selectResultCommitByRefId(@PathVariable("refId") Object refId){
+    public ResultData selectResultCommitByRefId(@RequestParam("refId") Object refId){
         ResultCommit resultCommit = iqyResultCommitService.selectResultCommitByRefId(refId);
         if (null != resultCommit){
             return selelctSuccess(resultCommit);
