@@ -17,8 +17,8 @@ public interface IQYUserService {
      * 查询所有
      * @return
      */
-    @GetMapping("/selectAll")
-     List<User> userSelectAll();
+    @PostMapping("/selectAll")
+     ResultData userSelectAll(@RequestBody Map map);
 
     /**
      * 查询一条
@@ -26,7 +26,7 @@ public interface IQYUserService {
      * @return
      */
     @PostMapping("/selectOne")
-     User userSelectOne(@RequestBody User user);
+    ResultData userSelectOne(@RequestBody User user);
 
     /**
      * @Author: He create on 2020/5/29 22:34
@@ -43,21 +43,21 @@ public interface IQYUserService {
      * @return
      */
     @PostMapping("/userAdd")
-     Integer userAdd(@RequestBody User user);
+    ResultData userAdd(@RequestBody User user);
     /**
      * 修改用户
      * @param user
      * @return
      */
     @PostMapping("/userUpdate")
-     Integer userUpdate(@RequestBody User user);
+    ResultData userUpdate(@RequestBody User user);
     /**
      * 删除用户
      * @param user
      * @return
      */
     @PostMapping("/userDelete")
-     Integer userDelete(@RequestBody User user);
+    ResultData userDelete(@RequestBody User user);
 
     /**
      * 批量删除
@@ -65,20 +65,13 @@ public interface IQYUserService {
      * @return
      */
     @PostMapping("/userDeleteAll")
-     Integer userDeleteAll(@RequestBody String id);
+    ResultData userDeleteAll(@RequestBody String id);
     /**
      * 密码重置
      * @param user
      * @return
      */
     @PostMapping("/userPassword")
-     Integer userPassWord(@RequestBody User user);
+    ResultData userPassWord(@RequestBody User user);
 
-    /**
-     * 用户重置
-     * @param user
-     * @return
-     */
-    @PostMapping("/resetUser")
-     Integer resetUser(@RequestBody User user);
 }

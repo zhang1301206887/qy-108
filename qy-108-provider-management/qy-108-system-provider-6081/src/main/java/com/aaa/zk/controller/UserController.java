@@ -18,7 +18,7 @@ import java.util.Map;
 
 
 @RestController
-public class UserController extends CommonController<User> {
+public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
@@ -26,9 +26,13 @@ public class UserController extends CommonController<User> {
      * 查询所有
      * @return
      */
-    @GetMapping("/selectAll")
-    public List<User> userSelectAll(){
-        return userService.userSlelectAll();
+    @PostMapping("/selectAll")
+    public ResultData userSelectAll(@RequestBody Map map){
+        PageInfo<User> userPageInfo = userService.userSlelectAll(map);
+        if (userPageInfo !=null && !"".equals(userPageInfo)){
+            return selelctSuccess(userPageInfo);
+        }
+        return selelctFalied();
     }
     /**
     * @Author: He create on 2020/5/29 22:34
@@ -50,9 +54,13 @@ public class UserController extends CommonController<User> {
      * @return
      */
     @PostMapping("/selectOne")
-    public User userSelectOne(@RequestBody User user){
-        System.out.println("***"+user);
-        return userService.userSelectOne(user);
+    public ResultData userSelectOne(@RequestBody User user){
+        User user1 = userService.userSelectOne(user);
+        if (user1 != null && !"".equals(user1)){
+            return selelctSuccess(user1);
+        }else {
+            return selelctFalied();
+        }
     }
 
     /**
@@ -61,9 +69,13 @@ public class UserController extends CommonController<User> {
      * @return
      */
     @PostMapping("/userAdd")
-    public Integer userAdd(@RequestBody User user){
-        System.out.println("***"+user);
-         return userService.userAdd(user);
+    public ResultData userAdd(@RequestBody User user){
+        Integer integer = userService.userAdd(user);
+        if (integer>0){
+            return insertSuccess();
+        }else {
+            return insertFalied();
+        }
     }
 
     /**
@@ -72,9 +84,13 @@ public class UserController extends CommonController<User> {
      * @return
      */
     @PostMapping("/userUpdate")
-    public Integer userUpdate(@RequestBody User user){
-        System.out.println("8888"+user);
-         return userService.userUpdate(user);
+    public ResultData userUpdate(@RequestBody User user){
+        Integer integer = userService.userUpdate(user);
+        if (integer>0){
+            return updataSuccess();
+        }else {
+            return updateFalied();
+        }
     }
 
     /**
@@ -83,8 +99,13 @@ public class UserController extends CommonController<User> {
      * @return
      */
     @PostMapping("/userDelete")
-    public Integer userDelete(@RequestBody User user){
-        return userService.userDelete(user);
+    public ResultData userDelete(@RequestBody User user){
+        Integer integer = userService.userDelete(user);
+        if (integer>0){
+            return deleteSuccess();
+        }else {
+            return deleteFalied();
+        }
     }
 
     /**
@@ -93,9 +114,13 @@ public class UserController extends CommonController<User> {
      * @return
      */
     @PostMapping("/userDeleteAll")
-    public Integer userDeleteAll(@RequestBody String id){
-        System.out.println("****"+id);
-       return userService.userDeleteAll(id);
+    public ResultData userDeleteAll(@RequestBody String id){
+        Integer integer = userService.userDeleteAll(id);
+        if (integer>0){
+            return super.deleteSuccess();
+        }else {
+            return super.deleteFalied();
+        }
     }
 
     /**
@@ -104,22 +129,13 @@ public class UserController extends CommonController<User> {
      * @return
      */
     @PostMapping("/userPassword")
-    public Integer userPassWord(@RequestBody User user){
-        return userService.UserPassword(user);
+    public ResultData userPassWord(@RequestBody User user){
+        Integer integer = userService.UserPassword(user);
+        if (integer>0){
+            return updataSuccess();
+        }else {
+            return updateFalied();
+        }
     }
 
-    /**
-     * 用户重置
-     * @param user
-     * @return
-     */
-    @PostMapping("/resetUser")
-    public Integer resetUser(@RequestBody User user){
-        return userService.resetUser(user);
-    }
-
-
-    public BaseService<User> getBaseService() {
-        return userService;
-    }
 }

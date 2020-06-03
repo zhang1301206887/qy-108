@@ -18,7 +18,7 @@
   </resultMap>
 
 
-  <select id="MProAuditSelectAll" resultType="HashMap">
+  <select id="MProAuditSelectAll" resultType="com.aaa.zk.model.MappingProject">
     select distinct a.* from t_mapping_project a inner join t_audit b on a.id=b.ref_id where b.type=2
   </select>
   
@@ -32,4 +32,7 @@
   <select id="likeMappingProAuditSelect" resultType="HashMap" parameterType="Object">
     select distinct a.*,b.id auditid from t_mapping_project a inner join t_audit b on a.id=b.ref_id where b.type=2 and b.status=2 and a.project_name like "%"#{projectName}"%"
   </select>
+  <update id="updateStatus" parameterType="Long">
+    update t_audit set status=null where id=#{id};
+  </update>
 </mapper>

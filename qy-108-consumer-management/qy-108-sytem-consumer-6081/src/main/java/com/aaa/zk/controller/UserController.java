@@ -2,6 +2,7 @@ package com.aaa.zk.controller;
 
 import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
+import com.aaa.zk.model.MappingProject;
 import com.aaa.zk.model.User;
 import com.aaa.zk.service.IQYUserService;
 import io.swagger.annotations.Api;
@@ -23,15 +24,11 @@ public class UserController extends BaseController {
      * 查询所有用户信息
      * @return
      */
-    @GetMapping("/userSelectAll")
+    @PostMapping("/userSelectAll")
     @ApiOperation(value = "用户功能",notes = "查询所有用户")
-    public ResultData userSelectAll(){
-        List<User> users = iqyUserService.userSelectAll();
-        if (users != null && !"".equals(users)){
-            return super.selelctSuccess(users);
-        }else {
-            return super.selelctFalied();
-        }
+    public ResultData userSelectAll(@RequestBody Map map){
+         return iqyUserService.userSelectAll(map);
+
     }
 
     /**
@@ -42,12 +39,8 @@ public class UserController extends BaseController {
     @PostMapping("/selectOne")
     @ApiOperation(value = "用户功能",notes = "查询单个用户")
     public ResultData userSelectOne( User user){
-        User user1 = iqyUserService.userSelectOne(user);
-        if (user1 != null && !"".equals(user1)){
-            return super.selelctSuccess(user1);
-        }else {
-            return super.selelctFalied();
-        }
+        return iqyUserService.userSelectOne(user);
+
     }
 
     /**
@@ -69,12 +62,8 @@ public class UserController extends BaseController {
     @PutMapping("/userAdd")
     @ApiOperation(value = "用户功能",notes = "添加用户")
     public ResultData userAdd( User user){
-        Integer integer = iqyUserService.userAdd(user);
-        if (integer>0){
-            return super.insertSuccess();
-        }else {
-            return super.insertFalied();
-        }
+        return iqyUserService.userAdd(user);
+
     }
 
     /**
@@ -85,12 +74,8 @@ public class UserController extends BaseController {
     @PostMapping("/userUpdate")
     @ApiOperation(value = "用户功能",notes = "修改用户")
     public ResultData userUpdate( User user){
-        Integer integer = iqyUserService.userUpdate(user);
-        if (integer>0){
-            return super.updataSuccess();
-        }else {
-            return super.updateFalied();
-        }
+        return iqyUserService.userUpdate(user);
+
     }
 
     /**
@@ -101,12 +86,8 @@ public class UserController extends BaseController {
     @DeleteMapping("/userDelete")
     @ApiOperation(value = "用户功能",notes = "删除用户")
     public ResultData userDelete( User user){
-        Integer integer = iqyUserService.userDelete(user);
-        if (integer>0){
-            return super.deleteSuccess();
-        }else {
-            return super.deleteFalied();
-        }
+        return iqyUserService.userDelete(user);
+
     }
 
     /**
@@ -117,12 +98,8 @@ public class UserController extends BaseController {
     @PostMapping("/userDeleteAll")
     @ApiOperation(value = "用户功能",notes = "批量删除用户")
     public ResultData userDelete(String id){
-        Integer integer = iqyUserService.userDeleteAll(id);
-        if (integer>0){
-            return super.deleteSuccess();
-        }else {
-            return super.deleteFalied();
-        }
+        return iqyUserService.userDeleteAll(id);
+
     }
 
     /**
@@ -133,27 +110,9 @@ public class UserController extends BaseController {
     @PostMapping("/userPassWord")
     @ApiOperation(value = "用户功能",notes = "重置密码")
     public ResultData userPassWord( User user){
-        Integer integer = iqyUserService.userPassWord(user);
-        if (integer>0){
-            return super.updataSuccess();
-        }else {
-            return super.updateFalied();
-        }
+        return iqyUserService.userPassWord(user);
+
     }
-    /**
-     * 用户重置
-     * @param user
-     * @return
-     */
-    @PostMapping("/resetUser")
-    @ApiOperation(value = "用户功能",notes = "用户重置")
-    public ResultData resetUser( User user){
-        Integer integer = iqyUserService.resetUser(user);
-        if (integer>0){
-            return super.updataSuccess();
-        }else {
-            return super.updateFalied();
-        }
-    }
+
 
 }

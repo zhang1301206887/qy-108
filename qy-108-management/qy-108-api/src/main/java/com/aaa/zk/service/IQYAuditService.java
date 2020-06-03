@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Map;
+
 /**
  * @ClassName AuditService
  * @Author gfq
@@ -23,8 +25,8 @@ public interface IQYAuditService {
      * 项目审核中项目信息
      * @Date 16:21 2020/5/26
      **/
-    @GetMapping("MProAuditSelectAll")
-    ResultData MProAuditSelectAll();
+    @PostMapping("MProAuditSelectAll")
+    ResultData MProAuditSelectAll(@RequestBody Map map);
 
     /**
      * @Author gfq
@@ -48,8 +50,8 @@ public interface IQYAuditService {
      * 项目审核-项目审核-查询待审核的项目
      * @Date 21:00 2020/5/26
      **/
-    @GetMapping("MPAuditSelect")
-    ResultData MPAuditSelect();
+    @PostMapping("MPAuditSelect")
+    ResultData MPAuditSelect(@RequestBody Map map);
 
     /**
      * @Author gfq

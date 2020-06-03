@@ -3,12 +3,15 @@ package com.aaa.zk.controller;
 import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Audit;
+import com.aaa.zk.model.MappingProject;
 import com.aaa.zk.service.AuditService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName AuditController
@@ -38,11 +41,11 @@ public class AuditController  extends BaseController {
      * 项目审核中项目信息
      * @Date 16:21 2020/5/26
      **/
-    @GetMapping("MProAuditSelectAll")
-    public ResultData MProAuditSelectAll(){
-        List<HashMap> hashMaps = auditService.MProAuditSelectAll();
-        if (null != hashMaps && !"".equals(hashMaps)){
-            return selelctSuccess(hashMaps);
+    @PostMapping("MProAuditSelectAll")
+    public ResultData MProAuditSelectAll(@RequestBody Map map){
+        PageInfo<MappingProject> mappingProjectPageInfo = auditService.MProAuditSelectAll(map);
+        if (null != mappingProjectPageInfo && !"".equals(mappingProjectPageInfo)){
+            return selelctSuccess(mappingProjectPageInfo);
         }else {
             return selelctFalied();
         }
@@ -86,11 +89,11 @@ public class AuditController  extends BaseController {
      * 项目审核-项目审核-查询待审核的项目
      * @Date 21:00 2020/5/26
      **/
-    @GetMapping("MPAuditSelect")
-    public ResultData MPAuditSelect(){
-        List<HashMap> hashMaps = auditService.MPAuditSelect();
-        if (null != hashMaps && !"".equals(hashMaps)){
-            return selelctSuccess(hashMaps);
+    @PostMapping("MPAuditSelect")
+    public ResultData MPAuditSelect(@RequestBody Map map){
+        PageInfo<List> listPageInfo = auditService.MPAuditSelect(map);
+        if (null != listPageInfo && !"".equals(listPageInfo)){
+            return selelctSuccess(listPageInfo);
         }else {
             return selelctFalied();
         }

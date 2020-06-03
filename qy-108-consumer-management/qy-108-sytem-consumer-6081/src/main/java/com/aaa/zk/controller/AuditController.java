@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 
 /**
  * @ClassName AuditController
@@ -27,10 +29,10 @@ public class AuditController extends BaseController {
      * 项目审核中项目信息
      * @Date 16:21 2020/5/26
      **/
-    @GetMapping("MProAuditSelectAll")
+    @PostMapping("MProAuditSelectAll")
     @ApiOperation(value = "查询功能",notes = "查询所有的项目审核中项目数据")
-    public ResultData MProAuditSelectAll(){
-        return iqyAuditService.MProAuditSelectAll();
+    public ResultData MProAuditSelectAll(@RequestBody Map map){
+        return iqyAuditService.MProAuditSelectAll(map);
     }
 
     /**
@@ -61,10 +63,10 @@ public class AuditController extends BaseController {
      * 项目审核-项目审核-查询待审核的项目
      * @Date 21:00 2020/5/26
      **/
-    @GetMapping("MPAuditSelect")
+    @PostMapping("MPAuditSelect")
     @ApiOperation(value = "查询功能",notes = "查询待审核的项目")
-    public ResultData MPAuditSelect(){
-        return iqyAuditService.MPAuditSelect();
+    public ResultData MPAuditSelect(@RequestBody Map map){
+        return iqyAuditService.MPAuditSelect(map);
     }
 
     /**
