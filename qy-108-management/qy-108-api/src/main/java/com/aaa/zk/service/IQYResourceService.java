@@ -21,8 +21,8 @@ public interface IQYResourceService {
      * @Date
      *       根据项目id查询附件材料
      */
-    @GetMapping("selectResourceByRefBizId/{id}")
-    List<Resource> selectResourceByRefBizId(@PathVariable("id") Object id);
+    @GetMapping("selectResourceByRefBizId")
+    List<Resource> selectResourceByRefBizId(@RequestParam("id") Object id);
     /**
      * @Author: He create on 2020/5/29 22:24
      * @param: [id]

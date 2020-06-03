@@ -16,8 +16,8 @@ public interface IQYSpecialPostService {
     * @Date
     *   根据userId查询特岗员工数量
     */
-    @GetMapping("selectSpecialPostCount/{userId}")
-    public ResultData selectSpecialPostCount(@PathVariable("userId") Object userId);
+    @GetMapping("selectSpecialPostCount")
+    public ResultData selectSpecialPostCount(@RequestParam("userId") Object userId);
 
     /**
      * @Author: He create on 2020/5/26 22:07

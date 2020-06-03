@@ -6,6 +6,7 @@ import com.aaa.zk.service.ResultCommitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -24,8 +25,8 @@ public class ResultCommitController {
     * @Date
     *   根据refId查询项目汇交结果
     */
-    @GetMapping("selectResultCommitByRefId/{refId}")
-    public ResultCommit selectResultCommitByRefId(@PathVariable("refId") Object refId){
+    @GetMapping("selectResultCommitByRefId")
+    public ResultCommit selectResultCommitByRefId(@RequestParam("refId") Object refId){
         ResultCommit resultCommit = resultCommitService.selectResultCommitByRefId(refId);
         if (null != resultCommit && !"".equals(resultCommit)){
             return resultCommit;

@@ -113,8 +113,8 @@ public class ResourceController extends CommonController<Resource> {
      * @Date
      *       根据 项目id查询 附件材料
      */
-    @GetMapping("selectResourceByRefBizId/{id}")
-    public List<Resource> selectResourceByRefBizId(@PathVariable("id") Object id){
+    @GetMapping("selectResourceByRefBizId")
+    public List<Resource> selectResourceByRefBizId(@RequestParam("id") Object id){
         return resourceService.selectResourceByRefBizId(id);
     }
 }

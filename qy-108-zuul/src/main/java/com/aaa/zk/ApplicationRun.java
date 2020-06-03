@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @Company AAA软件教育
- * @Author Seven Lee
+ * @Author zk
  * @Date Create in 2020/6/2 15:02
  * @Description
  **/

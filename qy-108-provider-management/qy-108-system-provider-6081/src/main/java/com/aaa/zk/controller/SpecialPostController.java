@@ -24,8 +24,8 @@ public class SpecialPostController extends BaseController{
     * @Date
     * 根据userId查询公司特岗人员数量
     */
-    @GetMapping("selectSpecialPostCount/{userId}")
-    public ResultData selectSpecialPostCount(@PathVariable("userId") Object userId){
+    @GetMapping("selectSpecialPostCount")
+    public ResultData selectSpecialPostCount(@RequestParam("userId") Object userId){
         Integer i = specialPostService.selectSpecialPostCount(userId);
         if (i > 0){
             return selelctSuccess(i);
