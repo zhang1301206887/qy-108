@@ -58,9 +58,8 @@ public class EquipmentController extends BaseController {
     * @Description: 添加新设备信息
     */
     @PutMapping("insertEqui")
-    public ResultData insertEqui(@RequestBody List list){
-        Map equipment = (Map) list.get(0);
-        Integer insertEqui = equipmentService.insertEqui(Map2BeanUtils.map2Bean(equipment,Equipment.class));
+    public ResultData insertEqui(@RequestBody Equipment equipment){
+        Integer insertEqui = equipmentService.insertEqui(equipment);
         if (insertEqui > 0){
             return insertSuccess();
         }
@@ -93,15 +92,5 @@ public class EquipmentController extends BaseController {
             return deleteSuccess();
         }
         return deleteFalied();
-    }
-
-    public static void main(String[] args) {
-        Map map = new HashMap();
-        map.put("id","55");
-        map.put("parentId","0");
-        map.put("deptName","cs");
-        map.put("createTime","2020-06-02");
-        Dept dept = Map2BeanUtils.map2Bean(map, Dept.class);
-        System.out.println(dept);
     }
 }
