@@ -7,10 +7,7 @@ import com.aaa.zk.service.IQYResourceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,9 +36,25 @@ public class ResourceController extends BaseController {
             return selelctFalied();
         }
     }
+
+    @GetMapping("selectResourceByPrimaryKey")
+    @ApiOperation(value = "查询功能",notes = "根据附件id查询附件材料")
+    public ResultData selectResourceByPrimaryKey(@RequestParam("id") Object id){
+        return iqyResourceService.selectResourceByPrimaryKey(id);
+    }
     @GetMapping("selectResourceById")
-    @ApiOperation(value = "查询功能",notes = "根据单位id查询所有的资源数据")
+    @ApiOperation(value = "查询功能",notes = "根据单位id查询所有的附件数据")
     public ResultData selectResourceById(@RequestParam("id") Object id){
         return iqyResourceService.selectResourceById(id);
+    }
+    @PostMapping("updateResourceById")
+    @ApiOperation(value = "更新功能",notes = "根据主键id更新附件数据")
+    public ResultData updateResourceById(@RequestBody Resource resource){
+        return iqyResourceService.updateResourceById(resource);
+    }
+    @PutMapping("insertResource")
+    @ApiOperation(value = "新增功能",notes = "新增附件数据")
+    public ResultData insertResource(@RequestBody Resource resource){
+        return iqyResourceService.insertResource(resource);
     }
 }

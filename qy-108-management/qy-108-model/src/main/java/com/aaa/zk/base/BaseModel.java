@@ -33,5 +33,4 @@ public class BaseModel implements Serializable {
     @Max(value = 100,message ="时间长度最长不能超过100")
     private String modifyTime;
 
-
 }

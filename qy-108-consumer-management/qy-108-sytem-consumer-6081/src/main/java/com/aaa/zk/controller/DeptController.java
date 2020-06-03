@@ -91,7 +91,7 @@ public class DeptController extends BaseController {
     */
     @DeleteMapping("deleteDeptByPrimaryKey")
     @ApiOperation(value = "删除功能",notes = "根据主键id删除部门数据")
-    public ResultData deleteByPrimaryKey(@RequestBody Object id){
+    public ResultData deleteByPrimaryKey(@RequestParam("id") Object id){
         return deptService.deleteDeptByPrimaryKey(id);
     }
     /**

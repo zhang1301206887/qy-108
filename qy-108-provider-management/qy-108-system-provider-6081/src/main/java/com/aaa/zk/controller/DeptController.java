@@ -101,7 +101,7 @@ public class DeptController extends BaseController {
     * @Description: 根据主键id 删除部门
     */
     @DeleteMapping("deleteDeptByPrimaryKey")
-    public ResultData deleteByPrimaryKey(@RequestBody Object id){
+    public ResultData deleteByPrimaryKey(@RequestParam("id") Object id){
         Integer deleteResult = deptService.deleteDeptByPrimaryKey(id);
         if (deleteResult > 0){
             return deleteSuccess();
