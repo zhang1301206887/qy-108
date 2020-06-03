@@ -11,6 +11,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @FeignClient(value = "tech-interface")
 public interface IQYTechService {
@@ -31,7 +32,8 @@ public interface IQYTechService {
      * @Description: 根据公司id查询技术人员信息
      */
     @GetMapping("selectTechByUserId")
-    public ResultData selectTechByUserId(@RequestParam("userId") Object userId);
+    public ResultData selectTechByUserId(@RequestParam("userId") Object userId,@RequestParam("pageNo") Integer pageNo,
+                                         @RequestParam("pageSize") Integer pageSize);
 
     /**
      * @Author: He create on 2020/5/24 23:39

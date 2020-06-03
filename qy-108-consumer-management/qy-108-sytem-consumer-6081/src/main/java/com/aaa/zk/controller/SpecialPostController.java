@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * @Author zk
  * @Date 2020/5/25
@@ -28,8 +30,9 @@ public class SpecialPostController extends BaseController {
 
     @GetMapping("selectSpecialPostByUserId")
     @ApiOperation(value = "查询功能",notes = "根据公司id查询特殊岗位员工数据")
-    public ResultData selectSpecialPostByUserId(@RequestParam("userId") Object userId){
-        return iqySpecialPostService.selectSpecialPostByUserId(userId);
+    public ResultData selectSpecialPostByUserId(@RequestParam("userId") Object userId,@RequestParam("pageNo") Integer pageNo,
+                                                @RequestParam("pageSize") Integer pageSize){
+        return iqySpecialPostService.selectSpecialPostByUserId(userId,pageNo,pageSize);
     }
 
     @GetMapping("selectSpecialByPrimaryKey")

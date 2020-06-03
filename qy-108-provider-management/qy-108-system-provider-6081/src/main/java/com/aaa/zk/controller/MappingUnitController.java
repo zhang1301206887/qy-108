@@ -7,6 +7,7 @@ import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.MappingUnit;
 import com.aaa.zk.service.MappingUnitService;
 import com.aaa.zk.utils.DateUtils;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,10 +56,15 @@ public class MappingUnitController extends CommonController<MappingUnit> {
     *查询所有单位基本信息
     */
     @GetMapping("/selectAllUnit")
-    public ResultData selectAllUnit(){
-        List<MappingUnit> mappingUnits = mappingUnitService.selectAllUnit();
-        if (null != mappingUnits){
-            return selelctSuccess(mappingUnits);
+    public ResultData selectAllUnit(@RequestParam("pageNo") Integer pageNo ,@RequestParam("pageSize") Integer pageSize){
+        try {
+            PageInfo<MappingUnit> mappingUnitPageInfo = mappingUnitService.queryListByPage(null, pageNo, pageSize);
+            if (null != mappingUnitPageInfo && !"".equals(mappingUnitPageInfo)){
+                return selelctSuccess(mappingUnitPageInfo);
+            }
+            return selelctFalied();
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return selelctFalied();
     }
@@ -70,9 +76,9 @@ public class MappingUnitController extends CommonController<MappingUnit> {
     */
     @PostMapping("selectUnitByField")
     public ResultData selectUnitByField(@RequestBody Map map){
-        List<MappingUnit> mappingUnits = mappingUnitService.selectUnitByField(map);
-        if (null != mappingUnits){
-            return selelctSuccess(mappingUnits);
+        PageInfo<MappingUnit> pageInfo = mappingUnitService.selectUnitByField(map);
+        if (null != pageInfo && !"".equals(pageInfo)){
+            return selelctSuccess(pageInfo);
         }
         return selelctFalied();
     }

@@ -11,6 +11,8 @@ import com.aaa.zk.model.Equipment;
 import com.aaa.zk.model.Resource;
 import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import static com.aaa.zk.status.CURDStatus.*;
@@ -31,11 +33,14 @@ public class EquipmentService extends BaseService<Equipment> {
      * @return: com.aaa.zk.base.ResultData
      * @Description: 根据公司id查询设备信息
      */
-    public List<Equipment> selectEquiByUserId(Object userId){
-        if (null != userId){
+    public PageInfo<Equipment> selectEquiByUserId(Object userId,Integer pageNo,Integer pageSize){
+        if (null != userId && !"".equals(userId)){
+            //封装进pagehelper
+            PageHelper.startPage(pageNo,pageSize);
             List<Equipment> equipment = equipmentMapper.selectEquiByUserId(userId);
             if (null != equipment && equipment.size() > 0){
-                return equipment;
+                PageInfo<Equipment> pageInfo = new PageInfo<Equipment>(equipment);
+                return pageInfo;
             }
             return null;
         }

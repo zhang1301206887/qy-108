@@ -11,7 +11,7 @@ public interface SpecialPostMapper extends Mapper<SpecialPost> {
 
     Integer selectSpecialPostCount(Object userId);
 
-    List<Map> selectSpecialPostByUserId(Object userId);
+    List selectSpecialPostByUserId(Object userId);
 
     List<Resource> selectResourceById(Object id);
 }

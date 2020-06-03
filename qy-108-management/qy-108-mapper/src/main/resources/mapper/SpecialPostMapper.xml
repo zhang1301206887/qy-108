@@ -24,8 +24,8 @@
         select count(*) from t_special_post where user_id = #{userId}
   </select>
   <select id="selectSpecialPostByUserId" resultType="Map" parameterType="java.lang.Object">
-        select s.id,s.name,s.number,d.valuee,s.age,s.school,s.major,s.special_post
-         from t_special_post as s inner join t_dict as t on s.sex = d.keyy and d.FIELD_NAME = 'ssex' user_id = #{userId}
+        select s.id,s.name,s.id_number,d.valuee,s.age,s.school,s.major,s.special_post
+         from t_special_post as s inner join t_dict as d on s.sex = d.keyy and d.FIELD_NAME = 'ssex' and s.user_id = #{userId}
   </select>
   <select id="selectResourceById"  resultType="com.aaa.zk.model.Resource" parameterType="java.lang.Object">
         select * from t_resource where ref_biz_id = #{id}

@@ -56,8 +56,8 @@ public class MappingUnitController extends BaseController {
     */
     @GetMapping("/selectAllUnit")
     @ApiOperation(value = "查询功能",notes = "查询所有单位信息")
-    public ResultData selectAllUnit(){
-        return iqyMappingUnitService.selectAllUnit();
+    public ResultData selectAllUnit(@RequestParam("pageNo") Integer pageNo ,@RequestParam("pageSize") Integer pageSize){
+        return iqyMappingUnitService.selectAllUnit(pageNo,pageSize);
     }
     @PostMapping("selectUnitByField")
     @ApiOperation(value = "查询功能",notes = "多条件查询单位信息")

@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface TechnicistMapper extends Mapper<Technicist> {
 
-    List<Map> selectTechByUserId(Object userId);
+    List selectTechByUserId(Object userId);
 
     List<Resource> selectResourceById(Object id);
 

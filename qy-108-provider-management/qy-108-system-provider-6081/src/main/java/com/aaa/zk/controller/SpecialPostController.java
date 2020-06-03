@@ -4,6 +4,7 @@ import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.SpecialPost;
 import com.aaa.zk.service.SpecialPostService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,10 +42,11 @@ public class SpecialPostController extends BaseController{
      * @Description: 根据公司id查询特殊岗位人员信息
      */
     @GetMapping("selectSpecialPostByUserId")
-    public ResultData selectSpecialPostByUserId(@RequestParam("userId") Object userId){
-        List<Map> specialPosts = specialPostService.selectSpecialPostByUserId(userId);
-        if (null != specialPosts ){
-            return selelctSuccess(specialPosts);
+    public ResultData selectSpecialPostByUserId(@RequestParam("userId") Object userId,@RequestParam("pageNo") Integer pageNo,
+                                                @RequestParam("pageSize") Integer pageSize){
+        PageInfo<Map> mapPageInfo = specialPostService.selectSpecialPostByUserId(userId,pageNo,pageSize);
+        if (null != mapPageInfo && !"".equals(mapPageInfo) ){
+            return selelctSuccess(mapPageInfo);
         }
         return selelctFalied();
     }

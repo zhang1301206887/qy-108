@@ -10,6 +10,8 @@ import com.aaa.zk.model.Equipment;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @FeignClient(value = "equi-interface")
 public interface IQYEquipmentService {
     /**
@@ -19,7 +21,8 @@ public interface IQYEquipmentService {
      * @Description: 根据公司id查询设备信息
      */
     @GetMapping("selectEquiByUserId")
-    public ResultData selectEquiByUserId(@RequestParam("userId") Object userId);
+    public ResultData selectEquiByUserId(@RequestParam("userId") Object userId,@RequestParam("pageNo") Integer pageNo,
+                                         @RequestParam("pageSize") Integer pageSize);
     /**
      * @Author: He create on 2020/5/26 16:55
      * @param: [id]

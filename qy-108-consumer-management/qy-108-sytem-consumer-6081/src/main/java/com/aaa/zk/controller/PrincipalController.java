@@ -14,6 +14,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @Api(value = "负责人信息", tags = "负责人信息管理")
 public class PrincipalController extends BaseController {
@@ -22,8 +24,9 @@ public class PrincipalController extends BaseController {
 
     @GetMapping("selectPrinByUserId")
     @ApiOperation(value = "查询功能",notes = "根据公司id查询负责人数据")
-    public ResultData selectPrinByUserId(@RequestParam("userId") Object userId){
-        return principalService.selectPrinByUserId(userId);
+    public ResultData selectPrinByUserId(@RequestParam("userId") Object userId,@RequestParam("pageNo") Integer pageNo,
+                                         @RequestParam("pageSize") Integer pageSize){
+        return principalService.selectPrinByUserId(userId,pageNo,pageSize);
     }
 
     @GetMapping("selectPrinByPrimaryKey")

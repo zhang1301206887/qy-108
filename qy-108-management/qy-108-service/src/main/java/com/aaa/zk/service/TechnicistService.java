@@ -11,6 +11,8 @@ import com.aaa.zk.model.Resource;
 import com.aaa.zk.model.Technicist;
 import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,10 +47,14 @@ public class TechnicistService extends BaseService<Technicist> {
     * @return: java.util.List<com.aaa.zk.model.Technicist>
     * @Description: 根据公司id查询技术人员信息
     */
-    public List<Map> selectTechByUserId(Object userId){
-        List<Map> technicists = technicistMapper.selectTechByUserId(userId);
-        if (null != technicists && technicists.size() > 0){
-            return technicists;
+    public PageInfo<Map> selectTechByUserId(Object userId,Integer pageNo,Integer pageSize){
+        if (null != userId && !"".equals(userId)){
+            PageHelper.startPage(pageNo,pageSize);
+            List<Map> technicists = technicistMapper.selectTechByUserId(userId);
+            if (null != technicists && technicists.size() > 0){
+                PageInfo<Map> pageInfo = new PageInfo<Map>(technicists);
+                return pageInfo;
+            }
         }
         return null;
     }

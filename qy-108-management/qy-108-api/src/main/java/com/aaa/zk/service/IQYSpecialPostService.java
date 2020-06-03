@@ -5,6 +5,8 @@ import com.aaa.zk.model.SpecialPost;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * @Author zk
  * @Date 2020/5/25
@@ -26,7 +28,8 @@ public interface IQYSpecialPostService {
      * @Description: 根据公司id查询特殊岗位人员信息
      */
     @GetMapping("selectSpecialPostByUserId")
-    public ResultData selectSpecialPostByUserId(@RequestParam("userId") Object userId);
+    public ResultData selectSpecialPostByUserId(@RequestParam("userId") Object userId,@RequestParam("pageNo") Integer pageNo,
+                                                @RequestParam("pageSize") Integer pageSize);
 
     /**
      * @Author: He create on 2020/5/26 22:08

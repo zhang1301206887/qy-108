@@ -38,10 +38,11 @@ public class EquipmentController extends CommonController<Equipment> {
     * @Description: 根据公司id查询设备信息
     */
     @GetMapping("selectEquiByUserId")
-    public ResultData selectEquiByUserId(@RequestParam("userId") Object userId){
-        List<Equipment> equipment = equipmentService.selectEquiByUserId(userId);
-        if (null != equipment){
-            return selelctSuccess(equipment);
+    public ResultData selectEquiByUserId(@RequestParam("userId") Object userId,@RequestParam("pageNo") Integer pageNo,
+                                         @RequestParam("pageSize") Integer pageSize){
+        PageInfo<Equipment> pageInfo = equipmentService.selectEquiByUserId(userId,pageNo,pageSize);
+        if (null != pageInfo && !"".equals(pageInfo)){
+            return selelctSuccess(pageInfo);
         }
         return selelctFalied();
     }

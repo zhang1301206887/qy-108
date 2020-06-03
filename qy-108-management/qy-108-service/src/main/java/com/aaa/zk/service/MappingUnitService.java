@@ -6,6 +6,8 @@ import com.aaa.zk.mapper.MappingUnitMapper;
 import com.aaa.zk.mapper.SpecialPostMapper;
 import com.aaa.zk.mapper.TechnicistMapper;
 import com.aaa.zk.model.MappingUnit;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,11 +98,18 @@ public class MappingUnitService extends BaseService<MappingUnit> {
     * @return: java.util.List<com.aaa.zk.model.MappingUnit>
     * @Description: 条件查询sql拼接
     */
-    public List<MappingUnit> selectUnitByField(Map map){
+    public PageInfo<MappingUnit> selectUnitByField(Map map){
         if (null != map){
+            //获取map中的分页页数
+            Object pageNo = map.get("pageNo");
+            //获取分页的页数多少
+            Object pageSize = map.get("pageSize");
+            //封装进pagehelper
+            PageHelper.startPage(Integer.parseInt(pageNo.toString()),Integer.parseInt(pageSize.toString()));
             List<MappingUnit> mappingUnits = mappingUnitMapper.selectUnitByField(map);
             if (null != mappingUnits && mappingUnits.size() > 0){
-                return mappingUnits;
+                PageInfo<MappingUnit> pageInfo = new PageInfo<MappingUnit>(mappingUnits);
+                return pageInfo;
             }
             return null;
         }

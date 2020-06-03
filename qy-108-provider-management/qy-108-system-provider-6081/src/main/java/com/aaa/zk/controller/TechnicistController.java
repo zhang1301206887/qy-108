@@ -10,6 +10,7 @@ import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Technicist;
 import com.aaa.zk.service.TechnicistService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,10 +45,11 @@ public class TechnicistController extends BaseController {
     * @Description: 根据公司id查询技术人员信息
     */
     @GetMapping("selectTechByUserId")
-    public ResultData selectTechByUserId(@RequestParam("userId") Object userId){
-        List<Map> selectTechByUserId = technicistService.selectTechByUserId(userId);
-        if (null != selectTechByUserId){
-            return selelctSuccess(selectTechByUserId);
+    public ResultData selectTechByUserId(@RequestParam("userId") Object userId,@RequestParam("pageNo") Integer pageNo,
+                                         @RequestParam("pageSize") Integer pageSize){
+        PageInfo<Map> mapPageInfo = technicistService.selectTechByUserId(userId,pageNo,pageSize);
+        if (null != mapPageInfo && !"".equals(mapPageInfo)){
+            return selelctSuccess(mapPageInfo);
         }
         return selelctFalied();
     }

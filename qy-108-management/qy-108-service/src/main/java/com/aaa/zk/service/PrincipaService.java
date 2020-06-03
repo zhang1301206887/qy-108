@@ -12,6 +12,8 @@ import com.aaa.zk.model.Resource;
 import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
 import com.aaa.zk.utils.Map2BeanUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +35,14 @@ public class PrincipaService extends BaseService<Principal> {
     * @return: com.aaa.zk.model.Principal
     * @Description: 根据公司id查询负责人
     */
-    public Map selectPrinByUserId(Object userId){
-        if (null != userId){
-            Map map = principalMapper.selectPrinByUserId(userId);
-            if (null != map){
-                return map;
+    public PageInfo<Map> selectPrinByUserId(Object userId,Integer pageNo,Integer pageSize){
+        if (null != userId && !"".equals(userId)){
+            PageHelper.startPage(pageNo,pageSize);
+            //封装进pagehelper
+            List list = principalMapper.selectPrinByUserId(userId);
+            if (null != list && list.size() > 0){
+                PageInfo<Map> principalPageInfo = new PageInfo<Map>(list);
+                return principalPageInfo;
             }
             return null;
         }

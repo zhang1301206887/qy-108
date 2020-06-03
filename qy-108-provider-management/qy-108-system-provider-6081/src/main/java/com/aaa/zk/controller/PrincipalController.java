@@ -9,6 +9,7 @@ import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Principal;
 import com.aaa.zk.service.PrincipaService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,10 +27,11 @@ public class PrincipalController extends BaseController {
     * @Description: 根据公司id查询负责人信息
     */
     @GetMapping("selectPrinByUserId")
-    public ResultData selectPrinByUserId(@RequestParam("userId") Object userId){
-        Map principal = principaService.selectPrinByUserId(userId);
-        if (null != principal){
-            return selelctSuccess(principal);
+    public ResultData selectPrinByUserId(@RequestParam("userId") Object userId,@RequestParam("pageNo") Integer pageNo,
+                                         @RequestParam("pageSize") Integer pageSize){
+        PageInfo<Map> mapPageInfo = principaService.selectPrinByUserId(userId,pageNo,pageSize);
+        if (null != mapPageInfo && !"".equals(mapPageInfo)){
+            return selelctSuccess(mapPageInfo);
         }
         return selelctFalied();
     }

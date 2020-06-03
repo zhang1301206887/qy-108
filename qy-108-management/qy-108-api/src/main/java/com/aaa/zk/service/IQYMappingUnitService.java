@@ -37,7 +37,7 @@ public interface IQYMappingUnitService {
     * 查询所有单位信息
     */
     @GetMapping("/selectAllUnit")
-    ResultData selectAllUnit();
+    ResultData selectAllUnit(@RequestParam("pageNo") Integer pageNo ,@RequestParam("pageSize") Integer pageSize);
 
     /**
      * @Author: He create on 2020/5/28 21:24

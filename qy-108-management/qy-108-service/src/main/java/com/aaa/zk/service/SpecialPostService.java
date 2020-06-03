@@ -6,8 +6,12 @@ import com.aaa.zk.model.Resource;
 import com.aaa.zk.model.SpecialPost;
 import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import static com.aaa.zk.status.CURDStatus.*;
 
 import java.util.HashMap;
@@ -48,11 +52,13 @@ public class SpecialPostService extends BaseService<SpecialPost> {
     * @return: java.util.List<com.aaa.zk.model.SpecialPost>
     * @Description: 根据公司id查询特殊岗位人员信息
     */
-    public List<Map> selectSpecialPostByUserId(Object userId){
-        if (null != userId){
-            List<Map> specialPosts = specialPostMapper.selectSpecialPostByUserId(userId);
+    public PageInfo<Map> selectSpecialPostByUserId(Object userId,Integer pageNo,Integer pageSize){
+        if (null != userId && !"".equals(userId)){
+            PageHelper.startPage(pageNo,pageSize);
+            List specialPosts = specialPostMapper.selectSpecialPostByUserId(userId);
             if (null != specialPosts && specialPosts.size() > 0){
-                return specialPosts;
+                PageInfo<Map> postPageInfo = new PageInfo<Map>(specialPosts);
+                return postPageInfo;
             }
             return null;
         }

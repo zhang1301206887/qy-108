@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @Api(value = "技术人员信息", tags = "技术人员管理")
@@ -31,8 +32,9 @@ public class TechController extends BaseController {
 
     @GetMapping("selectTechByUserId")
     @ApiOperation(value = "查询功能",notes = "根据公司id查询技术人员数据")
-    public ResultData selectTechByUserId(@RequestParam("userId") Object userId){
-        return techService.selectTechByUserId(userId);
+    public ResultData selectTechByUserId(@RequestParam("userId") Object userId,@RequestParam("pageNo") Integer pageNo,
+                                         @RequestParam("pageSize") Integer pageSize){
+        return techService.selectTechByUserId(userId,pageNo,pageSize);
     }
 
     @GetMapping("selectTechByPrimaryKey")

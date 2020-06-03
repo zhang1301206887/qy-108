@@ -9,6 +9,6 @@ import java.util.Map;
 
 public interface PrincipalMapper extends Mapper<Principal> {
 
-    Map selectPrinByUserId(Object userId);
+    List selectPrinByUserId(Object userId);
     List<Resource> selectResourceById(Object prinId);
 }
