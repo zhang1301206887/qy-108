@@ -3,9 +3,7 @@ package com.aaa.zk.service;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Resource;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +22,14 @@ public interface IQYResourceService {
     @GetMapping("selectResourceByRefBizId/{id}")
     List<Resource> selectResourceByRefBizId(@PathVariable("id") Object id);
     /**
+     * @Author: He create on 2020/6/3 20:48
+     * @param: [id]
+     * @return: com.aaa.zk.base.ResultData
+     * @Description: 根据附件的id查询附件信息
+     */
+    @GetMapping("selectResourceByPrimaryKey")
+    public ResultData selectResourceByPrimaryKey(@RequestParam("id") Object id);
+    /**
      * @Author: He create on 2020/5/29 22:24
      * @param: [id]
      * @return: com.aaa.zk.base.ResultData
@@ -31,5 +37,21 @@ public interface IQYResourceService {
      */
     @GetMapping("selectResourceById")
     public ResultData selectResourceById(@RequestParam("id") Object id);
+    /**
+     * @Author: He create on 2020/5/29 22:25
+     * @param: [resource]
+     * @return: com.aaa.zk.base.ResultData
+     * @Description: 修改附件信息
+     */
+    @PostMapping("updateResourceById")
+    public ResultData updateResourceById(@RequestBody Resource resource);
+    /**
+     * @Author: He create on 2020/5/30 23:06
+     * @param: [resource]
+     * @return: com.aaa.zk.base.ResultData
+     * @Description: 添加新的附件信息
+     */
+    @PutMapping("insertResource")
+    public ResultData insertResource(@RequestBody Resource resource);
 
 }

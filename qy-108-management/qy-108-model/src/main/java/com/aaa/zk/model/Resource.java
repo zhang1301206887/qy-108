@@ -7,14 +7,28 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Table(name = "t_resource")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class Resource extends BaseModel {
+public class Resource implements Serializable {
+
+    @Id
+    @NotNull
+    private Long id;
+
+    @Column(name = "create_time")
+    private String createTime;
+
+    @Column(name = "modify_time")
+    private String modifyTime;
     /**
      * 资源名称
      */

@@ -66,7 +66,7 @@ public interface IQYDeptService {
      * @Description: 根据主键id删除一条数据
      */
     @DeleteMapping("deleteDeptByPrimaryKey")
-    ResultData deleteDeptByPrimaryKey(@RequestBody Object id);
+    ResultData deleteDeptByPrimaryKey(@RequestParam("id") Object id);
     /**
      * @Author: He create on 2020/5/22 9:57
      * @param: [list]

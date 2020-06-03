@@ -49,14 +49,44 @@ public class ResourceController extends CommonController<Resource> {
         return selelctFalied();
     }
     /**
+    * @Author: He create on 2020/6/3 20:48
+    * @param: [id]
+    * @return: com.aaa.zk.base.ResultData
+    * @Description: 根据附件的id查询附件信息
+    */
+    @GetMapping("selectResourceByPrimaryKey")
+    public ResultData selectResourceByPrimaryKey(@RequestParam("id") Object id){
+        Resource resource = new Resource();
+        try {
+            Resource resource1 = resourceService.queryOne(resource.setId(Long.valueOf(id.toString())));
+            if (null != resource1){
+                return selelctSuccess(resource1);
+            }
+            return selelctFalied();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+       return selelctFalied();
+    }
+    /**
      * @Author: He create on 2020/5/29 22:25
      * @param: [resource]
      * @return: com.aaa.zk.base.ResultData
      * @Description: 修改信息
      */
     @PostMapping("updateResourceById")
-    public ResultData updateResourceById(@RequestBody List<Map> list){
-        System.out.println(list);
+    public ResultData updateResourceById(@RequestBody Resource resource){
+        try {
+            Integer update = resourceService.update((Resource) resource.setModifyTime(DateUtils.getCurrentDate()));
+            if (update > 0){
+                return updataSuccess();
+            }
+            return updateFalied();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return updateFalied();
+        /*
         try {
             //前台传入的是多个附件信息 进行循环遍历
             for (Map map : list){
@@ -65,7 +95,6 @@ public class ResourceController extends CommonController<Resource> {
                 //判断表中是否存在该信息
                 Resource selectResult = resourceService.selectResourceByIdAndType(map);
                 if (null == selectResult){
-                    System.out.println("添加"+resource);
                     //不存在 添加新的信息
                     Integer add = resourceService.add((Resource) resource.setCreateTime(DateUtils.getCurrentDate()));
                     if (add > 0){
@@ -74,7 +103,6 @@ public class ResourceController extends CommonController<Resource> {
                         return updateFalied();
                     }
                 }else {
-                    System.out.println("修改"+resource);
                     //存在 即是修改信息
                     Integer update = resourceService.update((Resource) resource.setModifyTime(DateUtils.getCurrentDate()));
                     if (update > 0){
@@ -88,6 +116,7 @@ public class ResourceController extends CommonController<Resource> {
             e.printStackTrace();
         }
         return updateFalied();
+        */
     }
     /**
     * @Author: He create on 2020/5/30 23:06
@@ -98,9 +127,9 @@ public class ResourceController extends CommonController<Resource> {
     @PutMapping("insertResource")
     public ResultData insertResource(@RequestBody Resource resource){
         try {
-            Integer add = resourceService.add((Resource) resource.setId(IDUtils.getID()).setCreateTime(DateUtils.getCurrentDate()));
+            Integer add = resourceService.insertResource(resource);
             if (add > 0){
-                 insertSuccess();
+               return insertSuccess();
             }
             return insertFalied();
         }catch (Exception e){
