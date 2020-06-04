@@ -84,7 +84,7 @@ public class UserService extends BaseService<User> {
     /**
      * 添加用户
      */
-    
+
     public Integer userAdd(User user){
         // 把时间存到 user实体类中
         user.setCreateTime(DateUtils.getCurrentDate());

@@ -121,6 +121,7 @@ public class DeptService extends BaseService<Dept> {
     public Integer deleteDeptByPrimaryKey(Object deptId){
         if (null != deptId){
             int deleteResult = deptMapper.deleteByPrimaryKey(deptId);
+            Integer integer = deptMapper.deleteDeptByParentId(deptId);
             if (deleteResult > 0){
                 return deleteResult;
             }
@@ -140,6 +141,7 @@ public class DeptService extends BaseService<Dept> {
             for (Map map : list){
                 Object id = map.get("id");
                 int deleteResult = deptMapper.deleteByPrimaryKey(id);
+                Integer integer = deptMapper.deleteDeptByParentId(id);
                 if (deleteResult > 0){
                     deleteNum += 1;
                 }

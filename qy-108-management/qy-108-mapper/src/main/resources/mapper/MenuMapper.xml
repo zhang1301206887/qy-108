@@ -32,4 +32,7 @@
       and CREATE_TIME >= #{beginDate} and #{endDate} >= CREATE_TIME
     </if>
   </select>
+  <delete id="deleteMenuByParentId" parameterType="java.lang.Object">
+        delete from t_menu where parent_id = #{id};
+  </delete>
 </mapper>

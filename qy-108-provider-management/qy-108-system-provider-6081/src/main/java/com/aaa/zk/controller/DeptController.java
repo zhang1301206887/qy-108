@@ -12,6 +12,7 @@ import com.aaa.zk.base.CommonController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.Dept;
 import com.aaa.zk.service.DeptService;
+import com.aaa.zk.utils.Map2BeanUtils;
 import com.aaa.zk.vo.DeptVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

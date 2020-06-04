@@ -12,4 +12,5 @@ public interface MenuMapper extends Mapper<Menu> {
 
     List<MenuVo> selectMenuByParentId(Object parentId);
     List<Menu> selectMenuByField(Map map);
+    Integer deleteMenuByParentId(Object id);
 }

@@ -106,6 +106,7 @@ public class MenuService extends BaseService<Menu> {
     public Integer deleteMenuByPrimaryKey(Object menuId){
         if (null != menuId){
             int deleteResult = menuMapper.deleteByPrimaryKey(menuId);
+            Integer integer = menuMapper.deleteMenuByParentId(menuId);
             if (deleteResult > 0){
                 return deleteResult;
             }
@@ -125,6 +126,7 @@ public class MenuService extends BaseService<Menu> {
             for (Map map : list){
                 Object id = map.get("id");
                 int deleteResult = menuMapper.deleteByPrimaryKey(id);
+                Integer integer = menuMapper.deleteMenuByParentId(id);
                 if (deleteResult > 0){
                     deleteNum += 1;
                 }

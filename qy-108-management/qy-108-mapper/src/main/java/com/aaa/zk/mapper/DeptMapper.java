@@ -11,4 +11,5 @@ import java.util.Map;
 public interface DeptMapper extends Mapper<Dept> {
     List<Dept> selectDeptByField(Map map);
     List<DeptVo> selectAllDept(Object id);
+    Integer deleteDeptByParentId(Object id);
 }

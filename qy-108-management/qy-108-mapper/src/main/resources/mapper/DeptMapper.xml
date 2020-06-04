@@ -27,4 +27,7 @@
   <select id="selectAllDept" resultType="com.aaa.zk.vo.DeptVo" parameterType="java.lang.Object">
         select * from t_dept where parent_id = #{parent_id}
   </select>
+  <delete id="deleteDeptByParentId" parameterType="java.lang.Object">
+        delete from t_dept where parent_id = #{id};
+  </delete>
 </mapper>
