@@ -7,6 +7,8 @@ import com.aaa.zk.model.Audit;
 import com.aaa.zk.model.MappingProject;
 import com.aaa.zk.utils.DateUtils;
 import com.aaa.zk.utils.IDUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +27,22 @@ public class MappingProjectService extends BaseService<MappingProject> {
 
     @Autowired
     private AuditMapper auditMapper;
+
+    /**
+     * @author zk
+     * @Date
+     *   分页查询所有项目
+     */
+    public  PageInfo<MappingProject> projectSelectByPage(Integer pageNo, Integer pageSize){
+        PageHelper.startPage(Integer.parseInt(pageNo.toString()),Integer.parseInt(pageSize.toString()));
+        List<MappingProject> mappingProjects = mappingProjectMapper.selectAll();
+        if (null != mappingProjects && mappingProjects.size() > 0){
+            //将搜索的结果集 放入pageinfo返回
+            PageInfo<MappingProject> pageInfo = new PageInfo<MappingProject>(mappingProjects);
+            return pageInfo;
+        }
+        return null;
+    }
 
     /**
     * @author zk
@@ -175,5 +193,6 @@ public class MappingProjectService extends BaseService<MappingProject> {
             return CRUD_FALIED;
         }
     }
+
 
 }

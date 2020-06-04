@@ -6,7 +6,6 @@ import com.aaa.zk.model.User;
 import com.aaa.zk.utils.DateUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,24 +24,17 @@ public class UserService extends BaseService<User> {
      * 查询所有用户
      * @return
      */
-    public PageInfo<User> userSlelectAll(Map map){
-        // 判断map是否为空
-        if (map !=null) {
-            //获取map中的分页页数
-            Object pageNo = map.get("pageNo");
-            //获取分页的页数多少
-            Object pageSize = map.get("pageSize");
-            //封装进pagehelper
-            PageHelper.startPage(Integer.parseInt(pageNo.toString()),Integer.parseInt(pageSize.toString()));
-            List<User> list = userMapper.selectAll();
-            // 判断list是否为空
-            if (null != list && !"".equals(list)) {
-                PageInfo<User> userPageInfo = new PageInfo<User>(list);
-                // 不为空返回
-                return userPageInfo;
-            }
-            }
-        return null;
+    public List<User> userSlelectAll(){
+
+        List<User> list = userMapper.selectAll();
+        // 判断list是否为空
+        if (null !=list && !"".equals(list)){
+            // 不为空返回
+            return list;
+        }else {
+            // 为空返会null
+            return null;
+        }
     }
     /**
     * @Author: He create on 2020/5/29 22:33
@@ -188,4 +180,38 @@ public class UserService extends BaseService<User> {
         }
     }
 
+    /**
+     * 用户重置
+     */
+    public Integer resetUser(User user){
+        // 把user实体类中的都清空
+        user.setPassword(RESET_PASSWORD).setAvatar(null).setDeptId(null).setDescription(null).setEmail(null).setUsername(null).setSsex(null).setType(null).setAvatar(null).setToken(null).setStatus(null).setMobile(null).setModifyTime(DateUtils.getCurrentDate());
+        System.out.println(user);
+        // 调用updateByPrimaryKeySelective 方法 选择性的把数据给清空掉
+        int i = userMapper.updateByPrimaryKey(user);
+        // 判断i是否大于0 如果大于则添加成功
+        if (i>0){
+            // 添加成功
+            return i;
+        }else {
+            //添加失败
+            return null;
+        }
+    }
+    /**
+    * @author zk
+    * @Date
+    *   分页查询所有用户
+    */
+    public PageInfo<User> selectAllByPage(Integer pageNo, Integer pageSize) {
+
+        PageHelper.startPage(Integer.parseInt(pageNo.toString()),Integer.parseInt(pageSize.toString()));
+        List<User> users = userMapper.selectAll();
+        if (null != users && users.size() > 0){
+            //将搜索的结果集 放入pageinfo返回
+            PageInfo<User> pageInfo = new PageInfo<User>(users);
+            return pageInfo;
+        }
+        return null;
+    }
 }

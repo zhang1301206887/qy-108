@@ -30,6 +30,16 @@ public class UserController extends BaseController {
          return iqyUserService.userSelectAll(map);
 
     }
+    /**
+     * 分页 查询所有用户信息
+     * @return
+     */
+    @PostMapping("/userSelectAllByPage")
+    @ApiOperation(value = "查询功能",notes = "分页查询所有用户")
+    public ResultData userSelectAllByPage(Integer pageNo,Integer pageSize){
+        return iqyUserService.userSelectAllByPage(pageNo,pageSize);
+    }
+
 
     /**
      * 查询一条

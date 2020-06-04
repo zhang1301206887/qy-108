@@ -1,5 +1,7 @@
 package com.aaa.zk.base;
 
+import com.aaa.zk.model.MappingProject;
+import com.aaa.zk.model.User;
 import com.aaa.zk.utils.Map2BeanUtils;
 import com.aaa.zk.utils.SpringContextUtils;
 import com.github.pagehelper.PageHelper;
@@ -269,5 +271,4 @@ public abstract class BaseService<T> {
     public ApplicationContext getApplicationContext() {
         return SpringContextUtils.getApplicationContext();
     }
-
 }

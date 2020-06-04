@@ -21,6 +21,17 @@ public class MappingProjectController extends BaseController {
     /**
     * @author zk
     * @Date
+    *   分页查询所有 项目
+    */
+    @PostMapping("/projectSelectByPage")
+    @ApiOperation(value = "查询功能",notes = "分页查询所有项目" )
+    public ResultData projectSelectByPage(Integer pageNo,Integer pageSize){
+        return iqyMappingProjectService.projectSelectByPage(pageNo,pageSize);
+    }
+
+    /**
+    * @author zk
+    * @Date
     *   这个方法是根据userId查询单位的项目数量
     */
     @PostMapping("/selectProjectCountByUserId")

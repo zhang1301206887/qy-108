@@ -1,6 +1,5 @@
 package com.aaa.zk.model;
 
-import com.aaa.zk.base.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,14 +8,13 @@ import lombok.experimental.Accessors;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Table(name = "t_result_commit")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class ResultCommit extends BaseModel{
+public class ResultCommit {
     /**
      * 编号
      */
@@ -56,7 +54,7 @@ public class ResultCommit extends BaseModel{
      * 成果日期
      */
     @Column(name = "result_date")
-    private Date resultDate;
+    private String resultDate;
 
     /**
      * 数据格式
@@ -73,7 +71,7 @@ public class ResultCommit extends BaseModel{
      * 生产日期
      */
     @Column(name = "create_date")
-    private Date createDate;
+    private String createDate;
 
     /**
      * 高程基准

@@ -75,4 +75,11 @@ public interface IQYMappingProjectService {
      */
     @PostMapping("MappingProjectDelete")
     ResultData MappingProjectDelete(@RequestBody Object id);
+    /**
+    * @author zk
+    * @Date
+    *   分页查询所有项目
+    */
+    @PostMapping("projectSelectByPage")
+    ResultData projectSelectByPage(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize);
 }
