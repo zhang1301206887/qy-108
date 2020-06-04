@@ -24,10 +24,10 @@ public class UserController extends BaseController {
      * 查询所有用户信息
      * @return
      */
-    @PostMapping("/userSelectAll")
+    @GetMapping("/userSelectAll")
     @ApiOperation(value = "用户功能",notes = "查询所有用户")
-    public ResultData userSelectAll(@RequestBody Map map){
-         return iqyUserService.userSelectAll(map);
+    public ResultData userSelectAll(){
+         return iqyUserService.userSelectAll();
 
     }
     /**

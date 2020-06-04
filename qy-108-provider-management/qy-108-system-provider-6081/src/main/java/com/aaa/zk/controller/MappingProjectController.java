@@ -4,6 +4,7 @@ import com.aaa.zk.base.BaseController;
 import com.aaa.zk.base.ResultData;
 import com.aaa.zk.model.MappingProject;
 import com.aaa.zk.service.MappingProjectService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,20 @@ public class MappingProjectController extends BaseController {
 
     @Autowired
     private MappingProjectService mappingProjectService;
+
+    /**
+     * @author zk
+     * @Date
+     *   分页查询所有项目
+     */
+    @PostMapping("projectSelectByPage")
+    public ResultData projectSelectByPage(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize){
+        PageInfo<MappingProject> mappingProjects = mappingProjectService.projectSelectByPage(pageNo,pageSize);
+        if (null != mappingProjects && !"".equals(mappingProjects)){
+            return selelctSuccess(mappingProjects);
+        }
+        return selelctFalied();
+    }
 
     /**
      * @author zk

@@ -22,15 +22,25 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
+
+    @PostMapping("/userSelectAllByPage")
+    public ResultData userSelectAllByPage(@RequestParam("pageNo") Integer pageNo,@RequestParam("PageSize") Integer pageSize){
+        PageInfo<User> pageInfo = userService.selectAllByPage(pageNo,pageSize);
+        if (null != pageInfo && !"".equals(pageInfo)){
+            return selelctSuccess(pageInfo);
+        }
+        return selelctFalied();
+    }
+
     /**
      * 查询所有
      * @return
      */
-    @PostMapping("/selectAll")
-    public ResultData userSelectAll(@RequestBody Map map){
-        PageInfo<User> userPageInfo = userService.userSlelectAll(map);
-        if (userPageInfo !=null && !"".equals(userPageInfo)){
-            return selelctSuccess(userPageInfo);
+    @GetMapping("/selectAll")
+    public ResultData userSelectAll(){
+        List<User> users = userService.userSlelectAll();
+        if (users !=null && !"".equals(users)){
+            return selelctSuccess(users);
         }
         return selelctFalied();
     }
