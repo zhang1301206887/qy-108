@@ -10,6 +10,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -84,6 +85,7 @@ public class MappingUnitService extends BaseService<MappingUnit> {
     * @Date
     *    查询所有单位基本信息
     */
+    @Transactional
     public List<MappingUnit> selectAllUnit(){
          List<MappingUnit> mappingUnitList = mappingUnitMapper.selectAll();
          if (mappingUnitList!=null && !mappingUnitList.isEmpty()){
@@ -98,6 +100,7 @@ public class MappingUnitService extends BaseService<MappingUnit> {
     * @return: java.util.List<com.aaa.zk.model.MappingUnit>
     * @Description: 条件查询sql拼接
     */
+    @Transactional
     public PageInfo<MappingUnit> selectUnitByField(Map map){
         if (null != map){
             //获取map中的分页页数
@@ -121,6 +124,7 @@ public class MappingUnitService extends BaseService<MappingUnit> {
     * @return: java.lang.Integer
     * @Description: 根据主键id进行加分操作
     */
+    @Transactional
     public Integer updateInsertScoreById(MappingUnit mappingUnit){
         if (null != mappingUnit){
             Integer integer = mappingUnitMapper.updateInsertScoreById(mappingUnit);
@@ -137,6 +141,7 @@ public class MappingUnitService extends BaseService<MappingUnit> {
     * @return: java.lang.Integer
     * @Description: 根据主键id进行减分操作
     */
+    @Transactional
     public Integer updateDeleteScoreById(MappingUnit mappingUnit){
         if (null != mappingUnit){
             Integer integer = mappingUnitMapper.updateDeleteScoreById(mappingUnit);

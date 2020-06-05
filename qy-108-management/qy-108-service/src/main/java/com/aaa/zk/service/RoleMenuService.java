@@ -9,6 +9,7 @@ import com.aaa.zk.mapper.RoleMenuMapper;
 import com.aaa.zk.model.RoleMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,7 @@ public class RoleMenuService {
     * @return: java.lang.Integer
     * @Description: 修改角色权限时  删除权限
     */
+    @Transactional
     public Integer deleteMenuByRoleId(Object roleId){
         if (null != roleId){
             Integer delete = roleMenuMapper.deleteByRoleId(roleId);
@@ -58,6 +60,7 @@ public class RoleMenuService {
     * @return: java.lang.Integer
     * @Description: 批量删除角色和对应的权限表
     */
+    @Transactional
     public Integer deleteMenuByRoleIdList(List<Map> list){
         if (null != list && list.size() > 0){
             Integer deleteNum = 0;
@@ -79,6 +82,7 @@ public class RoleMenuService {
     * @return: java.lang.Integer
     * @Description: 添加角色的权限
     */
+    @Transactional
     public Integer insertRoleMenu(RoleMenu roleMenu){
         if (null != roleMenu){
             int insert = roleMenuMapper.insert(roleMenu);
