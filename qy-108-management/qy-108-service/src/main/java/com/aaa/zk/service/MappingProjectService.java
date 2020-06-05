@@ -11,6 +11,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -49,6 +50,7 @@ public class MappingProjectService extends BaseService<MappingProject> {
     * @Date
     *    根据项目成果汇交状态 查询 项目  0:通过 1:未通过 2:已提交 3:未提交
     */
+    @Transactional
     public List<MappingProject> selectByResultsStatus(Integer resultsStatus){
         if (null != resultsStatus){
             List<MappingProject> list = mappingProjectMapper.selectByResultsStatus(resultsStatus);
@@ -118,7 +120,7 @@ public class MappingProjectService extends BaseService<MappingProject> {
         Audit audit = new Audit();
         // 先判断传过来的MappingProject实体是否为空
         if (mappingProject != null){
-            mappingProject.setStartDate(DateUtils.getCurrentDate());
+            mappingProject.setStartDate(DateUtils.getCurrentDate()).setId(IDUtils.getID());
             // 不为空则 去添加到数据库
             int i = mappingProjectMapper.insert(mappingProject);
             audit.setId(IDUtils.getID()).setType(TYPE).setName(NAME).setStatus(STATUS).setUserId(mappingProject.getUserId()).setCreateTime(DateUtils.getCurrentDate()).setRefId(mappingProject.getId()).setSubmitTime(DateUtils.getCurrentDate());
@@ -162,6 +164,7 @@ public class MappingProjectService extends BaseService<MappingProject> {
      *  修改项目信息
      * @date: 20-05-25 13:50
      */
+    @Transactional
     public Integer MappingProjectUpdate(MappingProject mappingProject){
         // 先判断传过来的MappingProject实体是否为空
         if (mappingProject != null){

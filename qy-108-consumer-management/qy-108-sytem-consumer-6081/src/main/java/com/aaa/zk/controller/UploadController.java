@@ -28,7 +28,7 @@ public class UploadController extends BaseController {
     @PostMapping("/uploadFile")
     @ApiOperation(value = "上传功能",notes = "单个文件上传")
     public ResultData uploadFile(@RequestBody MultipartFile file , @RequestParam("memo") String memo
-            ,@RequestParam("ref_biz_type") String ref_biz_type , @RequestParam("ref_biz_id") Long ref_biz_id){
+                ,@RequestParam("ref_biz_type") String ref_biz_type , @RequestParam("ref_biz_id") Long ref_biz_id){
         return uploadService.uploadFile(file, memo, ref_biz_type, ref_biz_id);
     }
 }

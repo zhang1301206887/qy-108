@@ -6,6 +6,7 @@ import com.aaa.zk.model.MappingProject;
 import com.aaa.zk.model.ResultCommit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class ResultCommitService extends BaseService<ResultCommit> {
     * @Date
     *  新增汇交结果
     */
+    @Transactional
     public Integer resultCommitInsert(ResultCommit resultCommit){
         if (null != resultCommit){
             Integer i = resultCommitMapper.insertSelective(resultCommit);
