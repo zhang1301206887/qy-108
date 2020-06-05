@@ -93,25 +93,30 @@ public class RoleController extends BaseController {
         //此时返回的时 添加生成的主键id
         Long roleId = roleService.insertRole(role);
         if (null != roleId ){
-            Integer insert = 0;
-            //获取前台传入的数据 因为map中获取的时object类型 转化为string并且去除空格
-            String xx = map.get("xx").toString().replaceAll(" ","");
-            //将string转化为数组 因string格式为"[1,2,3]" 去除边框[]为"1,2,3" 并且以,为分割转化为数组
-            // 便于遍历进行权限表的添加数据
-            String[] arr = xx.substring(1,xx.length()-1).split(",");
-            //遍历arr中的权限id 进行权限的添加
-            for (int i = 0; i < arr.length ; i++) {
-                //将数组遍历 取出的权限id转化为Long类型
-                Long menuId = Long.valueOf(arr[i]);
-                //添加到角色权限中间表中
-                RoleMenu roleMenu = new RoleMenu().setRoleId(roleId).setMenuId(menuId);
-                Integer integer = roleMenuService.insertRoleMenu(roleMenu);
-                insert += integer;
+            Object xx1 = map.get("xx");
+            if (null != xx1 && !"".equals(xx1)){
+                Integer insert = 0;
+                //获取前台传入的数据 因为map中获取的时object类型 转化为string并且去除空格
+                String xx = map.get("xx").toString().replaceAll(" ","");
+                //将string转化为数组 因string格式为"[1,2,3]" 去除边框[]为"1,2,3" 并且以,为分割转化为数组
+                // 便于遍历进行权限表的添加数据
+                String[] arr = xx.substring(1,xx.length()-1).split(",");
+                //遍历arr中的权限id 进行权限的添加
+                for (int i = 0; i < arr.length ; i++) {
+                    //将数组遍历 取出的权限id转化为Long类型
+                    Long menuId = Long.valueOf(arr[i]);
+                    //添加到角色权限中间表中
+                    RoleMenu roleMenu = new RoleMenu().setRoleId(roleId).setMenuId(menuId);
+                    Integer integer = roleMenuService.insertRoleMenu(roleMenu);
+                    insert += integer;
+                }
+                if (insert > 0){
+                    return insertSuccess();
+                }
+                return insertFalied();
             }
-            if (insert > 0){
-                return insertSuccess();
-            }
-            return insertFalied();
+            //只是添加角色没有权限
+            return insertSuccess();
         }
         return insertFalied();
     }
@@ -127,27 +132,34 @@ public class RoleController extends BaseController {
         role.setRoleName(map.get("roleName").toString()).setRemark(map.get("remark").toString()).setId(Long.valueOf(map.get("id").toString()));
         Integer updateRoleByPrimaryKey = roleService.updateRoleByPrimaryKey(role);
         if (updateRoleByPrimaryKey > 0){
-            Integer deleteMenuByRoleId = roleMenuService.deleteMenuByRoleId(map.get("id"));
-            if (deleteMenuByRoleId > 0){
-                Integer insert = 0;
-                //获取前台传入的数据 因为map中获取的时object类型 转化为string并且去除空格
-                String xx = map.get("xx").toString().replaceAll(" ","");
-                //将string转化为数组 因string格式为"[1,2,3]" 去除边框[]为"1,2,3" 并且以,为分割转化为数组
-                // 便于遍历进行权限表的添加数据
-                String[] arr = xx.substring(1,xx.length()-1).split(",");
-                //遍历arr中的权限id 进行权限的添加
-                for (int i = 0; i < arr.length ; i++) {
-                    //将数组遍历 取出的权限id转化为Long类型
-                    Long menuId = Long.valueOf(arr[i]);
-                    //添加到角色权限中间表中
-                    RoleMenu roleMenu = new RoleMenu().setRoleId(Long.valueOf(map.get("id").toString())).setMenuId(menuId);
-                    Integer integer = roleMenuService.insertRoleMenu(roleMenu);
-                    insert += integer;
-                }
-                if (insert > 0){
-                    return updataSuccess();
+            //判断前台传入的权限数组是否为空
+            Object xx1 = map.get("xx");
+            if (null != xx1 && !"".equals(xx1)){
+            //不为空证明需要修改角色的对应权限 先删除角色对应的权限
+                Integer deleteMenuByRoleId = roleMenuService.deleteMenuByRoleId(map.get("id"));
+                if (deleteMenuByRoleId > 0){
+                    Integer insert = 0;
+                    //获取前台传入的数据 因为map中获取的时object类型 转化为string并且去除空格
+                    String xx = map.get("xx").toString().replaceAll(" ","");
+                    //将string转化为数组 因string格式为"[1,2,3]" 去除边框[]为"1,2,3" 并且以,为分割转化为数组
+                    // 便于遍历进行权限表的添加数据
+                    String[] arr = xx.substring(1,xx.length()-1).split(",");
+                    //遍历arr中的权限id 进行权限的添加
+                    for (int i = 0; i < arr.length ; i++) {
+                        //将数组遍历 取出的权限id转化为Long类型
+                        Long menuId = Long.valueOf(arr[i]);
+                        //添加到角色权限中间表中
+                        RoleMenu roleMenu = new RoleMenu().setRoleId(Long.valueOf(map.get("id").toString())).setMenuId(menuId);
+                        Integer integer = roleMenuService.insertRoleMenu(roleMenu);
+                        insert += integer;
+                    }
+                    if (insert > 0){
+                        return updataSuccess();
+                    }
                 }
             }
+            //只需要修改角色信息 不需要修改权限信息
+            return updataSuccess();
         }
         return updateFalied();
     }
