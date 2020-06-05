@@ -10,6 +10,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @FeignClient(value = "upload-interface")
@@ -17,5 +18,6 @@ public interface IQYUploadService {
     @PostMapping(value = "/uploadFile",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    ResultData uploadFile(@RequestBody MultipartFile file);
+    ResultData uploadFile(@RequestBody MultipartFile file , @RequestParam("memo") String memo
+            ,@RequestParam("ref_biz_type") String ref_biz_type , @RequestParam("ref_biz_id") Long ref_biz_id);
 }

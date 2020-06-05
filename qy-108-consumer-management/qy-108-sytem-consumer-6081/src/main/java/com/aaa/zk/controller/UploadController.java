@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,8 +23,8 @@ public class UploadController extends BaseController {
     @Autowired
     IQYUploadService uploadService;
     @PostMapping("/uploadFile")
-    public ResultData uploadFile(@RequestBody MultipartFile file){
-        System.out.println(file);
-        return uploadService.uploadFile(file);
+    public ResultData uploadFile(@RequestBody MultipartFile file , @RequestParam("memo") String memo
+            ,@RequestParam("ref_biz_type") String ref_biz_type , @RequestParam("ref_biz_id") Long ref_biz_id){
+        return uploadService.uploadFile(file, memo, ref_biz_type, ref_biz_id);
     }
 }
