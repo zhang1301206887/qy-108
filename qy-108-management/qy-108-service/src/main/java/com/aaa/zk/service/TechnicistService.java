@@ -106,7 +106,7 @@ public class TechnicistService extends BaseService<Technicist> {
     public Integer updateTechByPrimaryKey(Technicist technicist){
         if (null != technicist){
             technicist.setModifyTime(DateUtils.getCurrentDate());
-            int update = technicistMapper.updateByPrimaryKey(technicist);
+            int update = technicistMapper.updateByPrimaryKeySelective(technicist);
             if (update > 0){
                 return update;
             }

@@ -114,7 +114,7 @@ public class SpecialPostService extends BaseService<SpecialPost> {
     public Integer updateSpecialByPrimaryKey(SpecialPost specialPost){
         if (null != specialPost){
             specialPost.setModifyTime(DateUtils.getCurrentDate());
-            int update = specialPostMapper.updateByPrimaryKey(specialPost);
+            int update = specialPostMapper.updateByPrimaryKeySelective(specialPost);
             if (update > 0){
                 return update;
             }

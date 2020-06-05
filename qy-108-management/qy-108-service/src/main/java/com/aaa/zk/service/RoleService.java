@@ -100,7 +100,7 @@ public class RoleService extends BaseService<Role> {
         if (null != role){
             //模拟时间
             role.setModifyTime(DateUtils.getCurrentDate());
-            int update = roleMapper.updateByPrimaryKey(role);
+            int update = roleMapper.updateByPrimaryKeySelective(role);
             if (update > 0){
                 return update;
             }

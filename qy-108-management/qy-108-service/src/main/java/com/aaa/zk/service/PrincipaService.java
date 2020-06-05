@@ -84,7 +84,7 @@ public class PrincipaService extends BaseService<Principal> {
     public Integer updatePrinByPrimaryKey(Principal principal){
         if (null != principal){
             principal.setModifyTime(DateUtils.getCurrentDate());
-            int update = principalMapper.updateByPrimaryKey(principal);
+            int update = principalMapper.updateByPrimaryKeySelective(principal);
             if (update > 0){
                 return update;
             }

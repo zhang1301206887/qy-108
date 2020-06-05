@@ -94,7 +94,7 @@ public abstract class BaseService<T> {
      * @throws
      **/
     public Integer update(T t) throws Exception {
-        return mapper.updateByPrimaryKey(t);
+        return mapper.updateByPrimaryKeySelective(t);
     }
 
     /**

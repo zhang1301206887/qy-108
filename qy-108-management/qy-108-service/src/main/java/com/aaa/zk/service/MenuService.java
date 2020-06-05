@@ -145,7 +145,7 @@ public class MenuService extends BaseService<Menu> {
         if (null != menu){
             //更新时传入当前时间 更新数据
             menu.setModifyTime(DateUtils.getCurrentDate());
-            int updateResult = menuMapper.updateByPrimaryKey(menu);
+            int updateResult = menuMapper.updateByPrimaryKeySelective(menu);
             if (updateResult  > 0){
                 return updateResult;
             }

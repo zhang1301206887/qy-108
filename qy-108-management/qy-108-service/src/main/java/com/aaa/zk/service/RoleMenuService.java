@@ -29,8 +29,6 @@ public class RoleMenuService {
     public List<RoleMenu> selectRoleMenuById(Object id){
         if (null != id){
             List<RoleMenu> select = roleMenuMapper.selectRoleMenuById(id);
-            List<RoleMenu> roleMenus = roleMenuMapper.selectRoleMenuById(1);
-            System.out.println(roleMenus);
             if (null != select && select.size() > 0){
                 return select;
             }

@@ -96,7 +96,7 @@ public class EquipmentService extends BaseService<Equipment> {
     public Integer updateEquiByPrimaryKey(Equipment equipment){
         if (null != equipment){
             equipment.setModifyTime(DateUtils.getCurrentDate());
-            int update = equipmentMapper.updateByPrimaryKey(equipment);
+            int update = equipmentMapper.updateByPrimaryKeySelective(equipment);
             if (update > 0){
                 return update;
             }

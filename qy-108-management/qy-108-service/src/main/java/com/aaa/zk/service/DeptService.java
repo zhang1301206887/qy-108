@@ -105,7 +105,7 @@ public class DeptService extends BaseService<Dept> {
     public Integer updateDeptByPrimaryKey(Dept dept){
         if (null != dept){
             dept.setModifyTime(DateUtils.getCurrentDate());
-            int updateResult = deptMapper.updateByPrimaryKey(dept);
+            int updateResult = deptMapper.updateByPrimaryKeySelective(dept);
             if (updateResult > 0){
                 return updateResult;
             }

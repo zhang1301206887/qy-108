@@ -91,7 +91,7 @@ public class DictService extends BaseService<Dict> {
     */
     public Integer updateDictByPrimaryKey(Dict dict){
         if (null != dict){
-            int updateResult = dictMapper.updateByPrimaryKey(dict);
+            int updateResult = dictMapper.updateByPrimaryKeySelective(dict);
             if (updateResult > 0 ){
                 return updateResult;
             }
